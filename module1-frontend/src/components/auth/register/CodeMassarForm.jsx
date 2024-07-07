@@ -15,7 +15,7 @@ import {
 
 const schema = z.object({
     codeMassar: z.string()
-        .regex(/^[A-Za-z]{2}\d+$/, "Code MASSAR invalide"),
+        .regex(/^[A-Za-z]{1}\d+$/, "Code MASSAR invalide"),
 });
 
 const Fields = ({ setFormData, nextStep }) => {

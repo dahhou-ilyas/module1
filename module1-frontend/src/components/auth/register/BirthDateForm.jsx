@@ -14,10 +14,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 const schema = z.object({
   dateNaissance: z.date()
-  // .refine(
-  //   (date) => isBefore(date, addYears(new Date(), -10)) && isAfter(date, addYears(new Date(), -30)),
-  //   "Vous devez avoir entre 10 et 30 ans"
-  // )
+  .refine(
+    (date) => isBefore(date, addYears(new Date(), -10)) && isAfter(date, addYears(new Date(), -30)),
+    "Vous devez avoir entre 10 et 30 ans" 
+  )
   ,
   genre: z.string().nonempty("Veuillez sélectionner votre genre"),
 });
