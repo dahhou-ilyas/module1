@@ -29,7 +29,14 @@ const MultiStepForm = () => {
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
-
+  const prevStep2 = () => {
+    const age = formData.dateNaissance ? calculateAge(formData.dateNaissance) : null;
+    if (step === 5 && (age === null || age < 16 || age > 30)) {
+      setStep(3);
+    } else {
+      setStep(step - 1);
+    }
+  };
   const handleSubmit = (values) => {
     console.log('Form Data:', values);
     nextStep();
@@ -53,14 +60,13 @@ const MultiStepForm = () => {
         return <EmailForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
       case 4:
         const age = formData.dateNaissance ? calculateAge(formData.dateNaissance) : null;
-        console.log(age)
         if (age !== null && age >= 16 && age <= 30) {
           return <CinForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
         }
         nextStep();
         break;
       case 5:
-        return <ScolarisationForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
+        return <ScolarisationForm nextStep={nextStep} prevStep={prevStep2} setFormData={setFormData} formData={formData} />;
       case 6:
         if (formData.niveauEtudes !== "" && (formData.niveauEtudes == "Secondaire" || formData.niveauEtudes == "Supérieure")) {
           return <CneForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData}/>;
