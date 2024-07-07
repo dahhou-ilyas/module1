@@ -158,7 +158,7 @@ const Fields = ({ setFormData, nextStep }) => {
         </form>
       </Form>
     </div>
-  );
+  ); 
 };
 
 const ScolarisationForm = ({ setFormData, prevStep, nextStep }) => {
