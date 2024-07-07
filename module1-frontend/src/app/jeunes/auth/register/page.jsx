@@ -75,7 +75,7 @@ const MultiStepForm = () => {
       case 7:
         return <PasswordForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
       case 8:
-        return <Recapitulatif nextStep={nextStep} prevStep={prevStep} formData={formData} handleSubmit={handleSubmit} />;
+        return <Recapitulatif prevStep={prevStep} formData={formData} handleSubmit={handleSubmit} />;
       default:
         return <Confirmation />;
     }

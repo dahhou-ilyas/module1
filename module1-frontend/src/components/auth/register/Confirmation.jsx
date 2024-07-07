@@ -6,7 +6,6 @@ const Confirmation = () => {
     <Layout 
       title={"Consulter votre boite mail"} 
       subtitle={"Veuillez consulter votre boîte mail pour vérifier votre compte."} 
-      prevStep={prevStep}
       />
      );
 }
