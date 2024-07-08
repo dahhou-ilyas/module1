@@ -37,6 +37,7 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
+  
   const handleSubmit = (values) => {
     console.log('Form Data:', values);
     nextStep();

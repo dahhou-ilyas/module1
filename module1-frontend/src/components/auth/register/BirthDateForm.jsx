@@ -1,5 +1,5 @@
 import * as React from "react"
-import Layout from "@/components/auth/register/Layout"
+import Layout from "@/components/auth/Layout"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"

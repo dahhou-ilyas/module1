@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Image from "next/image";
 
 import { LanguageSelector } from '@/components/LanguageSelector';
 
-import Logo from "../../../../public/logoJeune.png";
+import Logo from "../../../public/logoJeune.png";
 import { BiArrowBack } from "react-icons/bi";
 
 
