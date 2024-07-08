@@ -12,7 +12,7 @@ const MultiStepFirstLogin = () => {
   const [formData, setFormData] = useState({
     maladieJeune: [],
     chirurgicaux: '',
-    habitudes: [],
+    habitudes: [], 
     antecedantsFamiliaux: [],
   });
 
