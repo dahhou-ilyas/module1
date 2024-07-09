@@ -1,5 +1,5 @@
 import * as React from "react"
-import Layout from "@/components/auth/register/Layout"
+import Layout from "@/components/auth/Layout"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -104,8 +104,8 @@ const Fields = ({ setFormData, nextStep }) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="Femme">Femme</SelectItem>
-                      <SelectItem value="Homme">Homme</SelectItem>
+                      <SelectItem value="Femme">Féminin</SelectItem>
+                      <SelectItem value="Homme">Masculin</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage>{errors.genre?.message}</FormMessage>

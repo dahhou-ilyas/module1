@@ -37,6 +37,7 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
+  
   const handleSubmit = (values) => {
       fetch('http://localhost:8080/jeunes', {
         method: 'POST',
