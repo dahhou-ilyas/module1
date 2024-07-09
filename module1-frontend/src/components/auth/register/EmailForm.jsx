@@ -100,7 +100,7 @@ import {
 const EmailForm = ({ setFormData, nextStep, prevStep }) => {
     return ( 
     <Layout 
-      title={"Saisissez votre Adresse email et Numéro de Téléphone "} 
+      title={"Veuillez saisir votre Adresse email et Numéro de Téléphone "} 
       fields={<Fields setFormData={setFormData} nextStep={nextStep}  />} 
       prevStep={prevStep}
       />

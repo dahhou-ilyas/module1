@@ -164,7 +164,7 @@ const ScolarisationForm = ({ setFormData, prevStep, nextStep }) => {
   return (
     <Layout
       title={"Informations générales"}
-      subtitle={"Sélectionnez si vous êtes scolarisé(e) et votre niveau d'études actuel."}
+      subtitle={"Veuillez sélectionnez si vous êtes scolarisé(e) et votre niveau d'études actuel."}
       fields={<Fields setFormData={setFormData} nextStep={nextStep} />}
       prevStep={prevStep}
     />

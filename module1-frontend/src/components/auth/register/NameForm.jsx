@@ -95,7 +95,7 @@ const NameForm = ({ setFormData, nextStep }) => {
     return ( 
     <Layout 
       title={"Créer votre compte e-ESJ"} 
-      subtitle={"Saisissez votre nom et prénom"} 
+      subtitle={"Veuillez saisir votre nom et prénom"} 
       fields={<Fields setFormData={setFormData} nextStep={nextStep} />} 
       />
      );
