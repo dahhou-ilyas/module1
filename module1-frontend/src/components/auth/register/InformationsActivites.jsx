@@ -110,7 +110,7 @@ import {
               </FormItem>
             )}
           />}
-        <button type="submit" className='bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto'> Suivant </button></div>
+        <button type="submit" className='bg-[#018A90] rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto'> Suivant </button></div>
         </form>
       </Form>
     );
@@ -123,6 +123,7 @@ const InformationsActivites = ({ setFormData, nextStep, prevStep, medecin }) => 
       subtitle={"Veuillez saisir votre numéro de CIN, INPE et PPR"} 
       fields={<Fields setFormData={setFormData}  nextStep={nextStep} medecin={medecin}/>}
       prevStep= {prevStep}
+      bgColor={"green"}
       />
      );
 }

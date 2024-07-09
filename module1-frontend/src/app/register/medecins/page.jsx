@@ -37,15 +37,15 @@ const RegisterMedecinsForm = () => {
  
     switch (step) {
       case 1:
-        return <NameForm nextStep={nextStep} setFormData={setFormData} formData={formData}/>;
+        return <NameForm nextStep={nextStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"} />;
       case 2:
         return <InformationsActivites nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} medecin={true} />;
       case 3:
-        return <EmailForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
+        return <EmailForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"}/>;
       case 4:
         return <InformationsMedecin nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
       default:
-        return <PasswordForm nextStep={handleSubmit} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
+        return <PasswordForm nextStep={handleSubmit} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"} />;
     }
   };
 

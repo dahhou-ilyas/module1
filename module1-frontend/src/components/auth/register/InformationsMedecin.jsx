@@ -141,7 +141,7 @@ const Fields = ({ setFormData, nextStep }) => {
 }
 
                 
-            <button type="submit" className="bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto">
+            <button type="submit" className="bg-[#018A90] rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto">
               Suivant
             </button>
           </div>
@@ -157,6 +157,7 @@ const InformationsMedecin = ({ setFormData, prevStep, nextStep }) => {
       title={"Informations d'activités"}
       fields={<Fields setFormData={setFormData} nextStep={nextStep} />}
       prevStep={prevStep}
+      bgColor={"green"}
     />
   );
 };
