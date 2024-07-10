@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/medecins")
 @AllArgsConstructor
@@ -44,6 +46,11 @@ public class MedecinController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<MedecinResponseDTO> patchMedecin(@PathVariable Long id, @RequestBody Map<String, Object> updates) throws MedecinNotFoundException {
+        MedecinResponseDTO updatedMedecin = medecinService.updateMedecinPartial(id, updates);
+        return ResponseEntity.ok(updatedMedecin);
+    }
 
 
     @GetMapping("/confirmation")

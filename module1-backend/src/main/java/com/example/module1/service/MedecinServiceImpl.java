@@ -25,6 +25,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -84,49 +85,57 @@ public class MedecinServiceImpl implements MedecinService {
         return medecinResponseDTO;
     }
 
-    @Override
-    public void updateMedecin(Long id, Medecin updatedMedecin) throws MedecinNotFoundException, MedecinException {
-        Optional<Medecin> existingMedecinOptional = medecinRepository.findById(id);
-        if (existingMedecinOptional.isPresent()){
-            Medecin existingMedecin = existingMedecinOptional.get();
-            updateAppUserFields(existingMedecin.getAppUser(), updatedMedecin.getAppUser());
-            updateMedecinFields(existingMedecin, updatedMedecin);
-        }
-    }
-    private void updateMedecinFields(Medecin existingMedecin, Medecin updatedMedecin) {
-        if (updatedMedecin.getCin() != null) {
-            existingMedecin.setCin(updatedMedecin.getCin());
-        }
-        if (updatedMedecin.getInpe() != null) {
-            existingMedecin.setInpe(updatedMedecin.getInpe());
-        }
-        if (updatedMedecin.getPpr() != null) {
-            existingMedecin.setPpr(updatedMedecin.getPpr());
-        }
-        if (updatedMedecin.getEstMedcinESJ() != null) {
-            existingMedecin.setEstMedcinESJ(updatedMedecin.getEstMedcinESJ());
-        }
-        if (updatedMedecin.getEstGeneraliste() != null) {
-            existingMedecin.setEstGeneraliste(updatedMedecin.getEstGeneraliste());
-        }
-        if (updatedMedecin.getSpecialite() != null) {
-            existingMedecin.setSpecialite(updatedMedecin.getSpecialite());
-        }
-    }
-    private void updateAppUserFields(AppUser existingAppUser, AppUser updatedAppUser){
-        Field[] fields = AppUser.class.getDeclaredFields();
-        for (Field field : fields){
-            field.setAccessible(true);
-            try {
-                Object updatedValue = field.get(updatedAppUser);
+    public MedecinResponseDTO updateMedecinPartial(Long id, Map<String, Object> updates) throws MedecinNotFoundException {
+        Medecin existingMedecin = medecinRepository.findById(id)
+                .orElseThrow(() -> new MedecinNotFoundException("Medecin not found with id " + id));
 
-                if (updatedValue != null) {
-                    field.set(existingAppUser, updatedValue);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+        updates.forEach((key, value) -> {
+            switch (key) {
+                case "nom":
+                    existingMedecin.getAppUser().setNom((String) value);
+                    break;
+                case "prenom":
+                    existingMedecin.getAppUser().setPrenom((String) value);
+                    break;
+                case "mail":
+                    existingMedecin.getAppUser().setMail((String) value);
+                    break;
+                case "numTele":
+                    existingMedecin.getAppUser().setNumTele((String) value);
+                    break;
+                case "password":
+                    existingMedecin.getAppUser().setPassword((String) value);
+                    break;
+                case "cin":
+                    existingMedecin.setCin((String) value);
+                    break;
+                case "inpe":
+                    existingMedecin.setInpe((String) value);
+                    break;
+                case "ppr":
+                    existingMedecin.setPpr((String) value);
+                    break;
+                case "estMedcinESJ":
+                    existingMedecin.setEstMedcinESJ((Boolean) value);
+                    break;
+                case "estGeneraliste":
+                    existingMedecin.setEstGeneraliste((Boolean) value);
+                    break;
+                case "specialite":
+                    existingMedecin.setSpecialite((String) value);
+                    break;
+                case "confirmed":
+                    existingMedecin.setConfirmed((Boolean) value);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid attribute: " + key);
             }
-        }
+        });
+
+        userRepository.save(existingMedecin.getAppUser());
+        medecinRepository.save(existingMedecin);
+
+        return medecineMapper.fromMedcine(existingMedecin);
     }
 
     @Override

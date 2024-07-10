@@ -6,12 +6,14 @@ import com.example.module1.entities.Medecin;
 import com.example.module1.exception.MedecinException;
 import com.example.module1.exception.MedecinNotFoundException;
 
+import java.util.Map;
+
 public interface MedecinService extends ConfirmeMailService<Medecin> {
     MedecinResponseDTO saveMecine(Medecin medecin) throws MedecinException;
 
     MedecinResponseDTO getMedecinById(Long id) throws MedecinNotFoundException;
 
-    void updateMedecin(Long id, Medecin medecin) throws MedecinNotFoundException, MedecinException;
+    public MedecinResponseDTO updateMedecinPartial(Long id, Map<String, Object> updates) throws MedecinNotFoundException;
 
     void deleteMedecin(Long id) throws MedecinNotFoundException, MedecinException;
 }
