@@ -57,7 +57,7 @@ public class MedecinServiceImpl implements MedecinService {
             confirmationToken.setToken(token);
             confirmationTokenRepository.save(confirmationToken);
 
-            sendConfirmationEmail(savedMedecin.getAppUser().getMail(),token);
+            new Thread(() -> sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
 
             MedecinResponseDTO medecinResponseDTO = medecineMapper.fromMedcine(savedMedecin);
             return medecinResponseDTO;
@@ -162,7 +162,6 @@ public class MedecinServiceImpl implements MedecinService {
         }
     }
     @Override
-    @Async
     public void sendEmail(String to, String subject, String htmlBody) {
         MimeMessage message = mailSender.createMimeMessage();
         try {

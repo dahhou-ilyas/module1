@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @RequestMapping("/medecins")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class MedecinController {
     private MedecinService medecinService;
 
@@ -50,7 +51,7 @@ public class MedecinController {
 
         Medecin medecin = medecinService.confirmEmail(token);
 
-        return new RedirectView("https://www.youtube.com/watch?v=VIDEO_ID");
+        return new RedirectView("http://localhost:3000/auth/medecins");
     }
 
     @ExceptionHandler(MedecinException.class)

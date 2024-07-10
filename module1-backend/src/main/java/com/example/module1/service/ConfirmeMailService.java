@@ -5,7 +5,7 @@ public interface ConfirmeMailService<T> {
     T confirmEmail(String token);
 
     default void sendConfirmationEmail(String to, String token) {
-        String confirmationUrl = "http://localhost:8080/register/medecins/confirmation?token=" + token;
+        String confirmationUrl = "http://localhost:8080/medecins/confirmation?token=" + token;
         String subject = "Email Confirmation";
         String htmlBody = "<p>Please confirm your email by clicking the following link:</p>"
                 + "<p><a href=\"" + confirmationUrl + "\">Confirm Email</a></p>";
