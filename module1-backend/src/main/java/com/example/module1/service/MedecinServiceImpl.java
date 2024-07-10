@@ -55,7 +55,9 @@ public class MedecinServiceImpl implements MedecinService {
             confirmationToken.setCreatedDate(new Date());
             confirmationToken.setToken(token);
             confirmationTokenRepository.save(confirmationToken);
+
             sendConfirmationEmail(savedMedecin.getAppUser().getMail(),token);
+
             MedecinResponseDTO medecinResponseDTO = medecineMapper.fromMedcine(savedMedecin);
             return medecinResponseDTO;
         } catch (DataIntegrityViolationException e) {

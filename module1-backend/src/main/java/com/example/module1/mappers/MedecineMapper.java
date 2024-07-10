@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MedecineMapper {
-
     public MedecinResponseDTO fromMedcine(Medecin medecin){
         MedecinResponseDTO medecinResponseDTO=new MedecinResponseDTO();
         medecinResponseDTO.setId(medecin.getId());
@@ -20,5 +19,4 @@ public class MedecineMapper {
         medecinResponseDTO.setSpecialite(medecin.getSpecialite());
         return medecinResponseDTO;
     }
-
 }
