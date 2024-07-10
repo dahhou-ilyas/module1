@@ -15,6 +15,7 @@ import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -161,6 +162,7 @@ public class MedecinServiceImpl implements MedecinService {
         }
     }
     @Override
+    @Async
     public void sendEmail(String to, String subject, String htmlBody) {
         MimeMessage message = mailSender.createMimeMessage();
         try {
