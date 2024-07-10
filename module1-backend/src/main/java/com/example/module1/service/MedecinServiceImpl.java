@@ -45,35 +45,32 @@ public class MedecinServiceImpl implements MedecinService {
     private JavaMailSender mailSender;
 
 
-    @Override
-    public MedecinResponseDTO saveMecine(Medecin medecin) throws MedecinException {
-
-        try {
-            Medecin savedMedecin = medecinRepository.save(medecin);
-
-            String token = UUID.randomUUID().toString();
-            ConfirmationToken confirmationToken = new ConfirmationToken();
-            confirmationToken.setMedecin(savedMedecin);
-            confirmationToken.setCreatedDate(new Date());
-            confirmationToken.setToken(token);
-            confirmationTokenRepository.save(confirmationToken);
-
-            new Thread(() -> sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
-
-            MedecinResponseDTO medecinResponseDTO = medecineMapper.fromMedcine(savedMedecin);
-            return medecinResponseDTO;
-        } catch (DataIntegrityViolationException e) {
-            if (e.getCause() instanceof ConstraintViolationException) {
-                ConstraintViolationException cause = (ConstraintViolationException) e.getCause();
-                String constraintName = cause.getConstraintName();
-                if (constraintName.contains("mail")) {
-                    throw new MedecinException("L'email spécifié est déjà utilisé par un autre utilisateur");
-                } else if (constraintName.contains("cin")) {
-                    throw new MedecinException("Le numéro de CIN spécifié est déjà utilisé par un autre utilisateur");
-                }
-            }
-            throw new MedecinException("Une erreur s'est produite lors de l'enregistrement du médecin", e);
+    public MedecinResponseDTO saveMedecin(Medecin medecin) throws MedecinException {
+        if (medecinRepository.existsByCin(medecin.getCin())) {
+            throw new MedecinException("Le numéro de CIN spécifié est déjà utilisé par un autre utilisateur");
         }
+        if (medecinRepository.existsByInpe(medecin.getInpe())) {
+            throw new MedecinException("Le numéro INPE spécifié est déjà utilisé par un autre utilisateur");
+        }
+        if (medecinRepository.existsByPpr(medecin.getPpr())) {
+            throw new MedecinException("Le numéro PPR spécifié est déjà utilisé par un autre utilisateur");
+        }
+        if (userRepository.existsByMail(medecin.getAppUser().getMail())) {
+            throw new MedecinException("L'email spécifié est déjà utilisé par un autre utilisateur");
+        }
+
+        Medecin savedMedecin = medecinRepository.save(medecin);
+
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken();
+        confirmationToken.setMedecin(savedMedecin);
+        confirmationToken.setCreatedDate(new Date());
+        confirmationToken.setToken(token);
+        confirmationTokenRepository.save(confirmationToken);
+
+        new Thread(() -> sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
+
+        return medecineMapper.fromMedcine(savedMedecin);
     }
 
     public MedecinResponseDTO getMedecinById(Long id) throws MedecinNotFoundException {

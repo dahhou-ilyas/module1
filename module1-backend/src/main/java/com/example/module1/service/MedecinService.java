@@ -9,7 +9,7 @@ import com.example.module1.exception.MedecinNotFoundException;
 import java.util.Map;
 
 public interface MedecinService extends ConfirmeMailService<Medecin> {
-    MedecinResponseDTO saveMecine(Medecin medecin) throws MedecinException;
+    MedecinResponseDTO saveMedecin(Medecin medecin) throws MedecinException;
 
     MedecinResponseDTO getMedecinById(Long id) throws MedecinNotFoundException;
 

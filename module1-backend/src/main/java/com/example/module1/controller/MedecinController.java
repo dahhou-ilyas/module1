@@ -21,8 +21,15 @@ public class MedecinController {
     private MedecinService medecinService;
 
     @PostMapping
-    public MedecinResponseDTO createMedcine(@RequestBody Medecin medecin) throws MedecinException {
-        return medecinService.saveMecine(medecin);
+    public ResponseEntity<?> createMedecin(@RequestBody Medecin medecin) {
+        try {
+            MedecinResponseDTO responseDTO = medecinService.saveMedecin(medecin);
+            return ResponseEntity.ok(responseDTO);
+        } catch (MedecinException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur s'est produite lors du traitement de la requête");
+        }
     }
 
     @DeleteMapping("/{id}")
