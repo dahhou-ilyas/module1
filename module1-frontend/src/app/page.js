@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
+import WelcomingText from "@/components/WelcomingText";
 
 export default function Home() {
   return (
     <>  
     <Navbar />
-    <div className="bg-red-700 h-56 w-full"></div>
+    <WelcomingText />
     </>
   );
 }

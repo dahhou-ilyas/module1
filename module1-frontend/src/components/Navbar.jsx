@@ -108,7 +108,7 @@ export default function Navbar() {
       <div
         className={`fixed inset-0 bg-gray-800 bg-opacity-75 ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-0 lg:hidden`}
       >
-        <div ref={sidebarRef} className={`transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out p-4 bg-white h-full flex flex-col justify-between w-3/5`}>
+        <div ref={sidebarRef} className={`transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out p-4 bg-white h-full flex flex-col justify-between w-3/5 sm:w-2/5`}>
           <div>
             <div className="flex justify-between mb-4">
               <LogoJeune height={60} width={120} />
