@@ -2,6 +2,7 @@
  
 import React from 'react';
 import Image from "next/image";
+import Link from 'next/link';
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -97,7 +98,7 @@ const AuthJeunes = () => {
                                 <FormItem>
                                 <FormLabel className=" sm:inline">Mot de Passe</FormLabel>
                                 <FormDescription className="hidden sm:inline border-b-2 border-blue-600 text-blue-600 cursor-pointer sm:ml-40">
-                                    Mot de passe oublié?
+                                <Link href="/forgotPassword/jeunes">Mot de passe oublié?</Link>
                                 </FormDescription>
                                 
                                 <FormControl>
@@ -106,7 +107,7 @@ const AuthJeunes = () => {
                                 
                                 <FormMessage className="sm:w-96 max-w-sm" />
                                 <FormDescription className="sm:hidden border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
-                                    Mot de passe oublié?
+                                <Link href="/forgotPassword/jeunes">Mot de passe oublié?</Link>
                                 </FormDescription>
                                 </FormItem>
                             )}
@@ -117,7 +118,7 @@ const AuthJeunes = () => {
                         </Form>
                      
                     </div>
-                    <h4 className="text-xs text-center text-gray-700 mt-4">Vous n'avez pas de compte ? <span className=' font-semibold border-b-2 border-gray-700 cursor-pointer'> Inscrivez-vous </span></h4> 
+                    <Link href="/register/jeunes" ><h4 className="text-xs text-center text-gray-700 mt-4">Vous n'avez pas de compte ?  <span className=' font-semibold border-b-2 border-gray-700 cursor-pointer'> Inscrivez-vous </span></h4>  </Link>
                 </div>    
                 <div className="hidden lg:block ml-3 mt-auto">
                     <LanguageSelector />
