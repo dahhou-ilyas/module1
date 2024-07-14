@@ -6,9 +6,12 @@ import EmailForm from '@/components/auth/register/EmailForm';
 import PasswordForm from '@/components/auth/register/PasswordForm';
 import { useState } from 'react';
 import InformationsMedecin from '@/components/auth/register/InformationsMedecin';
+import { useRouter } from 'next/navigation';
+import Confirmation from '@/components/auth/register/Confirmation';
 
 
 const RegisterMedecinsForm = () => {
+  const router = useRouter()
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     nom: '',
@@ -30,7 +33,7 @@ const RegisterMedecinsForm = () => {
   
   const handleSubmit = (values) => {
     console.log('Form Data:', values);
-    fetch('http://localhost:8080/medecins', {
+    fetch('http://localhost:8080/register/medecins', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -52,7 +55,7 @@ const RegisterMedecinsForm = () => {
       })
     })
     .then(response => response.json())
-    .then(data => console.log('Success:', data))
+    .then(data => nextStep())
     .catch(error => console.error('Error:', error));
   };
 
@@ -68,8 +71,10 @@ const RegisterMedecinsForm = () => {
         return <EmailForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"}/>;
       case 4:
         return <InformationsMedecin nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
-      default:
+      case 5:
         return <PasswordForm nextStep={handleSubmit} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"} />;
+      case 6:
+        return <Confirmation />;
     }
   };
 

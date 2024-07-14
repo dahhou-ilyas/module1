@@ -11,16 +11,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/medecins")
+
 @AllArgsConstructor
 @CrossOrigin("*")
 public class MedecinController {
     private MedecinService medecinService;
 
-    @PostMapping
+    @PostMapping("/register/medecins")
     public ResponseEntity<?> createMedecin(@RequestBody Medecin medecin) {
         try {
             MedecinResponseDTO responseDTO = medecinService.saveMedecin(medecin);
@@ -32,7 +33,7 @@ public class MedecinController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/medecins/{id}")
     public ResponseEntity<String> deleteMedecin(@PathVariable Long id) {
         try {
             medecinService.deleteMedecin(id);
@@ -43,7 +44,7 @@ public class MedecinController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
-    @GetMapping("/{id}")
+    @GetMapping("/medecins/{id}")
     public ResponseEntity<MedecinResponseDTO> getMedecinById(@PathVariable Long id) {
         try {
             MedecinResponseDTO medecin = medecinService.getMedecinById(id);
@@ -53,20 +54,25 @@ public class MedecinController {
         }
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/medecins/{id}")
     public ResponseEntity<MedecinResponseDTO> patchMedecin(@PathVariable Long id, @RequestBody Map<String, Object> updates) throws MedecinNotFoundException {
         MedecinResponseDTO updatedMedecin = medecinService.updateMedecinPartial(id, updates);
         return ResponseEntity.ok(updatedMedecin);
     }
 
-
-    @GetMapping("/confirmation")
-    public RedirectView confirmEmail(@RequestParam("token") String token) {
-
-        Medecin medecin = medecinService.confirmEmail(token);
-
-        return new RedirectView("http://localhost:3000/auth/medecins");
+    @GetMapping("/medecins")
+    public ResponseEntity<List<MedecinResponseDTO>> getAllMedecins() {
+        try {
+            List<MedecinResponseDTO> medecins = medecinService.getAllMedecins();
+            return ResponseEntity.ok(medecins);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
+
+
+
 
     @ExceptionHandler(MedecinException.class)
     public ResponseEntity<Object> handleMedecinException(MedecinException ex) {

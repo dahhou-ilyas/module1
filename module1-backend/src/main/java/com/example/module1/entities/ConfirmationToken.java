@@ -23,6 +23,10 @@ public class ConfirmationToken {
     @JoinColumn(nullable = true, name = "medecin_id")
     private Medecin medecin;
 
+    @OneToOne(targetEntity = ProfessionnelSante.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = true, name = "professionnelSante_id")
+    private ProfessionnelSante professionnelSante;
+
     private Date createdDate;
 
 }

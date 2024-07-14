@@ -1,15 +1,10 @@
 package com.example.module1.service;
 
-public interface ConfirmeMailService<T> {
+import com.example.module1.exception.ConfirmationMailException;
+
+public interface ConfirmeMailService {
     void sendEmail(String to, String subject, String body);
-    T confirmEmail(String token);
+    Object confirmEmail(String token) throws ConfirmationMailException;
 
-    default void sendConfirmationEmail(String to, String token) {
-        String confirmationUrl = "http://localhost:8080/medecins/confirmation?token=" + token;
-        String subject = "Email Confirmation";
-        String htmlBody = "<p>Please confirm your email by clicking the following link:</p>"
-                + "<p><a href=\"" + confirmationUrl + "\">Confirm Email</a></p>";
-
-        sendEmail(to, subject, htmlBody);
-    }
+     void sendConfirmationEmail(String to, String token);
 }

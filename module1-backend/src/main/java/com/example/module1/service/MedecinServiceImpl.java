@@ -3,7 +3,6 @@ package com.example.module1.service;
 
 
 import com.example.module1.dto.MedecinResponseDTO;
-import com.example.module1.entities.AppUser;
 import com.example.module1.entities.ConfirmationToken;
 import com.example.module1.entities.Medecin;
 import com.example.module1.exception.MedecinException;
@@ -13,21 +12,12 @@ import com.example.module1.repository.ConfirmationTokenRepository;
 import com.example.module1.repository.MedecinRepository;
 import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.scheduling.annotation.Async;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.mail.javamail.JavaMailSender;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import org.springframework.mail.javamail.MimeMessageHelper;
 
-import java.lang.reflect.Field;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -35,14 +25,13 @@ import java.util.UUID;
 public class MedecinServiceImpl implements MedecinService {
 
 
-    private static final long EXPIRATION_TIME_MS = 60 * 60 * 1000;
 
     private MedecinRepository medecinRepository;
     private UserRepository userRepository;
     private MedecineMapper medecineMapper;
 
     private ConfirmationTokenRepository confirmationTokenRepository;
-    private JavaMailSender mailSender;
+    private ConfirmeMailService confirmeMailService;
 
 
     public MedecinResponseDTO saveMedecin(Medecin medecin) throws MedecinException {
@@ -68,7 +57,7 @@ public class MedecinServiceImpl implements MedecinService {
         confirmationToken.setToken(token);
         confirmationTokenRepository.save(confirmationToken);
 
-        new Thread(() -> sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
+        new Thread(() -> confirmeMailService.sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
 
         return medecineMapper.fromMedcine(savedMedecin);
     }
@@ -149,37 +138,11 @@ public class MedecinServiceImpl implements MedecinService {
         }
     }
 
-
     @Override
-    public Medecin confirmEmail(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenRepository.findByToken(token);
-        if (confirmationToken != null) {
-            Date now = new Date();
-            Medecin medecin = confirmationToken.getMedecin();
-            long diffMs = now.getTime() - confirmationToken.getCreatedDate().getTime();
-            if (diffMs > EXPIRATION_TIME_MS) {
-                throw new RuntimeException("Confirmation token has expired");
-            }
-            medecin.setConfirmed(true);
-            medecinRepository.save(medecin);
-            return medecin;
-        } else {
-            throw new RuntimeException("Invalid confirmation token");
-        }
+    public List<MedecinResponseDTO> getAllMedecins() {
+        List<Medecin> medecins=medecinRepository.findAll();
+        return medecins.stream().map(m->medecineMapper.fromMedcine(m)).collect(Collectors.toList());
     }
-    @Override
-    public void sendEmail(String to, String subject, String htmlBody) {
-        MimeMessage message = mailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(htmlBody, true); // true indique que le contenu est HTML
 
-            mailSender.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
