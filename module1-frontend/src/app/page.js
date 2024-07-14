@@ -5,9 +5,9 @@ import LiveCaroussel from "@/components/LiveCaroussel";
 export default function Home() {
   return (
     <>  
-    <Navbar />
-    <WelcomingText />
-    <LiveCaroussel />
+      <Navbar />
+      <WelcomingText />
+      <LiveCaroussel />
     </>
   );
 }
