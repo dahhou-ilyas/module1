@@ -29,16 +29,7 @@ const MultiStepForm = () => {
     password: "",
   });
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
-  const prevStep2 = () => {
-    const age = formData.dateNaissance ? calculateAge(formData.dateNaissance) : null;
-    if (step === 5 && (age === null || age < 16 || age > 30)) {
-      setStep(3);
-    } else {
-      setStep(step - 1);
-    }
-  };
+  
   
   const handleSubmit = (values) => {
       fetch('http://localhost:8080/jeunes', {
@@ -77,6 +68,27 @@ const MultiStepForm = () => {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
+  const prevStep2 = () => {
+    const age = formData.dateNaissance ? calculateAge(formData.dateNaissance) : null;
+    if (step === 5 && (age === null || age < 16 || age > 30)) {
+      setStep(3);
+    } else {
+      setStep(step - 1);
+    }
+  };
+  const prevStep3 = () => {
+    if (formData.niveauEtudes == "Aucun") {
+      setStep(5);
+    } else {
+      setStep(step - 1);
+    }
+  };
+
+
+
+
   const renderStep = () => {
 
     switch (step) {
@@ -107,7 +119,7 @@ const MultiStepForm = () => {
         break;
         }
       case 7:
-        return <PasswordForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} />;
+        return <PasswordForm nextStep={nextStep} prevStep={prevStep3} setFormData={setFormData} formData={formData} />;
       case 8:
         return <Recapitulatif nextStep={nextStep} prevStep={prevStep} formData={formData} handleSubmit={handleSubmit} />;
       default:

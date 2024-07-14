@@ -16,8 +16,12 @@ import {
 
 
   const schema = z.object({
-    nom: z.string().min(1, "Veuillez saisir votre nom"),
-    prenom: z.string().min(1, "Veuillez saisir votre prénom"),
+    nom: z.string()
+      .min(1, "Veuillez saisir votre nom")
+      .regex(/^[a-zA-ZÀ-ÿ]+$/, "Le nom ne doit contenir que des lettres"),
+    prenom: z.string()
+      .min(1, "Veuillez saisir votre prénom")
+      .regex(/^[a-zA-ZÀ-ÿ]+$/, "Le prénom ne doit contenir que des lettres"),
   });
 
 

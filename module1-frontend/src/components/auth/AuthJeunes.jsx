@@ -98,7 +98,7 @@ const AuthJeunes = () => {
                                 <FormItem>
                                 <FormLabel className=" sm:inline">Mot de Passe</FormLabel>
                                 <FormDescription className="hidden sm:inline border-b-2 border-blue-600 text-blue-600 cursor-pointer sm:ml-40">
-                                <Link href="/forgotPassword/jeunes">Mot de passe oublié?</Link>
+                                <Link href="/forgotPassword">Mot de passe oublié?</Link>
                                 </FormDescription>
                                 
                                 <FormControl>
@@ -107,7 +107,7 @@ const AuthJeunes = () => {
                                 
                                 <FormMessage className="sm:w-96 max-w-sm" />
                                 <FormDescription className="sm:hidden border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
-                                <Link href="/forgotPassword/jeunes">Mot de passe oublié?</Link>
+                                <Link href="/forgotPassword">Mot de passe oublié?</Link>
                                 </FormDescription>
                                 </FormItem>
                             )}
