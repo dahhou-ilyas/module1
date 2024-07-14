@@ -1,8 +1,10 @@
 package com.example.module1.service;
 
-public interface ConfirmeMailService<T> {
+import com.example.module1.exception.ConfirmationMailException;
+
+public interface ConfirmeMailService {
     void sendEmail(String to, String subject, String body);
-    T confirmEmail(String token);
+    Object confirmEmail(String token) throws ConfirmationMailException;
 
      void sendConfirmationEmail(String to, String token);
 }

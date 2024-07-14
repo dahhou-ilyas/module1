@@ -71,13 +71,6 @@ public class MedecinController {
     }
 
 
-    @GetMapping("/register/medecins/confirmation")
-    public RedirectView confirmEmail(@RequestParam("token") String token) {
-
-        Medecin medecin = medecinService.confirmEmail(token);
-
-        return new RedirectView("http://localhost:3000/auth/medecins");
-    }
 
 
 

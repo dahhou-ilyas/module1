@@ -63,11 +63,6 @@ public class ProfessionnelSanteController {
         }
     }
 
-    @GetMapping("/register/professionnelsante/confirmation")
-    public RedirectView confirmEmail(@RequestParam("token") String token) {
-        ProfessionnelSante professionnelSante = professionnelSanteService.confirmEmail(token);
-        return new RedirectView("https://www.youtube.com/watch?v=VIDEO_ID");
-    }
 
     @ExceptionHandler(ProfessionnelSanteException.class)
     public ResponseEntity<Object> handleProfessionnelSanteException(ProfessionnelSanteException ex) {

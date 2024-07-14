@@ -2,7 +2,6 @@ package com.example.module1.service;
 
 
 import com.example.module1.dto.ProfessionnelSanteResponseDTO;
-import com.example.module1.entities.AppUser;
 import com.example.module1.entities.ConfirmationToken;
 import com.example.module1.entities.ProfessionnelSante;
 import com.example.module1.exception.ProfessionnelSanteException;
@@ -11,14 +10,9 @@ import com.example.module1.mappers.ProfessionnelSanteMapper;
 import com.example.module1.repository.ConfirmationTokenRepository;
 import com.example.module1.repository.ProfessionnelSanteRepository;
 import com.example.module1.repository.UserRepository;
-import com.example.module1.service.ProfessionnelSanteService;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +24,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService {
 
-    private static final long EXPIRATION_TIME_MS = 60 * 60 * 1000;
 
     private ProfessionnelSanteRepository professionnelSanteRepository;
     private UserRepository userRepository;
@@ -38,7 +31,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
     private ProfessionnelSanteMapper professionnelSanteMapper;
 
     private ConfirmationTokenRepository confirmationTokenRepository;
-    private JavaMailSender mailSender;
+    private ConfirmeMailService confirmeMailService;
 
 
     @Override
@@ -54,7 +47,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
             confirmationToken.setToken(token);
             confirmationTokenRepository.save(confirmationToken);
 
-            new Thread(() -> sendConfirmationEmail(savedProfessionnelSante.getUser().getMail(), token)).start();
+            new Thread(() -> confirmeMailService.sendConfirmationEmail(savedProfessionnelSante.getUser().getMail(), token)).start();
 
             ProfessionnelSanteResponseDTO professionnelSanteResponseDTO = professionnelSanteMapper.fromProfessionnelSante(savedProfessionnelSante);
             return professionnelSanteResponseDTO;
@@ -141,46 +134,5 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
         }
     }
 
-    @Override
-    public ProfessionnelSante confirmEmail(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenRepository.findByToken(token);
-        if (confirmationToken != null) {
-            Date now = new Date();
-            ProfessionnelSante professionnelSante = confirmationToken.getProfessionnelSante();
-            long diffMs = now.getTime() - confirmationToken.getCreatedDate().getTime();
-            if (diffMs > EXPIRATION_TIME_MS) {
-                throw new RuntimeException("Confirmation token has expired");
-            }
-            professionnelSante.setConfirmed(true);
-            professionnelSanteRepository.save(professionnelSante);
-            return professionnelSante;
-        } else {
-            throw new RuntimeException("Invalid confirmation token");
-        }
-    }
 
-    @Override
-    public void sendEmail(String to, String subject, String htmlBody) {
-        MimeMessage message = mailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(htmlBody, true); // true indique que le contenu est HTML
-
-            mailSender.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void sendConfirmationEmail(String to, String token) {
-        String confirmationUrl = "http://localhost:8080/register/professionnelsante/confirmation?token=" + token;
-        String subject = "Email Confirmation";
-        String htmlBody = "<p>Please confirm your email by clicking the following link:</p>"
-                + "<p><a href=\"" + confirmationUrl + "\">Confirm Email</a></p>";
-
-        sendEmail(to, subject, htmlBody);
-    }
 }

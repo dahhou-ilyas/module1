@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface ProfessionnelSanteService extends ConfirmeMailService<ProfessionnelSante>{
+public interface ProfessionnelSanteService{
     ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException;
 
     ProfessionnelSanteResponseDTO getProfessionnelSanteById(Long id) throws ProfessionnelSanteNotFoundException;
