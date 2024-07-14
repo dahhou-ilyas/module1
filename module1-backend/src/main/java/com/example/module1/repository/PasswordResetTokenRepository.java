@@ -1,8 +1,7 @@
-package backend.authModule.repository;
+package com.example.module1.repository;
 
-import backend.authModule.entities.AppUser;
-import backend.authModule.entities.PasswordResetToken;
-import backend.authModule.entities.ProfessionnelSante;
+import com.example.module1.entities.AppUser;
+import com.example.module1.entities.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

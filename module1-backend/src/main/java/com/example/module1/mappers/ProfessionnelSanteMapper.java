@@ -1,9 +1,9 @@
-package backend.authModule.mappers;
+package com.example.module1.mappers;
 
-import backend.authModule.dto.MedecinResponseDTO;
-import backend.authModule.dto.ProfessionnelSanteResponseDTO;
-import backend.authModule.entities.Medecin;
-import backend.authModule.entities.ProfessionnelSante;
+
+
+import com.example.module1.dto.ProfessionnelSanteResponseDTO;
+import com.example.module1.entities.ProfessionnelSante;
 import org.springframework.stereotype.Service;
 
 @Service

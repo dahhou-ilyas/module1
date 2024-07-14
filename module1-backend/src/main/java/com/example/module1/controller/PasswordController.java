@@ -18,7 +18,7 @@ public class PasswordController {
 
     private PasswordResetService passwordResetService;
 
-    @PostMapping("/forgot")
+    @PostMapping("/forget")
     public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> request){
         String email = request.get("email");
         if (email == null || email.isEmpty()) {

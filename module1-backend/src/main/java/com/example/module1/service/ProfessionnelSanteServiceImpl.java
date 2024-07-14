@@ -1,24 +1,24 @@
-package backend.authModule.service;
+package com.example.module1.service;
 
-import backend.authModule.dto.ProfessionnelSanteResponseDTO;
-import backend.authModule.entities.AppUser;
-import backend.authModule.entities.ConfirmationToken;
-import backend.authModule.entities.ProfessionnelSante;
-import backend.authModule.exception.ProfessionnelSanteException;
-import backend.authModule.exception.ProfessionnelSanteNotFoundException;
-import backend.authModule.mappers.ProfessionnelSanteMapper;
-import backend.authModule.repository.ConfirmationTokenRepository;
-import backend.authModule.repository.ProfessionnelSanteRepository;
-import backend.authModule.repository.UserRepository;
+
+import com.example.module1.dto.ProfessionnelSanteResponseDTO;
+import com.example.module1.entities.AppUser;
+import com.example.module1.entities.ConfirmationToken;
+import com.example.module1.entities.ProfessionnelSante;
+import com.example.module1.exception.ProfessionnelSanteException;
+import com.example.module1.exception.ProfessionnelSanteNotFoundException;
+import com.example.module1.mappers.ProfessionnelSanteMapper;
+import com.example.module1.repository.ConfirmationTokenRepository;
+import com.example.module1.repository.ProfessionnelSanteRepository;
+import com.example.module1.repository.UserRepository;
+import com.example.module1.service.ProfessionnelSanteService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,14 +40,11 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
     private ConfirmationTokenRepository confirmationTokenRepository;
     private JavaMailSender mailSender;
 
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException {
 
         try {
-            AppUser appUser = professionnelSante.getUser();
-            appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
             ProfessionnelSante savedProfessionnelSante = professionnelSanteRepository.save(professionnelSante);
 
             String token = UUID.randomUUID().toString();
@@ -103,6 +100,15 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
                     break;
                 case "isFirstAuth":
                     existingProfessionnelSante.setIsFirstAuth((Boolean) value);
+                    break;
+                case "nom":
+                    existingProfessionnelSante.getUser().setNom((String) value);
+                    break;
+                case "prenom":
+                    existingProfessionnelSante.getUser().setPrenom((String) value);
+                    break;
+                case "numTele":
+                    existingProfessionnelSante.getUser().setNumTele((String) value);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid attribute: " + key);
@@ -168,6 +174,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
         }
     }
 
+    @Override
     public void sendConfirmationEmail(String to, String token) {
         String confirmationUrl = "http://localhost:8080/register/professionnelsante/confirmation?token=" + token;
         String subject = "Email Confirmation";

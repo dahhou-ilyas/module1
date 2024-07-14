@@ -1,17 +1,15 @@
-package backend.authModule.service;
+package com.example.module1.service;
 
-import backend.authModule.dto.ProfessionnelSanteResponseDTO;
-import backend.authModule.entities.AppUser;
-import backend.authModule.entities.ProfessionnelSante;
-import backend.authModule.entities.VerificationToken;
-import backend.authModule.exception.*;
-import org.springframework.transaction.annotation.Transactional;
+import com.example.module1.dto.ProfessionnelSanteResponseDTO;
+import com.example.module1.entities.ProfessionnelSante;
+import com.example.module1.exception.ProfessionnelSanteException;
+import com.example.module1.exception.ProfessionnelSanteNotFoundException;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface ProfessionnelSanteService {
+public interface ProfessionnelSanteService extends ConfirmeMailService<ProfessionnelSante>{
     ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException;
 
     ProfessionnelSanteResponseDTO getProfessionnelSanteById(Long id) throws ProfessionnelSanteNotFoundException;
@@ -22,7 +20,4 @@ public interface ProfessionnelSanteService {
 
     void deleteProfessionnelSante(Long id) throws ProfessionnelSanteNotFoundException;
 
-    ProfessionnelSante confirmEmail(String token);
-
-    void sendEmail(String to, String subject, String htmlBody);
 }

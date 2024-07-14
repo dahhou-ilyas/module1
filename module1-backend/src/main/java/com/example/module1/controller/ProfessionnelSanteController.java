@@ -1,10 +1,10 @@
-package backend.authModule.web;
+package com.example.module1.controller;
 
-import backend.authModule.dto.ProfessionnelSanteResponseDTO;
-import backend.authModule.entities.ProfessionnelSante;
-import backend.authModule.exception.ProfessionnelSanteException;
-import backend.authModule.exception.ProfessionnelSanteNotFoundException;
-import backend.authModule.service.ProfessionnelSanteService;
+import com.example.module1.dto.ProfessionnelSanteResponseDTO;
+import com.example.module1.entities.ProfessionnelSante;
+import com.example.module1.exception.ProfessionnelSanteException;
+import com.example.module1.exception.ProfessionnelSanteNotFoundException;
+import com.example.module1.service.ProfessionnelSanteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +22,13 @@ public class ProfessionnelSanteController {
     private final ProfessionnelSanteService professionnelSanteService;
 
     @PostMapping("/register/professionnelsantes")
-    public ResponseEntity<ProfessionnelSanteResponseDTO> registerProfessionnelSante(@RequestBody ProfessionnelSante professionnelSante) throws ProfessionnelSanteException {
+    public ResponseEntity<ProfessionnelSanteResponseDTO> registerProfessionnelSante(@RequestBody ProfessionnelSante professionnelSante) throws ProfessionnelSanteException, ProfessionnelSanteException {
         ProfessionnelSanteResponseDTO savedProfessionnelSante = professionnelSanteService.saveProfessionnelSante(professionnelSante);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProfessionnelSante);
     }
 
     @PatchMapping("/professionnelsantes/{id}")
-    public ResponseEntity<ProfessionnelSanteResponseDTO> patchProfessionnelSante(@PathVariable Long id, @RequestBody Map<String, Object> updates) throws ProfessionnelSanteNotFoundException {
+    public ResponseEntity<ProfessionnelSanteResponseDTO> patchProfessionnelSante(@PathVariable Long id, @RequestBody Map<String, Object> updates) throws ProfessionnelSanteNotFoundException, ProfessionnelSanteNotFoundException {
         ProfessionnelSanteResponseDTO updatedProfessionnelSante = professionnelSanteService.updateProfessionnelSantePartial(id, updates);
         return ResponseEntity.ok(updatedProfessionnelSante);
     }
@@ -63,7 +63,7 @@ public class ProfessionnelSanteController {
         }
     }
 
-    @GetMapping("/register/professionnelsantes/confirmation")
+    @GetMapping("/register/professionnelsante/confirmation")
     public RedirectView confirmEmail(@RequestParam("token") String token) {
         ProfessionnelSante professionnelSante = professionnelSanteService.confirmEmail(token);
         return new RedirectView("https://www.youtube.com/watch?v=VIDEO_ID");

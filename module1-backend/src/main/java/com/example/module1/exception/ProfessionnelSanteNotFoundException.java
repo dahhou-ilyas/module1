@@ -1,4 +1,4 @@
-package backend.authModule.exception;
+package com.example.module1.exception;
 
 public class ProfessionnelSanteNotFoundException  extends  Exception{
     public ProfessionnelSanteNotFoundException(String message) {

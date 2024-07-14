@@ -24,10 +24,8 @@ import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import java.lang.reflect.Field;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -149,6 +147,12 @@ public class MedecinServiceImpl implements MedecinService {
         }
     }
 
+    @Override
+    public List<MedecinResponseDTO> getAllMedecins() {
+        List<Medecin> medecins=medecinRepository.findAll();
+        return medecins.stream().map(m->medecineMapper.fromMedcine(m)).collect(Collectors.toList());
+    }
+
 
     @Override
     public Medecin confirmEmail(String token) {
@@ -180,6 +184,16 @@ public class MedecinServiceImpl implements MedecinService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendConfirmationEmail(String to, String token) {
+        String confirmationUrl = "http://localhost:8080/register/medecins/confirmation?token=" + token;
+        String subject = "Email Confirmation";
+        String htmlBody = "<p>Please confirm your email by clicking the following link:</p>"
+                + "<p><a href=\"" + confirmationUrl + "\">Confirm Email</a></p>";
+
+        sendEmail(to, subject, htmlBody);
     }
 
 }

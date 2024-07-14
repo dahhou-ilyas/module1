@@ -1,4 +1,5 @@
-package backend.authModule.entities;
+package com.example.module1.entities;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
