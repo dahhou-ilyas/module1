@@ -22,17 +22,19 @@ const ForgotPassword = () => {
   
   const sendPasswordResetToken = (email) => {
 
-    fetch('http://localhost:8080/password/forget', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email:email
-      })
-    })
-    .then(data => nextStep())
-    .catch(error => console.error('Erroxxxxr:', error));
+    // fetch('http://localhost:8080/password/forget', {
+    //   method: 'POST',
+    //   headers: {
+    //       'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     email:email
+    //   })
+    // })
+    // .then(data => nextStep())
+    // .catch(error => console.error('Erroxxxxr:', error));
+
+    nextStep()
 
   }
 
@@ -43,21 +45,22 @@ const ForgotPassword = () => {
     nextStep();
   }
   const resetPassword = (values) => {
-    fetch('http://localhost:8080/password/reset', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        token:forgetPasswordData.token,
-        newPassword:values
-      })
-    })
-    .then(data => {
-      console.log("!!!!!!!!!!!!!!!!!!!! sucess");
-      nextStep()
-    })
-    .catch(error => console.error('Error:', error));
+    // fetch('http://localhost:8080/password/reset', {
+    //   method: 'POST',
+    //   headers: {
+    //       'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     token:forgetPasswordData.token,
+    //     newPassword:values
+    //   })
+    // })
+    // .then(data => {
+    //   console.log("!!!!!!!!!!!!!!!!!!!! sucess");
+    //   nextStep()
+    // })
+    // .catch(error => console.error('Error:', error));
+    nextStep()
   };
 
  
