@@ -4,6 +4,7 @@ import InformationsActivites from '@/components/auth/register/InformationsActivi
 import NameForm from '@/components/auth/register/NameForm';
 import EmailForm from '@/components/auth/register/EmailForm';
 import PasswordForm from '@/components/auth/register/PasswordForm';
+import Confirmation from '@/components/auth/register/Confirmation';
 
 
 
@@ -43,7 +44,7 @@ const RegisterProfessionnelsForm = () => {
       })
     })
     .then(response => response.json())
-    .then(data => console.log('Success:', data))
+    .then(data => nextStep())
     .catch(error => console.error('Error:', error));
   };
 
@@ -58,8 +59,10 @@ const RegisterProfessionnelsForm = () => {
       case 3:
         return <EmailForm nextStep={nextStep} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"} />;
       
-      default:
+      case 4:
         return <PasswordForm nextStep={handleSubmit} prevStep={prevStep} setFormData={setFormData} formData={formData} bgColor={"green"} buttonColor={"green"} />;
+      case 5:
+        return <Confirmation />;
     }
   };
 

@@ -55,7 +55,7 @@ const Fields = ({ setFormData, nextStep, formData, buttonColor }) => {
       ...prevFormData,
       password: data.password,
     }));
-    nextStep(formData);
+    nextStep(data.password);
   };
   const bgClasses = {
     green: 'bg-[#018A90]',

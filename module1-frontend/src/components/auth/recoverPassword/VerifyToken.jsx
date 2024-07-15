@@ -18,7 +18,7 @@ import {
 
 
   const schema = z.object({
-    token: z.string().refine(value => /^\d{6}$/.test(value), {
+    token: z.string().refine(value => /^[a-zA-Z0-9]{6}$/.test(value), {
         message: "Veuillez saisir votre code à 6 chiffres valides",
     }),
 });
@@ -61,7 +61,7 @@ import {
                   />
                 </FormControl>
                 <FormDescription>
-                    ex: 123654
+                    ex: abc123
                 </FormDescription>
                 <FormMessage>{errors.token?.message}</FormMessage>
               </FormItem>

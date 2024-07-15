@@ -33,7 +33,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
             throw new UserNotFoundException("User not found");
         }
         AppUser user = userOptional.get();
-        String token = UUID.randomUUID().toString();
+        String token = UUID.randomUUID().toString().replace("-", "").substring(0,6);
 
         Date expiryDate = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 hour expiry
         PasswordResetToken passwordResetToken = new PasswordResetToken(token, user, expiryDate);
