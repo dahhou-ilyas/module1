@@ -6,12 +6,12 @@ import EmailForm from '@/components/auth/register/EmailForm';
 import PasswordForm from '@/components/auth/register/PasswordForm';
 import { useState } from 'react';
 import InformationsMedecin from '@/components/auth/register/InformationsMedecin';
-import { useRouter } from 'next/navigation';
+
 import Confirmation from '@/components/auth/register/Confirmation';
 
 
 const RegisterMedecinsForm = () => {
-  const router = useRouter()
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     nom: '',
@@ -40,25 +40,24 @@ const RegisterMedecinsForm = () => {
     //   },
     //   body: JSON.stringify({
     //     appUser:{
-    //       nom:formData.nom,
-    //       prenom:formData.prenom,
-    //       mail:formData.email,
-    //       numTele:formData.tel.replace(/^0/, "+212"),
-    //       password:formData.password,
+    //       nom:values.formData.nom,
+    //       prenom:values.formData.prenom,
+    //       mail:values.formData.email,
+    //       numTele:values.formData.tel.replace(/^0/, "+212"),
+    //       password:values.password,
     //     },
-    //     cin:formData.cin,
-    //     inpe:formData.inpe,
-    //     ppr:formData.ppr,
-    //     estMedcinESJ:(formData.medecinESJ=="oui") ? true:false,
-    //     estGeneraliste:(formData.medecinGeneraliste=="oui")? true:false,
-    //     specialite:formData.specialite
+    //     cin:values.formData.cin,
+    //     inpe:values.formData.inpe,
+    //     ppr:values.formData.ppr,
+    //     estMedcinESJ:(values.formData.medecinESJ=="oui") ? true:false,
+    //     estGeneraliste:(values.formData.medecinGeneraliste=="oui")? true:false,
+    //     specialite:values.formData.specialite
     //   })
     // })
     // .then(response => response.json())
     // .then(data => nextStep())
     // .catch(error => console.error('Error:', error));
-
-    nextStep()
+     nextStep()
   };
 
    

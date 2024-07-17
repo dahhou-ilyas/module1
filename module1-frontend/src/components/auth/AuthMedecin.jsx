@@ -22,6 +22,7 @@ import {
 
 import Logo from "../../../public/logoMedecin.png";
 import Illustration from "../../../public/image2.png";
+import { jwtDecode } from 'jwt-decode';
 
 
 const schema = z.object({
@@ -46,6 +47,28 @@ const AuthMedecin = () => {
     //   const { errors } = formState;
     
       const onSubmit = (data) => {
+        // fetch('http://localhost:8080/auth/login/medecins', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         username:data.identifier,
+        //         password:data.password
+        //     })
+        //   })
+        //   .then(response => response.json())
+        //   .then(data =>{ 
+        //     const decodeToken=jwtDecode(data["access-token"])
+        //     if(decodeToken.claims.confirmed==false){
+        //         console.log("yous must confiremd your email");
+        //     }else if (decodeToken.claims.isFirstAuth==true){
+        //         console.log("yous must respect rules");
+        //     }else{
+        //         console.log("transfere vers la page d'accue");
+        //     }
+        //   })
+        //   .catch(error => console.error('Error:', error));
         console.log(data);
       };
   return (

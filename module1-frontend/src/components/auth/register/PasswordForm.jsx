@@ -55,7 +55,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
       ...prevFormData,
       password: data.password,
     }));console.log(data);
-    nextStep(formData);
+    nextStep({formData,password:data.password});
   };
 
   return (
