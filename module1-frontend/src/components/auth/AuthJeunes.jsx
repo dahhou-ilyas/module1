@@ -1,8 +1,9 @@
 "use client"
- 
-import React from 'react';
+
+import React, { useRef } from 'react'; 
 import Image from "next/image";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -23,6 +24,9 @@ import {
 import Logo from "../../../public/logoJeune.png";
 import Illustration from "../../../public/2862289.webp";
 
+import Terms from './Terms';
+import CheckVerifiedEmail from './CheckVerifiedEmail';
+
 
 const schema = z.object({
     identifier: z.string().min(1, "Veuillez saisir votre identifiant"),
@@ -33,7 +37,7 @@ const schema = z.object({
 
 
 const AuthJeunes = () => {
-
+    const router = useRouter();
     const form = useForm({
         defaultValues: {
           identifier: "",
@@ -42,9 +46,35 @@ const AuthJeunes = () => {
         resolver: zodResolver(schema),
       });
     
-      const onSubmit = (data) => {
-        console.log(data);
-      };
+      const alertDialogTriggerRef = useRef(null);
+
+    const alertDialogTriggerRef2 = useRef(null);
+
+    const onSubmit = (data) => {
+
+        //verifier les identifiants....si tout est ok alors: 
+
+
+        if (alertDialogTriggerRef.current ) {
+            // ajouter dans les conditions && jwt variable first login
+            alertDialogTriggerRef.current.click();
+        } else  {
+            if (alertDialogTriggerRef2.current && false) { // ajouter dans les conditions && email non valide
+                alertDialogTriggerRef2.current.click();
+            }
+
+        else {
+            router.push('/')
+        }
+    };
+    }
+    const nextStep = () => {
+        router.push('/auth/firstlogin')
+    }
+    const envoyerEmail = () => {
+        //envoyerEmailderécuperation
+        //afficher Confirmation component (a faire plus tard)
+    }
   return (
 
     <div className="lg:h-screen lg:flex lg:items-center lg:justify-center lg:bg-gray-400">
@@ -114,6 +144,9 @@ const AuthJeunes = () => {
                             />
 
                             <button type="submit" className='bg-blue-900 rounded-2xl mt-4 py-1 w-full max-w-sm text-white font-medium'> Se Connecter</button> 
+
+                            <Terms nextStep={nextStep}  alertDialogTriggerRef={alertDialogTriggerRef}/>
+                            <CheckVerifiedEmail envoyerEmail={envoyerEmail}  alertDialogTriggerRef={alertDialogTriggerRef2}/>
                         </form>
                         </Form>
                      
