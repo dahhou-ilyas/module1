@@ -96,11 +96,11 @@ const Fields = ({ setFormData, nextStep }) => {
               name="genre"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Genre</FormLabel>
+                  <FormLabel>Sexe*</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger >
-                        <SelectValue placeholder="Genre" />
+                        <SelectValue placeholder="Sexe" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>

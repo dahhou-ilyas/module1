@@ -94,19 +94,18 @@ import {
           />
         
         
-        <button type="submit" className= {`rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto ${bgClasses[buttonColor] || 'bg-blue-900'}`} > Suivant </button></div>
+        <button type="submit" className= "rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto bg-blue-900" > Suivant </button></div>
         </form>
       </Form>
     );
   };
 
-const EmailForm = ({ setFormData, nextStep, prevStep, buttonColor, bgColor }) => {
+const EmailForm = ({ setFormData, nextStep, prevStep }) => {
     return ( 
     <Layout 
       title={"Veuillez saisir votre Adresse email et Numéro de Téléphone "} 
-      fields={<Fields setFormData={setFormData} nextStep={nextStep} buttonColor={buttonColor} />} 
+      fields={<Fields setFormData={setFormData} nextStep={nextStep} />} 
       prevStep={prevStep}
-      bgColor={bgColor}
       />
      );
 }

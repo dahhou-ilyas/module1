@@ -52,7 +52,7 @@ const MultiStepForm = () => {
             cne:"CNE"+formData.cne,
             codeMASSAR:formData.codeMassar,
             dernierNiveauEtudes:(formData.scolarise == "non") ? formData.niveauEtudes:"",
-            situationActuelle:formData.situationActuelle,
+            enActivite:formData.enActivite,  
         })
     })
     .then(response => response.json())

@@ -53,9 +53,7 @@ const Fields = ({ nextStep, buttonColor }) => {
     console.log(data);
     nextStep(data.password);
   };
-  const bgClasses = {
-    green: 'bg-[#018A90]',
-  };
+ 
   return (
     <div className="mt-4">
       <Form {...form}>
@@ -101,7 +99,7 @@ const Fields = ({ nextStep, buttonColor }) => {
 
             <button
               type="submit"
-              className={`rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto ${bgClasses[buttonColor] || 'bg-blue-900'}`}
+              className="rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto bg-blue-900"
             >
               Valider
             </button>
@@ -112,15 +110,15 @@ const Fields = ({ nextStep, buttonColor }) => {
   );
 };
 
-const PasswordReset = ({ nextStep, buttonColor, bgColor }) => {
+const PasswordReset = ({ nextStep }) => {
   return (
     <Layout
       title={"Mot de passe sécurisé"}
       subtitle={
         "Créez votre nouveau mot de passe sécurisé avec des lettres, des chiffres et des symboles."
       }
-      fields={<Fields  nextStep={nextStep} buttonColor={buttonColor}/>}
-      bgColor={bgColor}
+      fields={<Fields  nextStep={nextStep} />}
+      
     />
   );
 };

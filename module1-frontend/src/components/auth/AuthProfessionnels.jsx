@@ -50,7 +50,7 @@ const AuthProfessionnels = () => {
       };
   return (
 
-    <div className="lg:h-screen lg:flex lg:items-center lg:justify-center lg:bg-[#DBEBE2]">
+    <div className="lg:h-screen lg:flex lg:items-center lg:justify-center lg:bg-gray-400">
         <div className="mt-1 flex justify-between lg:hidden w-full">
             <div className="ml-auto mr-2">
                 <LanguageSelector />
@@ -115,7 +115,7 @@ const AuthProfessionnels = () => {
                             )}
                             />
 
-                            <button type="submit" className=' bg-[#018A90] rounded-2xl mt-4 py-1 w-full max-w-sm text-white font-medium'> Se Connecter</button> 
+                            <button type="submit" className=' bg-blue-900 rounded-2xl mt-4 py-1 w-full max-w-sm text-white font-medium'> Se Connecter</button> 
                         </form>
                         </Form>
                      

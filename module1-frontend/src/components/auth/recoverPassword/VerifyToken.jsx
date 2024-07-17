@@ -39,9 +39,7 @@ import {
         nextStep(data.token);
     };
 
-    const bgClasses = {
-      green: 'bg-[#018A90]',
-    };
+   
     return (
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
@@ -68,19 +66,18 @@ import {
             )}
           />
 
-        <button type="submit" className= {`rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto ${bgClasses[buttonColor] || 'bg-blue-900'}`} > Suivant </button></div>
+        <button type="submit" className= "rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto bg-blue-900" > Suivant </button></div>
         </form>
       </Form>
     );
   };
 
-const VerifyToken = ({ nextStep, buttonColor, bgColor }) => {
+const VerifyToken = ({ nextStep }) => {
     return ( 
     <Layout 
       title={"Veuillez consulter votre boite mail"}
       subtitle={"Un code à 6 chiffres a été envoyé à votre adresse. Veuillez consulter votre boîte de réception et insérer le code à 6 chiffres."} 
-      fields={<Fields nextStep={nextStep} buttonColor={buttonColor} />} 
-      bgColor={bgColor}
+      fields={<Fields nextStep={nextStep}  />} 
       />
      );
 }

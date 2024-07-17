@@ -37,9 +37,7 @@ import {
         nextStep(data.email);
     };
 
-    const bgClasses = {
-      green: 'bg-[#018A90]',
-    };
+    
     return (
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
@@ -66,18 +64,17 @@ import {
             )}
           />
 
-        <button type="submit" className= {`rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto ${bgClasses[buttonColor] || 'bg-blue-900'}`} > Suivant </button></div>
+        <button type="submit" className= "rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto bg-blue-900" > Suivant </button></div>
         </form>
       </Form>
     );
   };
 
-const EmailRecovery = ({ nextStep, buttonColor, bgColor }) => {
+const EmailRecovery = ({ nextStep }) => {
     return ( 
     <Layout 
       title={"Veuillez saisir votre Adresse email "} 
-      fields={<Fields nextStep={nextStep} buttonColor={buttonColor} />} 
-      bgColor={bgColor}
+      fields={<Fields nextStep={nextStep} />} 
       />
      );
 }
