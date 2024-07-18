@@ -143,7 +143,28 @@ const AuthProfessionnels = () => {
                             )}
                             />
 
-                            <button type="submit" className=' bg-blue-900 rounded-2xl mt-4 py-1 w-full max-w-sm text-white font-medium'> Se Connecter</button> 
+                            <button 
+                                type="submit" 
+                                className='
+                                    bg-blue-900 
+                                    rounded-2xl 
+                                    mt-4 
+                                    py-1 
+                                    w-full 
+                                    max-w-sm 
+                                    text-white 
+                                    font-medium 
+                                    transform 
+                                    transition 
+                                    duration-300 
+                                    lg:hover:scale-100
+                                    lg:scale-95
+                                    hover:shadow-lg
+                                    hover:bg-blue-800
+                                '
+                                > 
+                                Se Connecter
+                                </button>
 
 
                             <Terms nextStep={nextStep}  alertDialogTriggerRef={alertDialogTriggerRef}/>
