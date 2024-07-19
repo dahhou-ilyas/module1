@@ -111,7 +111,10 @@ public class MedecinServiceImpl implements MedecinService {
                     existingMedecin.setSpecialite((String) value);
                     break;
                 case "confirmed":
-                    existingMedecin.setConfirmed((Boolean) value);
+                    existingMedecin.getAppUser().setConfirmed((Boolean) value);
+                    break;
+                case "isFirstAuth":
+                    existingMedecin.getAppUser().setIsFirstAuth((Boolean) value);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid attribute: " + key);

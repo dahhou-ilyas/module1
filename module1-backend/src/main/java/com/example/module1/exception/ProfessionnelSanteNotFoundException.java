@@ -1,6 +1,6 @@
 package com.example.module1.exception;
 
-public class ProfessionnelSanteNotFoundException  extends  Exception{
+public class ProfessionnelSanteNotFoundException  extends  RuntimeException{
     public ProfessionnelSanteNotFoundException(String message) {
         super(message);
     }

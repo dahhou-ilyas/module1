@@ -20,8 +20,7 @@ public class ProfessionnelSante {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser user;
-    private boolean confirmed =false;
-    private Boolean isFirstAuth = true;
+
 
     private String ROLE="PROFESSIONELSANTE";
 

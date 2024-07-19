@@ -32,6 +32,13 @@ public class ConfirmationMailController {
         }
     }
 
+    @PostMapping("/register/resend-token")
+    public ResponseEntity<String> resendToken(@RequestParam("email") String email) {
+        confirmeMailService.resendToken(email);
+        return ResponseEntity.ok("Token resent successfully");
+
+    }
+
     @ExceptionHandler(ConfirmationMailException.class)
     public ResponseEntity<String> handleConfirmationMailException(ConfirmationMailException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

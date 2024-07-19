@@ -19,4 +19,8 @@ public class AppUser {
     private String numTele;
     private String password;
 
+    private boolean confirmed =false;
+    private Boolean isFirstAuth = true;
+
+
 }

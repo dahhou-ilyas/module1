@@ -89,10 +89,10 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
                     existingProfessionnelSante.setInpe((String) value);
                     break;
                 case "confirmed":
-                    existingProfessionnelSante.setConfirmed((Boolean) value);
+                    existingProfessionnelSante.getUser().setConfirmed((Boolean) value);
                     break;
                 case "isFirstAuth":
-                    existingProfessionnelSante.setIsFirstAuth((Boolean) value);
+                    existingProfessionnelSante.getUser().setIsFirstAuth((Boolean) value);
                     break;
                 case "nom":
                     existingProfessionnelSante.getUser().setNom((String) value);

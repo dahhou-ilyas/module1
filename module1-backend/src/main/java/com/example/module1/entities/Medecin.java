@@ -27,5 +27,5 @@ public class Medecin {
     private Boolean estGeneraliste;
     private String specialite;
     private String ROLE="MEDECIN";
-    private boolean confirmed =false;
+
 }

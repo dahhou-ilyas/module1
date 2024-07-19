@@ -1,6 +1,6 @@
 package com.example.module1.exception;
 
-public class ConfirmationMailException extends Exception{
+public class ConfirmationMailException extends RuntimeException{
     public ConfirmationMailException(String message){
         super(message);
     }
