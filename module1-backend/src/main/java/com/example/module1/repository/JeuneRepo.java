@@ -2,7 +2,6 @@ package com.example.module1.repository;
 
 
 import com.example.module1.entities.Jeune;
-import com.example.module1.entities.Medecin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

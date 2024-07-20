@@ -39,6 +39,7 @@ public class ConfirmationMailController {
 
     @PostMapping("/register/resend-token")
     public ResponseEntity<String> resendToken(@RequestParam("email") String email) throws JeuneNotFoundException {
+        System.out.println("***************************************************");
         confirmeMailService.resendToken(email);
         return ResponseEntity.ok("Token resent successfully");
 

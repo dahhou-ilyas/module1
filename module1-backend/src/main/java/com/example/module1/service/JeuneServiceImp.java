@@ -4,7 +4,6 @@ import com.example.module1.dto.JeuneDto;
 import com.example.module1.entities.*;
 import com.example.module1.enums.NiveauEtudes;
 import com.example.module1.enums.Sexe;
-import com.example.module1.enums.Situation;
 import com.example.module1.exception.EmailNonValideException;
 import com.example.module1.exception.JeuneException;
 import com.example.module1.exception.JeuneNotFoundException;
@@ -16,11 +15,7 @@ import com.example.module1.repository.AntecedentFamilialRepo;
 import com.example.module1.repository.AntecedentPersonnelRepo;
 import com.example.module1.repository.ConfirmationTokenRepository;
 import com.example.module1.repository.JeuneRepo;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -199,7 +194,7 @@ public class JeuneServiceImp implements JeuneService {
                     break;
                 case "situationActuelle":
                     if (jeune instanceof JeuneNonScolarise) {
-                        ((JeuneNonScolarise) jeune).setSituationActuelle(Situation.valueOf((String) value));
+                        ((JeuneNonScolarise) jeune).setEnActivite((Boolean) value);
                     }
                     break;
                 case "niveauEtudesActuel":
@@ -207,7 +202,7 @@ public class JeuneServiceImp implements JeuneService {
                         ((JeuneScolarise) jeune).setNiveauEtudesActuel(NiveauEtudes.valueOf((String) value));
                     }
                     break;
-                case "CNE":
+                case "cne":
                     if (jeune instanceof JeuneScolarise) {
                         ((JeuneScolarise) jeune).setCNE((String) value);
                     }
