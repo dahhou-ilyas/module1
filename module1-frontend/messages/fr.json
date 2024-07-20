@@ -1,0 +1,15 @@
+{
+  "NameForm": {
+    "nomLabel": "Nom",
+    "prenomLabel": "Prénom",
+    "nomPlaceholder": "Nom",
+    "prenomPlaceholder": "Prénom",
+    "submitButton": "Suivant",
+    "nomErrorRequired": "Veuillez saisir votre nom",
+    "nomErrorInvalid": "Le nom ne doit contenir que des lettres",
+    "prenomErrorRequired": "Veuillez saisir votre prénom",
+    "prenomErrorInvalid": "Le prénom ne doit contenir que des lettres",
+    "title": "Créer votre compte e-ESJ",
+    "subtitle": "Veuillez saisir votre nom et prénom"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "NameForm": {
+    "nomLabel": "الاسم",
+    "prenomLabel": "اللقب",
+    "nomPlaceholder": "الاسم",
+    "prenomPlaceholder": "اللقب",
+    "submitButton": "التالي",
+    "nomErrorRequired": "يرجى إدخال اسمك",
+    "nomErrorInvalid": "يجب أن يحتوي الاسم على أحرف فقط",
+    "prenomErrorRequired": "يرجى إدخال لقبك",
+    "prenomErrorInvalid": "يجب أن يحتوي اللقب على أحرف فقط",
+    "title": "إنشاء حسابك في e-ESJ",
+    "subtitle": "يرجى إدخال اسمك ولقبك"
+  }
+}
