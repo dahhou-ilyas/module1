@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react'; 
+import React, { useRef, useState } from 'react'; 
 import Image from "next/image";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
@@ -36,6 +36,7 @@ import { MdLiveHelp } from "react-icons/md";
 
 import Terms from './Terms';
 import CheckVerifiedEmail from './CheckVerifiedEmail';
+import { jwtDecode } from 'jwt-decode';
 
 
 const schema = z.object({
@@ -47,6 +48,9 @@ const schema = z.object({
 
 
 const AuthJeunes = () => {
+    const [token,setToken]=useState({});
+    const [accesToken,setAccesToken]=useState('');
+
     const router = useRouter();
     const form = useForm({
         defaultValues: {
@@ -59,53 +63,60 @@ const AuthJeunes = () => {
       const alertDialogTriggerRef = useRef(null);
 
     const alertDialogTriggerRef2 = useRef(null);
-// fetch('http://localhost:8080/auth/login/medecins', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username:data.identifier,
-        //         password:data.password
-        //     })
-        //   })
-        //   .then(response => response.json())
-        //   .then(data =>{ 
-        //     const decodeToken=jwtDecode(data["access-token"])
-        //     if(decodeToken.claims.confirmed==false){
-        //         console.log("yous must confiremd your email");
-        //     }else if (decodeToken.claims.isFirstAuth==true){
-        //         console.log("yous must respect rules");
-        //     }else{
-        //         console.log("transfere vers la page d'accue");
-        //     }
-        //   })
-        //   .catch(error => console.error('Error:', error));
-        // console.log(data);
+
     const onSubmit = (data) => {
+        console.log("zaza z  ",data);
 
-        //verifier les identifiants....si tout est ok alors: 
-
-
-        if (alertDialogTriggerRef.current && false) {
-            // ajouter dans les conditions && jwt variable first login
-            alertDialogTriggerRef.current.click();
-        } else  {
-            if (alertDialogTriggerRef2.current ) { // ajouter dans les conditions && email non valide
+        fetch('http://localhost:8080/auth/login/jeunes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:data.identifier,
+                password:data.password
+            })
+          })
+          .then(response => response.json())
+          .then(res => {
+            console.log(res);
+            const decodeJwt=jwtDecode(res["access-token"]);
+            console.log(decodeJwt);
+            setAccesToken(res["access-token"]);
+            setToken(decodeJwt.claims);
+            if(!decodeJwt.claims.confirmed){
                 alertDialogTriggerRef2.current.click();
+            }else if(decodeJwt.claims.isFirstAuth){
+                alertDialogTriggerRef.current.click();
+            }else{
+                tohomePage();
             }
+          })
+          .catch(error => console.error('Error:', error));
 
-        else {
-            router.push('/')
-        }
-    };
+    }
+
+    const tohomePage=()=>{
+        router.push('/')
     }
     const nextStep = () => {
-        router.push('/auth/firstlogin')
+        router.push('/auth/firstlogin?token='+accesToken)
     }
     const envoyerEmail = () => {
-        //envoyerEmailderécuperation
-        //afficher Confirmation component (a faire plus tard)
+        fetch('http://localhost:8080/register/resend-token?email='+token.mail, {
+            method: 'POST'
+          }).then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
     }
   return (
 

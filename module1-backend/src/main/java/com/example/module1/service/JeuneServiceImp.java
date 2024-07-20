@@ -199,7 +199,7 @@ public class JeuneServiceImp implements JeuneService {
                     break;
                 case "situationActuelle":
                     if (jeune instanceof JeuneNonScolarise) {
-                        ((JeuneNonScolarise) jeune).setSituationActuelle(Situation.valueOf((String) value));
+                        ((JeuneNonScolarise) jeune).setEnActivite((Boolean) value);
                     }
                     break;
                 case "niveauEtudesActuel":
@@ -207,7 +207,7 @@ public class JeuneServiceImp implements JeuneService {
                         ((JeuneScolarise) jeune).setNiveauEtudesActuel(NiveauEtudes.valueOf((String) value));
                     }
                     break;
-                case "CNE":
+                case "cne":
                     if (jeune instanceof JeuneScolarise) {
                         ((JeuneScolarise) jeune).setCNE((String) value);
                     }

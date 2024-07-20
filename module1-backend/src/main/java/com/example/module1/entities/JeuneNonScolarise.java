@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class JeuneNonScolarise extends Jeune {
     @Enumerated(EnumType.STRING)
     private NiveauEtudes dernierNiveauEtudes;
-    @Enumerated(EnumType.STRING)
-    private Situation situationActuelle;
+
+    private boolean enActivite;
 }
 

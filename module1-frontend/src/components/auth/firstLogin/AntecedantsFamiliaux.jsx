@@ -65,13 +65,13 @@ const Fields = ({ setFormData, nextStep, formData }) => {
     const filteredData = data.antecedantsFamiliaux.filter((item) =>
       antecedantsFamiliaux.map((i) => i.id).includes(item)
     );
-
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
       antecedantsFamiliaux: [...filteredData, data.autre].filter(Boolean),
     }));
-
-    nextStep(formData);
+    const antecedentFamiliale=[...filteredData, data.autre].filter(Boolean);
+    nextStep({formData,antecedentFamiliale});
   };
 
 

@@ -61,6 +61,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
   const onSubmit = (data) => {
     console.log('AntecedantsFamiliaux formData:', formData);
     const filteredData = data.maladieJeune.filter(item => maladieJeune.map(i => i.id).includes(item));
+    console.log(filteredData);
     setFormData((prevFormData) => ({
       ...prevFormData,
       maladieJeune: filteredData,
