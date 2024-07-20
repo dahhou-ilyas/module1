@@ -43,7 +43,7 @@ const Layout = ({ title, subtitle, fields, prevStep }) => {
             </div>
         </div>
         <div className="w-full lg:min-h-[450px] lg:max-w-7xl lg:border lg:rounded-3xl lg:min-w-[900px] xl:min-w-[1000px] bg-white sm:flex lg:mx-48">
-            <div className="w-full sm:w-1/2 sm:ml-8 rtl:mr-8 sm:mb-2 sm:mt-8 mx-4 flex flex-col justify-between">
+            <div className="w-full sm:w-1/2 sm:ml-8 mr-8 sm:mb-2 sm:mt-8 mx-4 flex flex-col justify-between">
                 <div className="">
                     {prevStep && <div onClick={prevStep} className='cursor-pointer hover:opacity-70 transition -mt-4 mb-2 hidden lg:block'>
                     
