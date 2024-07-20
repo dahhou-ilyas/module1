@@ -7,7 +7,6 @@ import com.example.module1.exception.ProfessionnelSanteNotFoundException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public interface ProfessionnelSanteService{
     ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException;

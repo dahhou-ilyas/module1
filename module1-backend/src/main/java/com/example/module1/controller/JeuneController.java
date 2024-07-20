@@ -1,14 +1,15 @@
 package com.example.module1.controller;
 
 
-
 import com.example.module1.dto.JeuneDto;
-import com.example.module1.dto.MedecinResponseDTO;
 import com.example.module1.entities.AntecedentFamilial;
 import com.example.module1.entities.AntecedentPersonnel;
 import com.example.module1.entities.JeuneNonScolarise;
 import com.example.module1.entities.JeuneScolarise;
-import com.example.module1.exception.*;
+import com.example.module1.exception.EmailNonValideException;
+import com.example.module1.exception.JeuneException;
+import com.example.module1.exception.JeuneNotFoundException;
+import com.example.module1.exception.PhoneNonValideException;
 import com.example.module1.service.JeuneService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -100,8 +101,6 @@ public class JeuneController {
         }catch (JeuneNotFoundException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-
     }
 
 }

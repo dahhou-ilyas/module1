@@ -2,7 +2,6 @@ package com.example.module1.entities;
 
 
 import com.example.module1.enums.NiveauEtudes;
-import com.example.module1.enums.Situation;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class JeuneNonScolarise extends Jeune {
     @Enumerated(EnumType.STRING)
     private NiveauEtudes dernierNiveauEtudes;
-    @Enumerated(EnumType.STRING)
-    private Situation situationActuelle;
+
+    private boolean enActivite;
 }
 

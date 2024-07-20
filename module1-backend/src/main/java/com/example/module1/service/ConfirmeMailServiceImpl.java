@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -91,22 +92,22 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
 
     @Override
     public void resendToken(String email) throws MedecinNotFoundException,ProfessionnelSanteNotFoundException,UserNotFoundException,JeuneNotFoundException{
-        Medecin medecin =medecinRepository.findByMail(email).orElseThrow(() -> new MedecinNotFoundException("Medecin not found"));
+        Optional<Medecin> medecinOpt = medecinRepository.findByMail(email);
+        Optional<ProfessionnelSante> professionnelSanteOpt = professionnelSanteRepository.findByMail(email);
+        Optional<Jeune> jeuneOpt = jeuneRepo.findByMail(email);
 
-        ProfessionnelSante professionnelSante=professionnelSanteRepository.findByMail(email).orElseThrow(() -> new ProfessionnelSanteNotFoundException("Professionnelle not found"));
 
-        Jeune jeune=jeuneRepo.findByMail(email).orElseThrow(() -> new JeuneNotFoundException("Medecin not found"));
 
-        if (medecin == null && professionnelSante == null && jeune==null) {
-            throw new UserNotFoundException("user not found");
+        if (!medecinOpt.isPresent() && !professionnelSanteOpt.isPresent() && !jeuneOpt.isPresent()) {
+            throw new UserNotFoundException("User not found");
         }
 
-        if(medecin != null){
-            resendTokenForMedecin(medecin);
-        }else if(professionnelSante!=null){
-            resendTokenForProfessionnelSante(professionnelSante);
-        }else if(jeune!=null){
-            resendTokenForJeune(jeune);
+        if (medecinOpt.isPresent()) {
+            resendTokenForMedecin(medecinOpt.get());
+        } else if (professionnelSanteOpt.isPresent()) {
+            resendTokenForProfessionnelSante(professionnelSanteOpt.get());
+        } else if (jeuneOpt.isPresent()) {
+            resendTokenForJeune(jeuneOpt.get());
         }
     }
     private void resendTokenForProfessionnelSante(ProfessionnelSante professionnelSante) {

@@ -15,7 +15,4 @@ public class ProfessionnelSanteDto {
     private String cin;
     private String inpe;
     private String numTele;
-
-
-
 }

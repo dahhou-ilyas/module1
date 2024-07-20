@@ -19,10 +19,23 @@ public class AntecedentPersonnel {
     private Jeune jeune;
 
     @ElementCollection
-    private List<String> medicaux;
+    private List<String> maladies;
+
+    private Boolean utiliseMedicaments;
+
+    @ElementCollection
+    private List<String> medicaments;
 
     private Boolean chirurgicaux;
 
+    private OperationChirurgicale operationsChirurgicales;
+
     @ElementCollection
     private List<String> habitudes;
+
+    private Integer cigarettesParJour;
+
+    private String consommationAlcool;
+
+    private String tempsEcran;
 }

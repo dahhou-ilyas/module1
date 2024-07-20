@@ -1,7 +1,6 @@
 package com.example.module1.service;
 
 
-
 import com.example.module1.dto.MedecinResponseDTO;
 import com.example.module1.entities.ConfirmationToken;
 import com.example.module1.entities.Medecin;
@@ -12,7 +11,6 @@ import com.example.module1.repository.ConfirmationTokenRepository;
 import com.example.module1.repository.MedecinRepository;
 import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

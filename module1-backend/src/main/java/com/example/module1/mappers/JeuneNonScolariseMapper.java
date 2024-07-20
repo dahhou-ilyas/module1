@@ -28,7 +28,7 @@ public class JeuneNonScolariseMapper {
         jeuneNonScolariseDto.setFirstAuth(jeuneNonScolarise.getInfoUser().getIsFirstAuth());
         jeuneNonScolariseDto.setROLE(jeuneNonScolarise.getROLE());
         jeuneNonScolariseDto.setDernierNiveauEtudes(jeuneNonScolarise.getDernierNiveauEtudes());
-        jeuneNonScolariseDto.setSituationActuelle(jeuneNonScolarise.getSituationActuelle());
+        jeuneNonScolariseDto.setEnActivite(jeuneNonScolarise.isEnActivite());
 
         return jeuneNonScolariseDto;
     }

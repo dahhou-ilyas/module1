@@ -189,8 +189,8 @@ const Fields = ({ setFormData, nextStep }) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Femme">{t("genreFeminine")}</SelectItem>
-                        <SelectItem value="Homme">{t("genreMasculine")}</SelectItem>
+                        <SelectItem value="FEMME">Féminin</SelectItem>
+                        <SelectItem value="HOMME">Masculin</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage>{errors.genre?.message}</FormMessage>

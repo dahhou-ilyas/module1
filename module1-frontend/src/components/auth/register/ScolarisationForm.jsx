@@ -84,29 +84,29 @@ const Fields = ({ setFormData, nextStep }) => {
               )}
             />
 
-            {scolariseValue === "non" && (
-              <>
-                <FormField
-                  control={control}
-                  name="niveauEtudes"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("niveauEtudesLabel")}</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t("niveauEtudesPlaceholder")} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Aucun">{t("niveauEtudesAucun")}</SelectItem>
-                          <SelectItem value="Primaire">{t("niveauEtudesPrimaire")}</SelectItem>
-                          <SelectItem value="Secondaire">{t("niveauEtudesSecondaire")}</SelectItem>
-                          <SelectItem value="Supérieure">{t("niveauEtudesSuperieure")}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage>{errors.niveauEtudes?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
+            {scolariseValue === "non" && (<>
+              <FormField
+                control={control}
+                name="niveauEtudes"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Dernier Niveau d'Études</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Sélectionnez votre niveau d'études actuel" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="AUCUN">Aucun</SelectItem>
+                        <SelectItem value="PRIMAIRE">Primaire</SelectItem>
+                        <SelectItem value="SECONDAIRE">Secondaire</SelectItem>
+                        <SelectItem value="SUPERIEUR">Supérieure</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage>{errors.niveauEtudes?.message}</FormMessage>
+                  </FormItem>
+                )}
+              />
+              
 
                 <FormField
                   control={control}
@@ -142,26 +142,26 @@ const Fields = ({ setFormData, nextStep }) => {
             )}
 
             {scolariseValue === "oui" && (
-              <FormField
-                control={control}
-                name="niveauEtudes"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("niveauEtudesActuelLabel")}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger>
-                        <SelectValue placeholder={t("niveauEtudesPlaceholder")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Primaire">{t("niveauEtudesPrimaire")}</SelectItem>
-                        <SelectItem value="Secondaire">{t("niveauEtudesSecondaire")}</SelectItem>
-                        <SelectItem value="Supérieure">{t("niveauEtudesSuperieure")}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage>{errors.niveauEtudes?.message}</FormMessage>
-                  </FormItem>
-                )}
-              />
+                <FormField
+                  control={control}
+                  name="niveauEtudes"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Niveau d'Études Actuel</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionnez votre niveau d'études actuel" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="PRIMAIRE">Primaire</SelectItem>
+                          <SelectItem value="SECONDAIRE">Secondaire</SelectItem>
+                          <SelectItem value="SUPERIEUR">Supérieure</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage>{errors.niveauEtudes?.message}</FormMessage>
+                    </FormItem>
+                  )}
+                />
             )}
 
             <button type="submit" className="bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto">

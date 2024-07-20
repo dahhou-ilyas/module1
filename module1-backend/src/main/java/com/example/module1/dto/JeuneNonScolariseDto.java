@@ -4,7 +4,6 @@ package com.example.module1.dto;
 
 import com.example.module1.enums.NiveauEtudes;
 import com.example.module1.enums.Sexe;
-import com.example.module1.enums.Situation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,5 +29,5 @@ public class JeuneNonScolariseDto {
     private boolean isFirstAuth;
     private String ROLE;
     private NiveauEtudes dernierNiveauEtudes;
-    private Situation situationActuelle;
+    private boolean enActivite;
 }
