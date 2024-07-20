@@ -37,7 +37,7 @@ const Layout = ({ title, subtitle, fields, prevStep }) => {
                 transition
                 inline
             "/>
-            <span className="ml-2 mt-1">Retour</span></div>}
+            <span className="ml-2 mt-1 rtl:text-red-500 ltr:text-blue-200">Retour</span></div>}
             <div className="ml-auto mr-4">
                 <LanguageSelector />
             </div>

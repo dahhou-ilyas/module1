@@ -11,5 +11,175 @@
     "prenomErrorInvalid": "Le prénom ne doit contenir que des lettres",
     "title": "Créer votre compte e-ESJ",
     "subtitle": "Veuillez saisir votre nom et prénom"
+  },
+  "BirthDateForm": {
+    "dateNaissanceLabel": "Date de Naissance",
+    "genreLabel": "Sexe",
+    "dateNaissancePlaceholder": "jj/mm/aaaa",
+    "genrePlaceholder": "Sexe",
+    "genreFeminine": "Féminin",
+    "genreMasculine": "Masculin",
+    "dateNaissanceErrorRequired": "Veuillez sélectionner une date de naissance",
+    "dateNaissanceErrorInvalid": "Vous devez avoir entre 10 et 30 ans",
+    "genreErrorRequired": "Veuillez sélectionner votre genre",
+    "submitButton": "Suivant",
+    "title": "Informations générales",
+    "subtitle": "Veuillez saisir votre date de naissance et votre genre. Remarquez que vous devez être âgé entre 10 et 30 ans pour avoir accès à e-ESJ.",
+    "month1": "Janvier",
+    "month2": "Février",
+    "month3": "Mars",
+    "month4": "Avril",
+    "month5": "Mai",
+    "month6": "Juin",
+    "month7": "Juillet",
+    "month8": "Août",
+    "month9": "Septembre",
+    "month10": "Octobre",
+    "month11": "Novembre",
+    "month12": "Décembre"
+  },
+  "EmailForm": {
+    "emailLabel": "Adresse email*",
+    "telLabel": "Numéro de Téléphone*",
+    "emailPlaceholder": "Email",
+    "telPlaceholder": "N° Tél",
+    "emailDescription": "exemple@gmail.com",
+    "telDescription": "Exemple: 0612345678 / 0712345678",
+    "emailErrorInvalid": "Veuillez saisir une adresse email valide",
+    "telErrorInvalid": "Le numéro de téléphone doit commencer par 06 ou 07 et contenir 10 chiffres",
+    "submitButton": "Suivant",
+    "title": "Veuillez saisir votre Adresse email et Numéro de Téléphone"
+  },
+  "CinForm": {
+    "cinLabel": "Numéro de CIN",
+    "cinPlaceholder": "N° CIN",
+    "cinErrorInvalid": "Ce numéro de CIN est invalide",
+    "submitButton": "Suivant",
+    "title": "Informations d'activités",
+    "subtitle": "Veuillez saisir votre Numéro de CIN"
+  },
+  "ScolarisationForm": {
+    "scolariseLabel": "Scolarisé(e) ?",
+    "scolariseError": "Veuillez indiquer si vous êtes scolarisé(e)",
+    "niveauEtudesLabel": "Dernier Niveau d'Études",
+    "niveauEtudesPlaceholder": "Sélectionnez votre niveau d'études",
+    "niveauEtudesActuelLabel": "Sélectionnez votre niveau d'études actuel",
+    "niveauEtudesError": "Veuillez sélectionner votre niveau d'études",
+    "niveauEtudesAucun": "Aucun",
+    "niveauEtudesPrimaire": "Primaire",
+    "niveauEtudesSecondaire": "Secondaire",
+    "niveauEtudesSuperieure": "Supérieure",
+    "enActiviteLabel": "En activité ?",
+    "enActiviteError": "Veuillez sélectionner votre situation actuelle",
+    "oui": "OUI",
+    "non": "NON",
+    "submitButton": "Suivant",
+    "layoutTitle": "Informations générales",
+    "layoutSubtitle": "Veuillez sélectionnez si vous êtes scolarisé(e) et votre niveau d'études actuel."
+  },
+  "CodeMassarForm": {
+    "codeMassarLabel": "Code MASSAR*",
+    "codeMassarPlaceholder": "Code MASSAR",
+    "submitButton": "Suivant",
+    "layoutTitle": "Informations d'activités",
+    "layoutSubtitle": "Veuillez saisir votre code MASSAR",
+    "codeMassarInvalid": "Code MASSAR invalide"
+  },
+  "CneForm": {
+    "cneLabel": "Numéro de CNE*",
+    "cnePlaceholder": "N° CNE",
+    "submitButton": "Suivant",
+    "layoutTitle": "Informations d'activités",
+    "layoutSubtitle": "Veuillez saisir votre CNE (Code National de l'Etudiant)",
+    "cneInvalid": "Le numéro de CNE est invalide"
+  },
+  "PasswordForm": {
+    "passwordLabel": "Mot de Passe*",
+    "passwordPlaceholder": "Mot De Passe",
+    "confirmPasswordLabel": "Confirmer*",
+    "confirmPasswordPlaceholder": "Confirmer Mot De Passe",
+    "submitButton": "Valider",
+    "layoutTitle": "Mot de passe sécurisé",
+    "layoutSubtitle": "Créez un mot de passe sécurisé avec des lettres, des chiffres et des symboles.",
+    "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordMax": "Le mot de passe ne peut pas dépasser 16 caractères",
+    "passwordUppercase": "Le mot de passe doit contenir au moins une lettre majuscule",
+    "passwordSpecial": "Le mot de passe doit contenir au moins un caractère spécial",
+    "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+    "passwordMismatch": "Les mots de passe ne correspondent pas"
+  },
+  "Recapitulatif": {
+    "nom": "Nom",
+    "prenom": "Prénom",
+    "dateNaissance": "Date de Naissance",
+    "genre": "Genre",
+    "email": "Adresse Mail",
+    "tel": "Numéro de Téléphone",
+    "cin": "CIN",
+    "scolarisation": "Scolarisation",
+    "niveauEtudes": "Niveau d'Etudes",
+    "situationActuelle": "Situation Actuelle",
+    "cne": "CNE",
+    "codeMassar": "Code Massar",
+    "back": "Retour",
+    "recapTitle": "Récapitulatif",
+    "submitButton": "Valider",
+    "logoAlt": "Logo"
+  },
+  "Confirmation": {
+    "title": "Consulter votre boite mail",
+    "subtitle": "Veuillez consulter votre boîte mail pour vérifier votre compte."
+  },
+  "InformationsActivites": {
+    "title": "Informations d'activités",
+    "subtitle": "Veuillez saisir les informations suivantes",
+    "labels": {
+      "cin": "Numéro de CIN*",
+      "inpe": "INPE",
+      "ppr": "PPR*"
+    },
+    "placeholders": {
+      "cin": "N° de CIN",
+      "inpe": "INPE",
+      "ppr": "PPR"
+    },
+    "buttons": {
+      "next": "Suivant"
+    },
+    "errors": {
+      "cin": {
+        "required": "Veuillez saisir votre numéro de CIN",
+        "invalid": "Ce numéro de CIN est invalide"
+      },
+      "inpe": {
+        "invalid": "Le code INPE doit contenir uniquement des chiffres",
+        "required": "Veuillez saisir votre INPE"
+      },
+      "ppr": {
+        "invalid": "Ce champ doit contenir uniquement des chiffres",
+        "required": "Veuillez saisir votre PPR"
+      }
+    }
+  },
+  "Layout": {
+    "title": "Informations d'activités"
+  },
+  "Fields": {
+    "medecinESJLabel": "Médecin au sein d'un centre ESJ?",
+    "medecinESJError": "Veuillez indiquer si vous êtes médecin au sein d'un centre ESJ",
+    "medecinGeneralisteLabel": "Médecin Généraliste",
+    "medecinGeneralisteError": "Veuillez indiquer si vous êtes un médecin généraliste",
+    "specialiteLabel": "Spécialité",
+    "specialiteError": "Veuillez sélectionner votre spécialité ou indiquer autre",
+    "autreLabel": "Autre :",
+    "autrePlaceholder": "Veuillez indiquez votre spécialité",
+    "oui": "OUI",
+    "non": "NON",
+    "pediatre": "Pédiatre",
+    "psychiatre": "Psychiatre",
+    "gynecologue": "Gynécologue",
+    "dermatologue": "Dermatologue",
+    "ophtalmologue": "Ophtalmologue",
+    "suivant": "Suivant"
   }
 }

@@ -11,5 +11,176 @@
     "prenomErrorInvalid": "يجب أن يحتوي اللقب على أحرف فقط",
     "title": "إنشاء حسابك في e-ESJ",
     "subtitle": "يرجى إدخال اسمك ولقبك"
+  },
+  "BirthDateForm": {
+    "dateNaissanceLabel": "تاريخ الميلاد*",
+    "genreLabel": "الجنس",
+    "dateNaissancePlaceholder": "يوم/شهر/سنة",
+    "genrePlaceholder": "الجنس",
+    "genreFeminine": "أنثوي",
+    "genreMasculine": "ذكري",
+    "dateNaissanceErrorRequired": "يرجى اختيار تاريخ الميلاد",
+    "dateNaissanceErrorInvalid": "يجب أن تكون بين 10 و30 عامًا",
+    "genreErrorRequired": "يرجى اختيار جنس",
+    "submitButton": "التالي",
+    "title": "المعلومات العامة",
+    "subtitle": "يرجى إدخال تاريخ ميلادك وجنسك. لاحظ أنك يجب أن تكون بين 10 و30 عامًا للوصول إلى e-ESJ.",
+    "month1": "يناير",
+    "month2": "فبراير",
+    "month3": "مارس",
+    "month4": "أبريل",
+    "month5": "مايو",
+    "month6": "يونيو",
+    "month7": "يوليو",
+    "month8": "أغسطس",
+    "month9": "سبتمبر",
+    "month10": "أكتوبر",
+    "month11": "نوفمبر",
+    "month12": "ديسمبر"
+  },
+  "EmailForm": {
+    "emailLabel": "عنوان البريد الإلكتروني*",
+    "telLabel": "رقم الهاتف*",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "telPlaceholder": "رقم الهاتف",
+    "emailDescription": "exemple@gmail.com",
+    "telDescription": "مثال: 0612345678 / 0712345678",
+    "emailErrorInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "telErrorInvalid": "يجب أن يبدأ رقم الهاتف بـ 06 أو 07 وأن يحتوي على 10 أرقام",
+    "submitButton": "التالي",
+    "title": "يرجى إدخال عنوان بريدك الإلكتروني ورقم هاتفك"
+  },
+  "CinForm": {
+    "cinLabel": "رقم CIN",
+    "cinPlaceholder": "رقم CIN",
+    "cinErrorInvalid": "رقم CIN هذا غير صالح",
+    "submitButton": "التالي",
+    "title": "معلومات الأنشطة",
+    "subtitle": "يرجى إدخال رقم CIN الخاص بك"
+  },
+  "ScolarisationForm": {
+    "scolariseLabel": "هل أنت في الدراسة؟",
+    "scolariseError": "يرجى تحديد ما إذا كنت في الدراسة",
+    "niveauEtudesLabel": "آخر مستوى دراسي",
+    "niveauEtudesPlaceholder": "اختر مستواك الدراسي",
+    "niveauEtudesError": "يرجى تحديد مستوى دراستك",
+    "niveauEtudesAucun": "لا شيء",
+    "niveauEtudesPrimaire": "الابتدائي",
+    "niveauEtudesActuelLabel": "مستواك الدراسي",
+    "niveauEtudesSecondaire": "الإعدادي",
+    "niveauEtudesSuperieure": "العالي",
+    "enActiviteLabel": "هل أنت نشط؟",
+    "enActiviteError": "يرجى تحديد وضعك الحالي",
+    "oui": "نعم",
+    "non": "لا",
+    "submitButton": "التالي",
+    "layoutTitle": "المعلومات العامة",
+    "layoutSubtitle": "يرجى تحديد ما إذا كنت في الدراسة ومستوى دراستك الحالي."
+  },
+  
+    "CodeMassarForm": {
+      "codeMassarLabel": "رمز MASSAR*",
+      "codeMassarPlaceholder": "رمز MASSAR",
+      "submitButton": "التالي",
+      "layoutTitle": "معلومات النشاطات",
+      "layoutSubtitle": "يرجى إدخال رمز MASSAR الخاص بك",
+      "codeMassarInvalid": "رمز MASSAR غير صالح"
+    },
+    "CneForm": {
+    "cneLabel": "رقم CNE*",
+    "cnePlaceholder": "رقم CNE",
+    "submitButton": "التالي",
+    "layoutTitle": "معلومات النشاطات",
+    "layoutSubtitle": "يرجى إدخال رقم CNE (الرمز الوطني للطالب)",
+    "cneInvalid": "رقم CNE غير صالح"
+  },
+  "PasswordForm": {
+    "passwordLabel": "كلمة المرور*",
+    "passwordPlaceholder": "كلمة مرور",
+    "confirmPasswordLabel": "تأكيد*",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "submitButton": "تأكيد",
+    "layoutTitle": "كلمة مرور آمنة",
+    "layoutSubtitle": "أنشئ كلمة مرور آمنة تحتوي على أحرف وأرقام ورموز.",
+    "passwordMin": "يجب أن تحتوي كلمة المرور على الأقل على 8 أحرف",
+    "passwordMax": "لا يمكن أن تتجاوز كلمة المرور 16 حرفًا",
+    "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+    "passwordSpecial": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
+    "confirmPasswordRequired": "يرجى تأكيد كلمة المرور الخاصة بك",
+    "passwordMismatch": "كلمات المرور غير متطابقة"
+  },
+  "Recapitulatif": {
+    "nom": "الاسم",
+    "prenom": "اللقب",
+    "dateNaissance": "تاريخ الميلاد",
+    "genre": "الجنس",
+    "email": "البريد الإلكتروني",
+    "tel": "رقم الهاتف",
+    "cin": "رقم بطاقة التعريف الوطنية",
+    "scolarisation": "التعليم",
+    "niveauEtudes": "مستوى الدراسة",
+    "situationActuelle": "الوضع الحالي",
+    "cne": "CNE",
+    "codeMassar": "كود مسار",
+    "back": "عودة",
+    "recapTitle": "تلخيص",
+    "submitButton": "تأكيد",
+    "logoAlt": "الشعار"
+  },
+  "Confirmation": {
+    "title": "تحقق من بريدك الإلكتروني",
+    "subtitle": "يرجى التحقق من بريدك الإلكتروني لتأكيد حسابك."
+  },
+  "InformationsActivites": {
+    "title": "معلومات الأنشطة",
+    "subtitle": "يرجى إدخال المعلومات التالية",
+    "labels": {
+      "cin": "رقم CIN*",
+      "inpe": "INPE",
+      "ppr": "PPR*"
+    },
+    "placeholders": {
+      "cin": "رقم CIN",
+      "inpe": "INPE",
+      "ppr": "PPR"
+    },
+    "buttons": {
+      "next": "التالي"
+    },
+    "errors": {
+      "cin": {
+        "required": "يرجى إدخال رقم CIN الخاص بك",
+        "invalid": "رقم CIN هذا غير صالح"
+      },
+      "inpe": {
+        "invalid": "يجب أن يحتوي رمز INPE على أرقام فقط",
+        "required": "يرجى إدخال رمز INPE الخاص بك"
+      },
+      "ppr": {
+        "invalid": "يجب أن يحتوي هذا الحقل على أرقام فقط",
+        "required": "يرجى إدخال رقم PPR الخاص بك"
+      }
+    }
+  },
+  "Layout": {
+    "title": "معلومات النشاط"
+  },
+  "Fields": {
+    "medecinESJLabel": "هل أنت طبيب في مركز ESJ؟",
+    "medecinESJError": "يرجى تحديد ما إذا كنت طبيبًا في مركز ESJ",
+    "medecinGeneralisteLabel": "طبيب عام",
+    "medecinGeneralisteError": "يرجى تحديد ما إذا كنت طبيبًا عامًا",
+    "specialiteLabel": "التخصص",
+    "specialiteError": "يرجى اختيار تخصصك أو تحديد آخر",
+    "autreLabel": "آخر:",
+    "autrePlaceholder": "يرجى تحديد تخصصك",
+    "oui": "نعم",
+    "non": "لا",
+    "pediatre": "طبيب أطفال",
+    "psychiatre": "طبيب نفسي",
+    "gynecologue": "طبيب نساء وتوليد",
+    "dermatologue": "طبيب جلدية",
+    "ophtalmologue": "طبيب عيون",
+    "suivant": "التالي"
   }
 }
