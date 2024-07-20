@@ -28,7 +28,7 @@ const Layout = ({ title, subtitle, fields, prevStep }) => {
             <BiArrowBack
               color="black"
               size={20}
-              className="cursor-pointer  inline rtl:rotate-180"
+              className="cursor-pointer rtl:ml-1 inline rtl:rotate-180"
             />
             <span className="ml-2 mt-1 cursor-pointer hover:opacity-70 transition">{t('back')}</span>
           </div>

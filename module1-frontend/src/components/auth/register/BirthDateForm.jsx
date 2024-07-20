@@ -10,20 +10,7 @@ import { useTranslations } from "next-intl";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
-const schema = z.object({
-  dateNaissance: z.date().nullable().refine(
-    (date) => date !== null, 
-    {
-      message: (t) => t("dateNaissanceErrorRequired"),
-    }
-  ).refine(
-    (date) => date && isBefore(date, addYears(new Date(), -10)) && isAfter(date, addYears(new Date(), -30)),
-    {
-      message: (t) => t("dateNaissanceErrorInvalid"),
-    }
-  ),
-  genre: z.string().nonempty((t) => t("genreErrorRequired")),
-});
+
 
 const range = (start, end, step) => {
   let years = [];
@@ -35,7 +22,23 @@ const range = (start, end, step) => {
 
 const Fields = ({ setFormData, nextStep }) => {
   const t = useTranslations("BirthDateForm");
-
+  
+  const schema = z.object({
+    dateNaissance: z.date().nullable().refine(
+      (date) => date !== null,
+      {
+        message: t("dateNaissanceErrorRequired"),
+      }
+    ).refine(
+      (date) => date && isBefore(date, addYears(new Date(), -10)) && isAfter(date, addYears(new Date(), -30)),
+      {
+        message: t("dateNaissanceErrorInvalid"),
+      }
+    ),
+    genre: z.string().nonempty({
+      message: t("genreErrorRequired"),
+    }),
+  });
   const form = useForm({
     defaultValues: {
       dateNaissance: null,
@@ -87,32 +90,32 @@ const Fields = ({ setFormData, nextStep }) => {
                     <FormLabel>{t("dateNaissanceLabel")}</FormLabel>
                     <FormControl>
                       <DatePicker
-                        // showIcon
-                        // icon={
-                        //   <svg
-                        //     className='mt-[2.5px]'
-                        //     xmlns="http://www.w3.org/2000/svg"
-                        //     width="1em"
-                        //     height="1em"
-                        //     viewBox="0 0 48 48"
+                        showIcon
+                        icon={
+                          <svg
+                            className='mt-[2.5px]'
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 48 48"
                             
-                        //   >
-                        //     <mask id="ipSApplication0">
-                        //       <g fill="none" stroke="#fff" strokeLinejoin="round" strokeWidth="4">
-                        //         <path strokeLinecap="round" d="M40.04 22v20h-32V22"></path>
-                        //         <path
-                        //           fill="#fff"
-                        //           d="M5.842 13.777C4.312 17.737 7.263 22 11.51 22c3.314 0 6.019-2.686 6.019-6a6 6 0 0 0 6 6h1.018a6 6 0 0 0 6-6c0 3.314 2.706 6 6.02 6c4.248 0 7.201-4.265 5.67-8.228L39.234 6H8.845l-3.003 7.777Z"
-                        //         ></path>
-                        //       </g>
-                        //     </mask>
-                        //     <path
-                        //       fill="currentColor"
-                        //       d="M0 0h48v48H0z"
-                        //       mask="url(#ipSApplication0)"
-                        //     ></path>
-                        //   </svg>
-                        // }
+                          >
+                            <mask id="ipSApplication0">
+                              <g fill="none" stroke="#fff" strokeLinejoin="round" strokeWidth="4">
+                                <path strokeLinecap="round" d="M40.04 22v20h-32V22"></path>
+                                <path
+                                  fill="#fff"
+                                  d="M5.842 13.777C4.312 17.737 7.263 22 11.51 22c3.314 0 6.019-2.686 6.019-6a6 6 0 0 0 6 6h1.018a6 6 0 0 0 6-6c0 3.314 2.706 6 6.02 6c4.248 0 7.201-4.265 5.67-8.228L39.234 6H8.845l-3.003 7.777Z"
+                                ></path>
+                              </g>
+                            </mask>
+                            <path
+                              fill="currentColor"
+                              d="M0 0h48v48H0z"
+                              mask="url(#ipSApplication0)"
+                            ></path>
+                          </svg>
+                        }
                         renderCustomHeader={({
                           date,
                           changeYear,
@@ -129,12 +132,13 @@ const Fields = ({ setFormData, nextStep }) => {
                               justifyContent: "center",
                             }}
                           >
-                            <button className="mr-4" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}> 
+                            <button className="ltr:mr-4 rtl:ml-4" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}> 
                               {"< "}
                             </button>
                             <select
                               value={getYear(date)}
                               onChange={({ target: { value } }) => changeYear(value)}
+                              className='mx-2 border border-black rounded-md'
                             >
                               {years.map((option) => (
                                 <option key={option} value={option}>
@@ -148,6 +152,7 @@ const Fields = ({ setFormData, nextStep }) => {
                               onChange={({ target: { value } }) =>
                                 changeMonth(months.indexOf(value))
                               }
+                              className='border border-black rounded-md'
                             >
                               {months.map((option) => (
                                 <option key={option} value={option}>
@@ -156,7 +161,7 @@ const Fields = ({ setFormData, nextStep }) => {
                               ))}
                             </select>
 
-                            <button className="ml-4" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                            <button className="ltr:ml-4 rtl:mr-4" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
                               {" >"}
                             </button>
                           </div>
@@ -165,7 +170,7 @@ const Fields = ({ setFormData, nextStep }) => {
                         onChange={field.onChange}
                         dateFormat="dd/MM/yyyy"
                         placeholderText={t("dateNaissancePlaceholder")}
-                        className="w-full px-3 py-2 border rounded-md ml-1"
+                        className="w-full px-3 py-2 border rounded-md ml-1 rtl:mr-5"
                         maxDate={addYears(new Date(), -10)}
                         minDate={addYears(new Date(), -30)}
                       />
