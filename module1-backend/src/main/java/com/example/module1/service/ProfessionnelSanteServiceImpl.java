@@ -13,6 +13,7 @@ import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
     private UserRepository userRepository;
 
     private ProfessionnelSanteMapper professionnelSanteMapper;
+    private PasswordEncoder passwordEncoder;
 
     private ConfirmationTokenRepository confirmationTokenRepository;
     private ConfirmeMailService confirmeMailService;
@@ -38,6 +40,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
     public ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException {
 
         try {
+            professionnelSante.getUser().setPassword(passwordEncoder.encode(professionnelSante.getUser().getPassword()));
             ProfessionnelSante savedProfessionnelSante = professionnelSanteRepository.save(professionnelSante);
 
             String token = UUID.randomUUID().toString();

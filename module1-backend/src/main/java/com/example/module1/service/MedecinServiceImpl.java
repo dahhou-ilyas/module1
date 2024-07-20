@@ -13,6 +13,7 @@ import com.example.module1.repository.MedecinRepository;
 import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,8 @@ public class MedecinServiceImpl implements MedecinService {
     private UserRepository userRepository;
     private MedecineMapper medecineMapper;
 
+    private PasswordEncoder passwordEncoder;
+
     private ConfirmationTokenRepository confirmationTokenRepository;
     private ConfirmeMailService confirmeMailService;
 
@@ -44,10 +47,11 @@ public class MedecinServiceImpl implements MedecinService {
         if (medecinRepository.existsByPpr(medecin.getPpr())) {
             throw new MedecinException("Le numéro PPR spécifié est déjà utilisé par un autre utilisateur");
         }
-        if (userRepository.existsByMail(medecin.getAppUser().getMail())) {
+        if (userRepository.existsByMail(medecin.getInfoUser().getMail())) {
             throw new MedecinException("L'email spécifié est déjà utilisé par un autre utilisateur");
         }
 
+        medecin.getInfoUser().setPassword(passwordEncoder.encode(medecin.getInfoUser().getPassword()));
         Medecin savedMedecin = medecinRepository.save(medecin);
 
         String token = UUID.randomUUID().toString();
@@ -57,7 +61,7 @@ public class MedecinServiceImpl implements MedecinService {
         confirmationToken.setToken(token);
         confirmationTokenRepository.save(confirmationToken);
 
-        new Thread(() -> confirmeMailService.sendConfirmationEmail(savedMedecin.getAppUser().getMail(), token)).start();
+        new Thread(() -> confirmeMailService.sendConfirmationEmail(savedMedecin.getInfoUser().getMail(), token)).start();
 
         return medecineMapper.fromMedcine(savedMedecin);
     }
@@ -78,19 +82,19 @@ public class MedecinServiceImpl implements MedecinService {
         updates.forEach((key, value) -> {
             switch (key) {
                 case "nom":
-                    existingMedecin.getAppUser().setNom((String) value);
+                    existingMedecin.getInfoUser().setNom((String) value);
                     break;
                 case "prenom":
-                    existingMedecin.getAppUser().setPrenom((String) value);
+                    existingMedecin.getInfoUser().setPrenom((String) value);
                     break;
                 case "mail":
-                    existingMedecin.getAppUser().setMail((String) value);
+                    existingMedecin.getInfoUser().setMail((String) value);
                     break;
                 case "numTele":
-                    existingMedecin.getAppUser().setNumTele((String) value);
+                    existingMedecin.getInfoUser().setNumTele((String) value);
                     break;
                 case "password":
-                    existingMedecin.getAppUser().setPassword((String) value);
+                    existingMedecin.getInfoUser().setPassword((String) value);
                     break;
                 case "cin":
                     existingMedecin.setCin((String) value);
@@ -111,17 +115,17 @@ public class MedecinServiceImpl implements MedecinService {
                     existingMedecin.setSpecialite((String) value);
                     break;
                 case "confirmed":
-                    existingMedecin.getAppUser().setConfirmed((Boolean) value);
+                    existingMedecin.getInfoUser().setConfirmed((Boolean) value);
                     break;
                 case "isFirstAuth":
-                    existingMedecin.getAppUser().setIsFirstAuth((Boolean) value);
+                    existingMedecin.getInfoUser().setIsFirstAuth((Boolean) value);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid attribute: " + key);
             }
         });
 
-        userRepository.save(existingMedecin.getAppUser());
+        userRepository.save(existingMedecin.getInfoUser());
         medecinRepository.save(existingMedecin);
 
         return medecineMapper.fromMedcine(existingMedecin);

@@ -1,9 +1,11 @@
 package com.example.module1.controller;
 
+import com.example.module1.entities.Jeune;
 import com.example.module1.entities.Medecin;
 import com.example.module1.entities.ProfessionnelSante;
 import com.example.module1.exception.ConfirmationMailException;
 import com.example.module1.exception.InvalidTokenException;
+import com.example.module1.exception.JeuneNotFoundException;
 import com.example.module1.exception.TokenExpiredException;
 import com.example.module1.service.ConfirmeMailService;
 import lombok.AllArgsConstructor;
@@ -27,13 +29,16 @@ public class ConfirmationMailController {
             return new RedirectView("http://localhost:3000/auth/medecins");
         } else if (person instanceof ProfessionnelSante) {
             return new RedirectView("http://localhost:3000/auth/professionnels");
+
+        } else if (person instanceof Jeune) {
+            return new RedirectView("http://localhost:3000/auth/jeunes");
         } else {
             throw new ConfirmationMailException("Unknown person type");
         }
     }
 
     @PostMapping("/register/resend-token")
-    public ResponseEntity<String> resendToken(@RequestParam("email") String email) {
+    public ResponseEntity<String> resendToken(@RequestParam("email") String email) throws JeuneNotFoundException {
         confirmeMailService.resendToken(email);
         return ResponseEntity.ok("Token resent successfully");
 

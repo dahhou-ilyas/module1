@@ -19,7 +19,7 @@ public class ProfessionnelSante {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private AppUser user;
+    private InfoUser user;
 
 
     private String ROLE="PROFESSIONELSANTE";

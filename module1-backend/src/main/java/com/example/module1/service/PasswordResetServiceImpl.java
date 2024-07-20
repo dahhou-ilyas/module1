@@ -1,6 +1,6 @@
 package com.example.module1.service;
 
-import com.example.module1.entities.AppUser;
+import com.example.module1.entities.InfoUser;
 import com.example.module1.entities.PasswordResetToken;
 import com.example.module1.exception.InvalidResetPasswordTokenException;
 import com.example.module1.exception.UserNotFoundException;
@@ -28,11 +28,11 @@ public class PasswordResetServiceImpl implements PasswordResetService {
 
     @Override
     public void initiatePasswordReset(String email) throws UserNotFoundException {
-        Optional<AppUser> userOptional = userRepository.findByMail(email);
+        Optional<InfoUser> userOptional = userRepository.findByMail(email);
         if (!userOptional.isPresent()) {
             throw new UserNotFoundException("User not found");
         }
-        AppUser user = userOptional.get();
+        InfoUser user = userOptional.get();
         String token = UUID.randomUUID().toString().replace("-", "").substring(0,6);
 
         Date expiryDate = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 hour expiry
@@ -56,7 +56,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         if (resetToken == null || resetToken.getExpiryDate().before(new Date())) {
             throw new InvalidResetPasswordTokenException("Invalid or expired token");
         }
-        AppUser user = resetToken.getUser();
+        InfoUser user = resetToken.getUser();
         user.setPassword(newPassword);
         userRepository.save(user);
     }

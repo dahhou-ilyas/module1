@@ -14,7 +14,7 @@ public class Medecin {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "app_user_id", referencedColumnName = "id")
-    private AppUser appUser;
+    private InfoUser infoUser;
 
     @Column(unique = true)
     private String cin ;

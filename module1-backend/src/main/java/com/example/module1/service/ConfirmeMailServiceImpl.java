@@ -1,10 +1,12 @@
 package com.example.module1.service;
 
 import com.example.module1.entities.ConfirmationToken;
+import com.example.module1.entities.Jeune;
 import com.example.module1.entities.Medecin;
 import com.example.module1.entities.ProfessionnelSante;
 import com.example.module1.exception.*;
 import com.example.module1.repository.ConfirmationTokenRepository;
+import com.example.module1.repository.JeuneRepo;
 import com.example.module1.repository.MedecinRepository;
 import com.example.module1.repository.ProfessionnelSanteRepository;
 import jakarta.mail.MessagingException;
@@ -14,9 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import java.awt.color.ProfileDataException;
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,6 +27,7 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
 
     private MedecinRepository medecinRepository;
     private ProfessionnelSanteRepository professionnelSanteRepository;
+    private JeuneRepo jeuneRepo;
 
     private ConfirmationTokenRepository confirmationTokenRepository;
     @Override
@@ -56,7 +57,7 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
 
             if (confirmationToken.getMedecin() != null) {
                 Medecin medecin = confirmationToken.getMedecin();
-                medecin.getAppUser().setConfirmed(true);
+                medecin.getInfoUser().setConfirmed(true);
                 medecinRepository.save(medecin);
                 return medecin;
             } else if (confirmationToken.getProfessionnelSante() != null) {
@@ -64,6 +65,12 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
                 professionnelSante.getUser().setConfirmed(true);
                 professionnelSanteRepository.save(professionnelSante);
                 return professionnelSante;
+
+            } else if (confirmationToken.getJeune() !=null) {
+                Jeune jeune=confirmationToken.getJeune();
+                jeune.getInfoUser().setConfirmed(true);
+                jeuneRepo.save(jeune);
+                return jeune;
             } else {
                 throw new InvalidTokenException();
             }
@@ -83,12 +90,14 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
     }
 
     @Override
-    public void resendToken(String email) throws MedecinNotFoundException,ProfessionnelSanteNotFoundException,UserNotFoundException{
+    public void resendToken(String email) throws MedecinNotFoundException,ProfessionnelSanteNotFoundException,UserNotFoundException,JeuneNotFoundException{
         Medecin medecin =medecinRepository.findByMail(email).orElseThrow(() -> new MedecinNotFoundException("Medecin not found"));
 
         ProfessionnelSante professionnelSante=professionnelSanteRepository.findByMail(email).orElseThrow(() -> new ProfessionnelSanteNotFoundException("Professionnelle not found"));
 
-        if (medecin == null && professionnelSante == null) {
+        Jeune jeune=jeuneRepo.findByMail(email).orElseThrow(() -> new JeuneNotFoundException("Medecin not found"));
+
+        if (medecin == null && professionnelSante == null && jeune==null) {
             throw new UserNotFoundException("user not found");
         }
 
@@ -96,6 +105,8 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
             resendTokenForMedecin(medecin);
         }else if(professionnelSante!=null){
             resendTokenForProfessionnelSante(professionnelSante);
+        }else if(jeune!=null){
+            resendTokenForJeune(jeune);
         }
     }
     private void resendTokenForProfessionnelSante(ProfessionnelSante professionnelSante) {
@@ -122,6 +133,20 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
         newToken.setCreatedDate(new Date());
         newToken.setToken(UUID.randomUUID().toString());
         confirmationTokenRepository.save(newToken);
-        sendConfirmationEmail(medecin.getAppUser().getMail(), newToken.getToken());
+        sendConfirmationEmail(medecin.getInfoUser().getMail(), newToken.getToken());
+    }
+
+    private void resendTokenForJeune(Jeune jeune) {
+        ConfirmationToken existingToken = confirmationTokenRepository.findByJeune(jeune);
+        if (existingToken != null) {
+            confirmationTokenRepository.delete(existingToken);
+            confirmationTokenRepository.flush();
+        }
+        ConfirmationToken newToken = new ConfirmationToken();
+        newToken.setJeune(jeune);
+        newToken.setCreatedDate(new Date());
+        newToken.setToken(UUID.randomUUID().toString());
+        confirmationTokenRepository.save(newToken);
+        sendConfirmationEmail(jeune.getInfoUser().getMail(), newToken.getToken());
     }
 }

@@ -35,6 +35,7 @@ import java.util.List;
 public class SecurityConfig {
     MedecinDetailsService medecinDetailsService;
     ProfessionelSanteDetailsService professionelSanteDetailsService;
+    JeuneDetailsService jeuneDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -70,6 +71,15 @@ public class SecurityConfig {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(professionelSanteDetailsService);
+        return new ProviderManager(daoAuthenticationProvider);
+
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManagerJeune(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(jeuneDetailsService);
         return new ProviderManager(daoAuthenticationProvider);
 
     }

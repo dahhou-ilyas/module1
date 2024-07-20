@@ -19,12 +19,12 @@ public class PasswordResetToken {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private AppUser user;
+    private InfoUser user;
 
     private Date createdDate;
     private Date expiryDate;
 
-    public PasswordResetToken(String token, AppUser user, Date expiryDate) {
+    public PasswordResetToken(String token, InfoUser user, Date expiryDate) {
         this.token = token;
         this.user = user;
         this.createdDate = new Date();
