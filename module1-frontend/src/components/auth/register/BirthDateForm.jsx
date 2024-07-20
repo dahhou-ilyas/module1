@@ -176,7 +176,7 @@ const Fields = ({ setFormData, nextStep }) => {
               />
             </div>
             <div className="md:w-96 max-w-sm">
-              <FormField
+            <FormField
                 control={control}
                 name="genre"
                 render={({ field }) => (
@@ -189,8 +189,8 @@ const Fields = ({ setFormData, nextStep }) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="FEMME">Féminin</SelectItem>
-                        <SelectItem value="HOMME">Masculin</SelectItem>
+                        <SelectItem value="FEMME">{t("genreFeminine")}</SelectItem>
+                        <SelectItem value="HOMME">{t("genreMasculine")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage>{errors.genre?.message}</FormMessage>

@@ -162,7 +162,9 @@
     }
   },
   "Layout": {
-    "title": "Informations d'activités"
+    "title": "Informations d'activités",
+    "subtitle": "Veuillez saisir les informations suivantes",
+    "back": "Retour"
   },
   "Fields": {
     "medecinESJLabel": "Médecin au sein d'un centre ESJ?",
