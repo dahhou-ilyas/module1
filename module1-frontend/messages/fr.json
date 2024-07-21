@@ -350,7 +350,26 @@
       "description": "Veuillez indiquer les médicaments que vous prenez"
     },
     "nextButton": "Suivant"
-  }
+  },
+  "WelcomingText": {
+        "headline": "Vous avez la main sur votre santé",
+        "greeting": "Bonjour Ahmed M.",
+        "description": "Mon e-Espace Santé Jeunes (e-ESJ) te permet de consulter ton dossier médical, de profiter de soutiens et tests psychologiques, et de trouver plein d'infos utiles sur la santé.",
+        "medicalRecordButton": "Mon Dossier Medical",
+        "psychTestsButton": "Tests Psychologiques",
+        "spotlightTitle": "A la une:"
+    },
+    "Navbar": {
+        "profile": "Profile",
+        "logout": "Se déconnecter",
+        "home": "Accueil",
+        "medicalRecord": "Dossier Medical",
+        "healthEducation": "Education à la Santé",
+        "psychTests": "Tests Psychologiques",
+        "username": "Ahmed M.",
+        "languageFr": "Français",
+        "languageAr": "العربية"
+    }
 
 
 }

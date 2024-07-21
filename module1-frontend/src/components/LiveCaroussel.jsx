@@ -52,6 +52,7 @@ const LiveCaroussel = () => {
     return (
         <>
             {/* Vertical carousel for mobile screens */}
+            <div dir="ltr">
             <Carousel
                 opts={{
                     align: "start",
@@ -69,8 +70,9 @@ const LiveCaroussel = () => {
                 <CarouselPrevious />
                 <CarouselNext />
             </Carousel>
-
-            {/* Horizontal carousel for larger screens */}
+        </div>
+        {/* Horizontal carousel for larger screens */}
+        <div dir="ltr">
             <Carousel
                 opts={{
                     align: "start",
@@ -86,7 +88,7 @@ const LiveCaroussel = () => {
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
-            </Carousel>
+            </Carousel></div>
         </>
     );
 };

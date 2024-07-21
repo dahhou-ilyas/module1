@@ -1,34 +1,16 @@
-// import {NextIntlClientProvider} from 'next-intl';
-// import {getMessages} from 'next-intl/server';
- 
-// export default async function LocaleLayout({
-//   children,
-// }) {
-//   // Providing all messages to the client
-//   // side is the easiest way to get started
-//   const messages = await getMessages();
- 
-//   return (
-//         <NextIntlClientProvider messages={messages}>
-//           {children}
-//         </NextIntlClientProvider>
-      
-//   );
-// }
-
-
 import { Inter } from 'next/font/google';
 import '../globals.css';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 const inter = Inter({ subsets: ['latin'] });
 import { cookies } from 'next/headers';
+
+
 export const metadata = {
     title: "e-ESJ",
-    description: "e-ESJ",
+    description: "e-Espace Santé Jeunes",
   };
  
-
 
 export default async function RootLayout({
   children,
@@ -47,15 +29,13 @@ export default async function RootLayout({
     const validLocale = ['fr', 'ar'].includes(locales) ? locales : 'fr';
 
     const messages = await getMessages();
-    // console.log(validLocale)
-  return (
+
+    return (
     <html lang={validLocale} dir={validLocale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={inter.className}>
-      <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages}>
            {children}
         </NextIntlClientProvider>
-        
-
       </body>
     </html>
   );

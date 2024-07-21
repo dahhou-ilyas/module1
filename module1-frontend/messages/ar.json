@@ -351,7 +351,26 @@
       "description": "يرجى الإشارة إلى الأدوية التي تتناولها"
     },
     "nextButton": "التالي"
-  }
+  },
+  "WelcomingText": {
+        "headline": "لديك السيطرة على صحتك",
+        "greeting": "مرحبًا أحمد م.",
+        "description": "يتيح لك e-Espace Santé Jeunes (e-ESJ) الاطلاع على ملفك الطبي والاستفادة من الدعم والاختبارات النفسية والعثور على الكثير من المعلومات المفيدة عن الصحة.",
+        "medicalRecordButton": "ملفي الطبي",
+        "psychTestsButton": "اختبارات نفسية",
+        "spotlightTitle": "في دائرة الضوء:"
+    },
+    "Navbar": {
+        "profile": "الملف الشخصي",
+        "logout": "تسجيل الخروج",
+        "home": "الرئيسية",
+        "medicalRecord": "الملف الطبي",
+        "healthEducation": "التثقيف الصحي",
+        "psychTests": "اختبارات نفسية",
+        "username": "أحمد م.",
+        "languageFr": "Français",
+        "languageAr": "العربية"
+    }
 
 
 
