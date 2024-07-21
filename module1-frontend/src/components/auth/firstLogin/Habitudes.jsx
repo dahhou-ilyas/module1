@@ -4,6 +4,7 @@ import Layout from "@/components/auth/Layout";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
+import { useTranslations } from 'next-intl';
 
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -18,42 +19,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const habitudes = [
-  {
-    id: "sport",
-    label: "Sport",
-  },
-  {
-    id: "tabac",
-    label: "Tabac",
-    question: "Combien de cigarettes fumez-vous par jour?",
-    type: "input",
-    placeholder: "Nombre de cigarettes",
-  },
-  {
-    id: "alcool",
-    label: "Alcool",
-    question: "Consommation d'alcool",
-    type: "radio",
-    options: ["Quotidien", "Occasionnel"],
-  },
-  {
-    id: "tempsEcran",
-    label: "Temps d'écran",
-    question: "Combien de temps passez-vous devant un écran par jour?",
-    type: "radio",
-    options: ["1-2h", "3-5h", "5h+"],
-  },
-];
-
-const FormSchema = z.object({
-  habitudes: z.array(z.string()).optional(),
-  tabac: z.string().optional(),
-  alcool: z.string().optional(),
-  tempsEcran: z.string().optional(),
-});
-
 const Fields = ({ setFormData, nextStep, formData }) => {
+  const t = useTranslations("Habitudes");
+
+  const habitudes = [
+    { id: "sport", label: t('sport') },
+    { id: "tabac", label: t('smoking'), question: t('smokingQuestion'), type: "input", placeholder: t('smokingPlaceholder') },
+    { id: "alcool", label: t('alcohol'), question: t('alcoholQuestion'), type: "radio", options: [t('daily'), t('occasional')] },
+    { id: "tempsEcran", label: t('screenTime'), question: t('screenTimeQuestion'), type: "radio", options: [t('1-2h'), t('3-5h'), t('5h+')] },
+  ];
+
+  const FormSchema = z.object({
+    habitudes: z.array(z.string()).optional(),
+    tabac: z.string().optional(),
+    alcool: z.string().optional(),
+    tempsEcran: z.string().optional(),
+  });
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -91,10 +73,8 @@ const Fields = ({ setFormData, nextStep, formData }) => {
               render={() => (
                 <FormItem>
                   <div className="mb-4">
-                    <FormLabel className="text-base">Avez-vous certaines de ces habitudes?</FormLabel>
-                    <FormDescription>
-                      Vous pouvez sélectionner aucune ou plusieurs.
-                    </FormDescription>
+                    <FormLabel className="text-base">{t('habitsQuestion')}</FormLabel>
+                    <FormDescription>{t('habitsDescription')}</FormDescription>
                   </div>
                   {habitudes.map((item) => (
                     <FormField
@@ -109,6 +89,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                           >
                             <FormControl>
                               <Checkbox
+                                className="rtl:ml-2"
                                 checked={field.value?.includes(item.id)}
                                 onCheckedChange={(checked) => {
                                   return checked
@@ -173,11 +154,11 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                             className="flex flex-col space-y-1"
                           >
                             {habitObj.options.map((option) => (
-                              <FormItem key={option} className="flex items-center space-x-3 space-y-0">
+                              <FormItem key={option} className="flex items-center rtl:flex-row-reverse space-x-3 space-y-0">
                                 <FormControl>
-                                  <RadioGroupItem value={option} />
+                                  <RadioGroupItem value={option} className="rtl:ml-2"/>
                                 </FormControl>
-                                <FormLabel className="font-normal">{option}</FormLabel>
+                                <FormLabel className="font-norma">{option}</FormLabel>
                               </FormItem>
                             ))}
                           </RadioGroup>
@@ -191,7 +172,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
               return null;
             })}
             <button type="submit" className="bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto">
-              Suivant
+              {t('nextButton')}
             </button>
           </div>
         </form>
@@ -201,10 +182,11 @@ const Fields = ({ setFormData, nextStep, formData }) => {
 };
 
 const Habitudes = ({ setFormData, nextStep, prevStep, formData }) => {
+  const t = useTranslations("Habitudes");
   return (
     <Layout
-      title={"Antécédents Personnels"}
-      subtitle={"Veuillez saisir les informations suivantes"}
+      title={t('personalAntecedentsTitle')}
+      subtitle={t('personalAntecedentsSubtitle')}
       fields={<Fields setFormData={setFormData} nextStep={nextStep} formData={formData} />}
       prevStep={prevStep}
     />

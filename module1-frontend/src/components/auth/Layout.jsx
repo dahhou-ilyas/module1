@@ -30,10 +30,10 @@ const Layout = ({ title, subtitle, fields, prevStep }) => {
               size={20}
               className="cursor-pointer rtl:ml-1 inline rtl:rotate-180"
             />
-            <span className="ml-2 mt-1 cursor-pointer hover:opacity-70 transition">{t('back')}</span>
+            <span className="ltr:ml-2 rtl:mr-2 mt-1 cursor-pointer hover:opacity-70 transition">{t('back')}</span>
           </div>
         )}
-        <div className="ml-auto mr-4">
+        <div className="ltr:ml-auto sm:ltr:mr-4 rtl:mr-auto sm:rtl:ml-4">
           <LanguageSelector />
         </div>
       </div>

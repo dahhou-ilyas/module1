@@ -71,15 +71,15 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                       defaultValue={field.value}
                       className="flex flex-col space-y-1"
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="oui" />
+                          <RadioGroupItem value="oui" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t('oui')}</FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="non" />
+                          <RadioGroupItem value="non" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t('non')}</FormLabel>
                       </FormItem>
@@ -101,15 +101,15 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                       defaultValue={field.value}
                       className="flex flex-col space-y-1"
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="oui" />
+                          <RadioGroupItem value="oui" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t('oui')}</FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="non" />
+                          <RadioGroupItem value="non" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t('non')}</FormLabel>
                       </FormItem>
@@ -134,33 +134,33 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                           defaultValue={field.value}
                           className="flex flex-col space-y-1"
                         >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="Pédiatre" />
+                              <RadioGroupItem value="Pédiatre" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t('pediatre')}</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="Psychiatre" />
+                              <RadioGroupItem value="Psychiatre" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t('psychiatre')}</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="Gynécologue" />
+                              <RadioGroupItem value="Gynécologue" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t('gynecologue')}</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="Dermatologue" />
+                              <RadioGroupItem value="Dermatologue" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t('dermatologue')}</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="Ophtalmologue" />
+                              <RadioGroupItem value="Ophtalmologue" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t('ophtalmologue')}</FormLabel>
                           </FormItem>

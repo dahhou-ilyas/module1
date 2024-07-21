@@ -47,7 +47,7 @@ export default async function RootLayout({
     const validLocale = ['fr', 'ar'].includes(locales) ? locales : 'fr';
 
     const messages = await getMessages();
-    console.log(validLocale)
+    // console.log(validLocale)
   return (
     <html lang={validLocale} dir={validLocale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={inter.className}>

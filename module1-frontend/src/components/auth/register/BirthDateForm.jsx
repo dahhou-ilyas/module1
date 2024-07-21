@@ -22,6 +22,7 @@ const range = (start, end, step) => {
 
 const Fields = ({ setFormData, nextStep }) => {
   const t = useTranslations("BirthDateForm");
+  const dir = document.documentElement.dir;
   
   const schema = z.object({
     dateNaissance: z.date().nullable().refine(
@@ -86,7 +87,7 @@ const Fields = ({ setFormData, nextStep }) => {
                 control={control}
                 name="dateNaissance"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
+                  <FormItem className="flex flex-col z-50">
                     <FormLabel>{t("dateNaissanceLabel")}</FormLabel>
                     <FormControl>
                       <DatePicker
@@ -187,7 +188,7 @@ const Fields = ({ setFormData, nextStep }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("genreLabel")}*</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} defaultValue={field.value} dir={dir}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder={t("genrePlaceholder")} />

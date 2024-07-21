@@ -183,5 +183,176 @@
     "dermatologue": "Dermatologue",
     "ophtalmologue": "Ophtalmologue",
     "suivant": "Suivant"
+  },
+  "AuthJeunes": {
+    "identifierError": "Veuillez saisir votre identifiant",
+    "passwordMinError": "Le mot de passe doit faire au moins 8 caractères",
+    "passwordMaxError": "Le mot de passe ne peut pas dépasser 16 caractères",
+    "identifierLabel": "Email ou CIN ou CNE ou Code Massar",
+    "identifierPlaceholder": "Email ou CIN ou CNE ou Code Massar",
+    "passwordLabel": "Mot de Passe",
+    "passwordPlaceholder": "Mot de Passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "loginButton": "Se Connecter",
+    "tooltipContent": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero esse quia aut corporis natus ex deleniti laudantium.",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "register": "Inscrivez-vous",
+    "mobileTooltipContent": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero esse quia aut corporis natus ex deleniti laudantium."
+},
+"AuthMedecins":{
+  "identifierError": "Veuillez saisir votre identifiant",
+  "passwordMinError": "Le mot de passe doit faire au moins 8 caractères",
+  "passwordMaxError": "Le mot de passe ne peut pas dépasser 16 caractères",
+  "identifierLabel": "Email ou CIN",
+  "identifierPlaceholder": "Email ou CIN",
+  "passwordLabel": "Mot de Passe",
+  "passwordPlaceholder": "Mot de Passe",
+  "forgotPassword": "Mot de passe oublié?",
+  "loginButton": "Se Connecter",
+  "noAccount": "Vous n'avez pas de compte ?",
+  "register": "Inscrivez-vous"
+},
+"AuthProfessionnels":{
+  "identifierError": "Veuillez saisir votre identifiant",
+  "passwordMinError": "Le mot de passe doit faire au moins 8 caractères",
+  "passwordMaxError": "Le mot de passe ne peut pas dépasser 16 caractères",
+  "identifierLabel": "Email ou CIN",
+  "identifierPlaceholder": "Email ou CIN",
+  "passwordLabel": "Mot de Passe",
+  "passwordPlaceholder": "Mot de Passe",
+  "forgotPassword": "Mot de passe oublié?",
+  "loginButton": "Se Connecter",
+  "noAccount": "Vous n'avez pas de compte ?",
+  "register": "Inscrivez-vous"
+},
+"CheckVerifiedEmail":{
+  "verifyEmailTitle": "Confirmez votre adresse e-mail",
+  "verifyEmailDescription": "Votre adresse e-mail n'est pas encore vérifiée. Veuillez cliquer sur le bouton 'Vérifier mon e-mail' et consulter votre boîte de réception pour compléter le processus de vérification.",
+  "cancel": "Annuler",
+  "verifyEmailButton": "Vérifier mon e-mail"
+},
+"EmailRecovery":{
+  "emailRecoveryTitle": "Veuillez saisir votre adresse email",
+  "emailLabel": "Adresse email*",
+  "emailPlaceholder": "Email",
+  "emailExample": "exemple@gmail.com",
+  "emailInvalid": "Veuillez saisir une adresse email valide",
+  "nextButton": "Suivant"
+},
+"PasswordReset":{
+  "passwordResetTitle": "Mot de passe sécurisé",
+  "passwordResetSubtitle": "Créez votre nouveau mot de passe sécurisé avec des lettres, des chiffres et des symboles.",
+  "passwordLabel": "Mot De Passe*",
+  "passwordPlaceholder": "Mot De Passe",
+  "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+  "passwordMax": "Le mot de passe ne peut pas dépasser 16 caractères",
+  "passwordUppercase": "Le mot de passe doit contenir au moins une lettre majuscule",
+  "passwordSpecial": "Le mot de passe doit contenir au moins un caractère spécial",
+  "confirmLabel": "Confirmer*",
+  "confirmPlaceholder": "Confirmer Mot De Passe",
+  "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+  "passwordMismatch": "Les mots de passe ne correspondent pas",
+  "submitButton": "Valider"
+},
+"VerifyToken":{
+  "codeSecret": "Code Secret*",
+  "codePlaceholder": "Code",
+  "codeExample": "ex: abc123",
+  "nextButton": "Suivant",
+  "title": "Veuillez consulter votre boîte mail",
+  "subtitle": "Un code à 6 chiffres a été envoyé à votre adresse. Veuillez consulter votre boîte de réception et insérer le code à 6 chiffres.",
+  "tokenInvalid": "Veuillez saisir votre code à 6 chiffres valides"
+},
+"AntecedantsFamilliaux":{
+  "antecedentsFamiliauxTitle": "Antécédents Familiaux",
+  "antecedentsFamiliauxSubtitle": "Veuillez saisir les informations suivantes",
+  "diseaseQuestion": "Est-ce que vous avez un membre de la famille souffrant de l'une des maladies suivantes ?",
+  "diseaseDescription": "Vous pouvez sélectionner plusieurs ou aucune si aucun de vos proches ne souffre de l'une de ces maladies.",
+  "otherLabel": "Autre:",
+  "otherPlaceholder": "Veuillez préciser",
+  "minSelectionError": "Veuillez sélectionner au moins une maladie. Sélectionnez 'aucune' si vous n'en avez pas.",
+  "diabetes": "Diabète",
+  "hypertension": "Hypertension artérielle",
+  "cancer": "Cancer",
+  "cardiovascularDisease": "Maladie cardio-vasculaire",
+  "none": "Aucune",
+  "submitButton": "Confirmer"
+},
+"Habitudes":{
+  "personalAntecedentsTitle": "Antécédents Personnels",
+  "personalAntecedentsSubtitle": "Veuillez saisir les informations suivantes",
+  "habitsQuestion": "Avez-vous certaines de ces habitudes?",
+  "habitsDescription": "Vous pouvez sélectionner aucune ou plusieurs.",
+  "sport": "Sport",
+  "smoking": "Tabac",
+  "smokingQuestion": "Combien de cigarettes fumez-vous par jour?",
+  "smokingPlaceholder": "Nombre de cigarettes",
+  "alcohol": "Alcool",
+  "alcoholQuestion": "Consommation d'alcool",
+  "daily": "Quotidien",
+  "occasional": "Occasionnel",
+  "screenTime": "Temps d'écran",
+  "screenTimeQuestion": "Combien de temps passez-vous devant un écran par jour?",
+  "1-2h": "1-2h",
+  "3-5h": "3-5h",
+  "5h+": "5h+",
+  "nextButton": "Suivant"
+},
+"MaladiesChirurgicaux": {
+    "title": "Antécédents Personnels Médicaux",
+    "subtitle": "Veuillez saisir les informations suivantes",
+    "chirurgicaux": {
+      "label": "Souffrez-vous de maladies chirurgicaux?",
+      "oui": "OUI",
+      "non": "NON"
+    },
+    "typeOperation": {
+      "label": "Type d'opération",
+      "placeholder": "Type d'opération",
+      "description": "Veuillez indiquer le type d'opération que vous avez reçue"
+    },
+    "anneeOperation": {
+      "label": "Année de l'opération",
+      "placeholder": "Année d'opération",
+      "description": "Veuillez indiquer l'année d'opération que vous avez reçue"
+    },
+    "nextButton": "Suivant",
+    "schema": {
+      "chirurgicaux": "Veuillez indiquer si vous souffrez ou non de maladies chirurgicaux"
+    }
+  },
+"MaladiesChroniques": {
+    "title": "Antécédents Personnels Médicaux",
+    "subtitle": "Veuillez saisir les informations suivantes",
+    "maladieJeune": {
+      "label": "Souffrez-vous des maladies chroniques suivantes?",
+      "description": "Vous pouvez sélectionner aucune ou plusieurs.",
+      "asthme": "Asthme",
+      "diabete": "Diabète",
+      "epilepsie": "Épilepsie",
+      "tsa": "Troubles du spectre de l'autisme (TSA)",
+      "troubleSommeil": "Trouble de Sommeil"
+    },
+    "nextButton": "Suivant"
+  },
+  "Medicaments": {
+    "title": "Antécédents Personnels Médicaux",
+    "subtitle": "Veuillez saisir les informations suivantes",
+    "medicaments": {
+      "label": "Utilisez-vous des médicaments ?",
+      "yes": "OUI",
+      "no": "NON",
+      "error": "Veuillez indiquer si vous prenez des médicaments"
+    },
+    "typeMedicaments": {
+      "label": "Type de médicaments",
+      "placeholder": "Type de médicaments",
+      "description": "Veuillez indiquer les médicaments que vous prenez"
+    },
+    "nextButton": "Suivant"
   }
+
+
 }
+
+

@@ -1,4 +1,3 @@
-"use client";
 
 import * as React from "react";
 import {
@@ -29,12 +28,13 @@ export function LanguageSelector() {
       router.replace(newPathname);
     });
   };
-
+  console.log(localActive)
   return (
     <Select
       defaultValue={localActive}
       onValueChange={onSelectChange}
       disabled={isPending}
+      dir={localActive === "ar" ? "rtl" : "ltr"}
     >
       <SelectTrigger className="w-[100px]">
         <SelectValue placeholder="Français" />

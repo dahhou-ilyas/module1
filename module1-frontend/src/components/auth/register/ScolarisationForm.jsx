@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 
 const Fields = ({ setFormData, nextStep }) => {
   const t = useTranslations('ScolarisationForm');
-
+  const dir = document.documentElement.dir;
   const schema = z.object({
     scolarise: z.string().nonempty(t("scolariseError")),
     niveauEtudes: z.string().nonempty(t("niveauEtudesError")),
@@ -26,7 +26,7 @@ const Fields = ({ setFormData, nextStep }) => {
     },
     resolver: zodResolver(schema),
   });
-
+  
   const { handleSubmit, control, formState: { errors }, watch } = form;
   const scolariseValue = watch("scolarise");
 
@@ -65,15 +65,15 @@ const Fields = ({ setFormData, nextStep }) => {
                       defaultValue={field.value}
                       className="flex flex-col space-y-1"
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="oui" />
+                          <RadioGroupItem value="oui" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t("oui")}</FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                         <FormControl>
-                          <RadioGroupItem value="non" />
+                          <RadioGroupItem value="non" className="rtl:ml-2"/>
                         </FormControl>
                         <FormLabel className="font-normal">{t("non")}</FormLabel>
                       </FormItem>
@@ -92,11 +92,11 @@ const Fields = ({ setFormData, nextStep }) => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t("niveauEtudesLabel")}</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger>
+                      <Select onValueChange={field.onChange} defaultValue={field.value} dir={dir}>
+                        <SelectTrigger >
                           <SelectValue placeholder={t("niveauEtudesPlaceholder")} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent > 
                           <SelectItem value="AUCUN">{t("niveauEtudesAucun")}</SelectItem>
                           <SelectItem value="PRIMAIRE">{t("niveauEtudesPrimaire")}</SelectItem>
                           <SelectItem value="SECONDAIRE">{t("niveauEtudesSecondaire")}</SelectItem>
@@ -120,15 +120,15 @@ const Fields = ({ setFormData, nextStep }) => {
                           defaultValue={field.value}
                           className="flex flex-col space-y-1"
                         >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse">
                             <FormControl>
-                              <RadioGroupItem value="oui" />
+                              <RadioGroupItem value="oui" className="rtl:ml-2"/>
                             </FormControl>
                             <FormLabel className="font-normal">{t("oui")}</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rtl:flex-row-reverse" >
                             <FormControl>
-                              <RadioGroupItem value="non" />
+                              <RadioGroupItem value="non" className="rtl:ml-2" />
                             </FormControl>
                             <FormLabel className="font-normal">{t("non")}</FormLabel>
                           </FormItem>
@@ -148,13 +148,13 @@ const Fields = ({ setFormData, nextStep }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("niveauEtudesActuelLabel")}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} defaultValue={field.value} dir={dir}>
                       <SelectTrigger>
                         <SelectValue placeholder={t("niveauEtudesPlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="PRIMAIRE">{t("niveauEtudesPrimaire")}</SelectItem>
-                        <SelectItem value="SECONDAIRE">{t("niveauEtudesSECONDAIRE")}</SelectItem>
+                        <SelectItem value="SECONDAIRE">{t("niveauEtudesSecondaire")}</SelectItem>
                         <SelectItem value="SUPERIEUR">{t("niveauEtudesSuperieure")}</SelectItem>
                       </SelectContent>
                     </Select>

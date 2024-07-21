@@ -35,10 +35,10 @@ const Recapitulatif = ({ formData, handleSubmit, prevStep }) => {
           onClick={prevStep} 
           color="black" 
           size={20} 
-          className="cursor-pointer hover:opacity-70 transition mt-[6px]"
+          className="cursor-pointer hover:opacity-70 transition mt-[6px] rtl:rotate-180"
         />
-        <span className="ml-2 mt-1">{t('back')}</span>
-        <div className="ml-auto mr-4">
+        <span className="ltr:ml-2 rtl:mr-2 mt-1">{t('back')}</span>
+        <div className="ltr:ml-auto sm:ltr:mr-4 rtl:mr-auto sm:rtl:ml-4">
           <LanguageSelector />
         </div>
       </div>
@@ -49,7 +49,7 @@ const Recapitulatif = ({ formData, handleSubmit, prevStep }) => {
               <BiArrowBack 
                 color="black" 
                 size={20} 
-                className="inline hover:opacity-70 transition"
+                className="inline hover:opacity-70 transition rtl:rotate-180"
               />
               <span className="ml-2 hover:opacity-70 transition">{t('back')}</span>
             </div>
@@ -61,7 +61,7 @@ const Recapitulatif = ({ formData, handleSubmit, prevStep }) => {
                 width={160} 
               />
             </div>
-            <h2 className="sm:text-3xl text-2xl font-medium mt-2 mb-4 text-gray-950 lg:ml-8">{t('recapTitle')}</h2>
+            <h2 className="sm:text-3xl text-2xl font-medium mt-2 mb-6 text-gray-950 lg:ml-8 rtl:mr-4">{t('recapTitle')}</h2>
             <div className="lg:flex lg:justify-center lg:items-center pr-4 lg:pr-0">
               <div className="grid grid-cols-2 gap-4 lg:w-4/5 xl:overflow-hidden">
                 {data.map((item, index) => (
