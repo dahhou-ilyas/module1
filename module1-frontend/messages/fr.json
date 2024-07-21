@@ -194,10 +194,10 @@
     "passwordPlaceholder": "Mot de Passe",
     "forgotPassword": "Mot de passe oublié?",
     "loginButton": "Se Connecter",
-    "tooltipContent": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero esse quia aut corporis natus ex deleniti laudantium.",
+    "tooltipContent": "Si tu n'arrives pas à créer ton compte e-ESJ, va au centre de santé le plus proche de toi et nous t'aiderons.",
     "noAccount": "Vous n'avez pas de compte ?",
     "register": "Inscrivez-vous",
-    "mobileTooltipContent": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero esse quia aut corporis natus ex deleniti laudantium."
+    "mobileTooltipContent": "Si tu n'arrives pas à créer ton compte e-ESJ, va au centre de santé le plus proche de toi et nous t'aiderons."
 },
 "AuthMedecins":{
   "identifierError": "Veuillez saisir votre identifiant",

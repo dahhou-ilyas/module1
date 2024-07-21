@@ -102,7 +102,7 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
                         name="inpe"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>{t('labels.inpe')}</FormLabel>
+                                <FormLabel>{t('labels.inpe')}{medecin && '*'}</FormLabel>
                                 <FormControl>
                                     <Input
                                         className="md:w-96 max-w-sm"

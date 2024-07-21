@@ -160,7 +160,7 @@ const AuthJeunes = () => {
                         </div>
                         <Link href="/register/jeunes">
                             <h4 className="text-xs text-center text-gray-700 mt-4"> 
-                                <div className="hidden sm:inline">
+                                <div className="hidden md:inline">
                                     <TooltipProvider>   
                                         <Tooltip>
                                             <TooltipTrigger>
@@ -175,7 +175,7 @@ const AuthJeunes = () => {
                                 {t("noAccount")} <span className='font-semibold border-b-2 border-gray-700 cursor-pointer'>{t("register")}</span>
                             </h4>
                         </Link>
-                        <p className='text-gray-600 sm:hidden mt-8 mb-1 text-xs text-center'>{t("mobileTooltipContent")}</p>
+                        <p className='text-gray-600 mt-4 mb-1 text-xs text-center'>{t("mobileTooltipContent")}</p>
                     </div>
                     <div className="hidden lg:block ml-3 mt-auto">
                         <LanguageSelector />

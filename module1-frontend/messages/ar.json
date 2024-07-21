@@ -1,30 +1,30 @@
 {
   "NameForm": {
-    "nomLabel": "الاسم",
-    "prenomLabel": "اللقب",
-    "nomPlaceholder": "الاسم",
-    "prenomPlaceholder": "اللقب",
+    "nomLabel": "الإسم العائلي",
+    "prenomLabel": "الإسم الشخصي",
+    "nomPlaceholder": "الإسم العائلي",
+    "prenomPlaceholder": "الإسم الشخصي",
     "submitButton": "التالي",
-    "nomErrorRequired": "يرجى إدخال اسمك",
-    "nomErrorInvalid": "يجب أن يحتوي الاسم على أحرف فقط",
-    "prenomErrorRequired": "يرجى إدخال لقبك",
-    "prenomErrorInvalid": "يجب أن يحتوي اللقب على أحرف فقط",
+    "nomErrorRequired": " يرجى إدخال اسمك",
+    "nomErrorInvalid": "يجب أن يحتوي الإسم العائلي على أحرف فقط",
+    "prenomErrorRequired": "يرجى إدخال اسمك",
+    "prenomErrorInvalid": "يجب أن يحتوي الإسم الشخصي على أحرف فقط",
     "title": "إنشاء حسابك في e-ESJ",
-    "subtitle": "يرجى إدخال اسمك ولقبك"
+    "subtitle": "يرجى إدخال اسمك العائلي و الشخصي"
   },
   "BirthDateForm": {
-    "dateNaissanceLabel": "تاريخ الميلاد*",
+    "dateNaissanceLabel": "تاريخ الميلاد",
     "genreLabel": "الجنس",
     "dateNaissancePlaceholder": "يوم/شهر/سنة",
     "genrePlaceholder": "الجنس",
-    "genreFeminine": "أنثوي",
-    "genreMasculine": "ذكري",
-    "dateNaissanceErrorRequired": "يرجى اختيار تاريخ الميلاد",
-    "dateNaissanceErrorInvalid": "يجب أن تكون بين 10 و30 عامًا",
-    "genreErrorRequired": "يرجى اختيار جنس",
+    "genreFeminine": "أنثى",
+    "genreMasculine": "ذكر",
+    "dateNaissanceErrorRequired": "يرجى اختيار تاريخ ميلاد",
+    "dateNaissanceErrorInvalid": "يجب أن يتراوح عمرك بين 10 و 30 سنة",
+    "genreErrorRequired": "يرجى اختيار جنسك",
     "submitButton": "التالي",
-    "title": "المعلومات العامة",
-    "subtitle": "يرجى إدخال تاريخ ميلادك وجنسك. لاحظ أنك يجب أن تكون بين 10 و30 عامًا للوصول إلى e-ESJ.",
+    "title": "معلومات عامة",
+    "subtitle": "يرجى إدخال تاريخ ميلادك وجنسك. لاحظ أنه يجب أن يتراوح عمرك بين 10 و 30 سنة للوصول إلى e-ESJ.",
     "month1": "يناير",
     "month2": "فبراير",
     "month3": "مارس",
@@ -39,7 +39,7 @@
     "month12": "ديسمبر"
   },
   "EmailForm": {
-    "emailLabel": "عنوان البريد الإلكتروني*",
+    "emailLabel": "البريد الإلكتروني*",
     "telLabel": "رقم الهاتف*",
     "emailPlaceholder": "البريد الإلكتروني",
     "telPlaceholder": "رقم الهاتف",
@@ -51,7 +51,7 @@
     "title": "يرجى إدخال عنوان بريدك الإلكتروني ورقم هاتفك"
   },
   "CinForm": {
-    "cinLabel": "رقم CIN",
+    "cinLabel": "رقم CIN*",
     "cinPlaceholder": "رقم CIN",
     "cinErrorInvalid": "رقم CIN هذا غير صالح",
     "submitButton": "التالي",
@@ -59,23 +59,23 @@
     "subtitle": "يرجى إدخال رقم CIN الخاص بك"
   },
   "ScolarisationForm": {
-    "scolariseLabel": "هل أنت في الدراسة؟",
-    "scolariseError": "يرجى تحديد ما إذا كنت في الدراسة",
-    "niveauEtudesLabel": "آخر مستوى دراسي",
-    "niveauEtudesPlaceholder": "اختر مستواك الدراسي",
-    "niveauEtudesError": "يرجى تحديد مستوى دراستك",
+    "scolariseLabel": "هل أنت مُدرَّس؟",
+    "scolariseError": "يرجى تحديد ما إذا كنت مُدرَّس",
+    "niveauEtudesLabel": "أعلى مستوى تعليمي",
+    "niveauEtudesPlaceholder": "اختر مستوى دراستك",
+    "niveauEtudesActuelLabel": "اختر مستوى دراستك الحالي",
+    "niveauEtudesError": "يرجى اختيار مستوى دراستك",
     "niveauEtudesAucun": "لا شيء",
-    "niveauEtudesPrimaire": "الابتدائي",
-    "niveauEtudesActuelLabel": "مستواك الدراسي",
-    "niveauEtudesSecondaire": "الإعدادي",
-    "niveauEtudesSuperieure": "العالي",
-    "enActiviteLabel": "هل أنت نشط؟",
-    "enActiviteError": "يرجى تحديد وضعك الحالي",
+    "niveauEtudesPrimaire": "ابتدائي",
+    "niveauEtudesSecondaire": "ثانوي",
+    "niveauEtudesSuperieure": "جامعي",
+    "enActiviteLabel": "هل أنت في نشاط مهني؟",
+    "enActiviteError": "يرجى اختيار وضعك المهني",
     "oui": "نعم",
     "non": "لا",
     "submitButton": "التالي",
-    "layoutTitle": "المعلومات العامة",
-    "layoutSubtitle": "يرجى تحديد ما إذا كنت في الدراسة ومستوى دراستك الحالي."
+    "layoutTitle": "معلومات عامة",
+    "layoutSubtitle": "يرجى اختيار ما إذا كنت مُدرَّس ومستوى دراستك الحالي."
   },
   
     "CodeMassarForm": {
@@ -110,8 +110,8 @@
     "passwordMismatch": "كلمات المرور غير متطابقة"
   },
   "Recapitulatif": {
-    "nom": "الاسم",
-    "prenom": "اللقب",
+    "nom": "الإسم العائلي",
+    "prenom": "الإسم الشخصي",
     "dateNaissance": "تاريخ الميلاد",
     "genre": "الجنس",
     "email": "البريد الإلكتروني",
@@ -121,7 +121,7 @@
     "niveauEtudes": "مستوى الدراسة",
     "situationActuelle": "الوضع الحالي",
     "cne": "CNE",
-    "codeMassar": "كود مسار",
+    "codeMassar": "رمز مسار",
     "back": "عودة",
     "recapTitle": "تلخيص",
     "submitButton": "تأكيد",
@@ -181,27 +181,27 @@
     "pediatre": "طبيب أطفال",
     "psychiatre": "طبيب نفسي",
     "gynecologue": "طبيب نساء وتوليد",
-    "dermatologue": "طبيب جلدية",
+    "dermatologue": "طبيب الأمراض الجلدية ",
     "ophtalmologue": "طبيب عيون",
     "suivant": "التالي"
   },
   "AuthJeunes":{
-    "identifierError": "يرجى إدخال المعرف",
+    "identifierError": "يرجى إدخال اسم المستخدم",
     "passwordMinError": "يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل",
     "passwordMaxError": "لا يمكن أن تتجاوز كلمة المرور 16 حرفًا",
-    "identifierLabel": "البريد الإلكتروني أو CIN أو CNE أو كود Massar",
-    "identifierPlaceholder": "البريد الإلكتروني أو CIN أو CNE أو كود Massar",
+    "identifierLabel": "البريد الإلكتروني أو CIN أو CNE أو رمز Massar",
+    "identifierPlaceholder": "البريد الإلكتروني أو CIN أو CNE أو رمز Massar",
     "passwordLabel": "كلمة المرور",
     "passwordPlaceholder": "كلمة المرور",
     "forgotPassword": "نسيت كلمة المرور؟",
     "loginButton": "تسجيل الدخول",
-    "tooltipContent": "لوريم إيبسوم دولار سيت أميت، كونسيكتيتور أديب.",
+    "tooltipContent": "إذا لم تتمكن من إنشاء حساب e-ESJ الخاص بك، توجه إلى أقرب مركز صحي وسنساعدك.",
     "noAccount": "لا تملك حسابًا؟",
-    "register": "سجل",
-    "mobileTooltipContent": "لوريم إيبسوم دولار سيت أميت، كونسيكتيتور أديب."
+    "register": "أفتح حساب الأن",
+    "mobileTooltipContent": "إذا لم تتمكن من إنشاء حساب e-ESJ الخاص بك، توجه إلى أقرب مركز صحي وسنساعدك"
 },
 "AuthMedecins":{
-  "identifierError": "يرجى إدخال المعرف",
+  "identifierError": "يرجى إدخال اسم المستخدم",
   "passwordMinError": "يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل",
   "passwordMaxError": "لا يمكن أن تتجاوز كلمة المرور 16 حرفًا",
   "identifierLabel": "البريد الإلكتروني أو CIN",
@@ -211,10 +211,10 @@
   "forgotPassword": "نسيت كلمة المرور؟",
   "loginButton": "تسجيل الدخول",
   "noAccount": "لا تملك حسابًا؟",
-  "register": "سجل"
+  "register": "أفتح حساب الأن"
 },
 "AuthProfessionnels":{
-  "identifierError": "يرجى إدخال المعرف",
+  "identifierError": "يرجى إدخال اسم المستخدم",
   "passwordMinError": "يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل",
   "passwordMaxError": "لا يمكن أن تتجاوز كلمة المرور 16 حرفًا",
   "identifierLabel": "البريد الإلكتروني أو CIN",
@@ -224,11 +224,11 @@
   "forgotPassword": "نسيت كلمة المرور؟",
   "loginButton": "تسجيل الدخول",
   "noAccount": "لا تملك حسابًا؟",
-  "register": "سجل"
+  "register": "أفتح حساب الأن"
 },
 "CheckVerifiedEmail":{
   "verifyEmailTitle": "تأكيد عنوان بريدك الإلكتروني",
-  "verifyEmailDescription": "لم يتم التحقق من عنوان بريدك الإلكتروني بعد. يرجى النقر على زر 'التحقق من بريدي الإلكتروني' وتفقد صندوق الوارد لإكمال عملية التحقق.",
+  "verifyEmailDescription": "لم يتم التحقق من عنوان بريدك الإلكتروني بعد. يرجى النقر على زر 'التحقق من بريدي الإلكتروني' وتفقد صندوق بريدك الإلكتروني لإكمال عملية التحقق.",
   "cancel": "إلغاء",
   "verifyEmailButton": "التحقق من بريدي الإلكتروني"
 },
@@ -280,10 +280,10 @@
   "submitButton": "تأكيد"
 },
 "Habitudes":{
-  "personalAntecedentsTitle": "أنماط الحياة الشخصية",
+  "personalAntecedentsTitle": "العادات الشخصية",
   "personalAntecedentsSubtitle": "يرجى إدخال المعلومات التالية",
-  "habitsQuestion": "هل لديك بعض من هذه الأنماط؟",
-  "habitsDescription": "يمكنك اختيار لا شيء أو عدة أنماط.",
+  "habitsQuestion": "هل لديك بعض من هذه العادات",
+  "habitsDescription": "يمكنك اختيار لا شيء أو عدة العادات.",
   "sport": "رياضة",
   "smoking": "تدخين",
   "smokingQuestion": "كم عدد السجائر التي تدخنها في اليوم؟",
@@ -291,8 +291,8 @@
   "alcohol": "كحول",
   "alcoholQuestion": "استهلاك الكحول",
   "daily": "يوميًا",
-  "occasional": "عرضي",
-  "screenTime": "وقت الشاشة",
+  "occasional": "في بعض الأحيان",
+  "screenTime": "وقت أمام الشاشة",
   "screenTimeQuestion": "كم من الوقت تقضيه أمام الشاشة يوميًا؟",
   "1-2h": "1-2 ساعة",
   "3-5h": "3-5 ساعات",
@@ -340,7 +340,7 @@
     "title": "سوابق طبية شخصية",
     "subtitle": "يرجى إدخال المعلومات التالية",
     "medicaments": {
-      "label": "هل تستخدم الأدوية؟",
+      "label": "هل تستخدم أدوية؟",
       "yes": "نعم",
       "no": "لا",
       "error": "يرجى الإشارة إذا كنت تتناول الأدوية"
