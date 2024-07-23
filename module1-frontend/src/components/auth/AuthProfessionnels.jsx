@@ -197,7 +197,7 @@ const AuthProfessionnels = () => {
                                     > 
                                         {t("loginButton")}
                                     </button>
-                                    <Terms nextStep={nextStep} alertDialogTriggerRef={alertDialogTriggerRef} />
+                                    <Terms nextStep={confirmeRules} alertDialogTriggerRef={alertDialogTriggerRef} />
                                     <CheckVerifiedEmail envoyerEmail={envoyerEmail} alertDialogTriggerRef={alertDialogTriggerRef2} />
                                 </form>
                             </Form>
