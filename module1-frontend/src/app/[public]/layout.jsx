@@ -5,6 +5,8 @@ import {getMessages} from 'next-intl/server';
 const inter = Inter({ subsets: ['latin'] });
 import { cookies } from 'next/headers';
 
+import { Toaster } from "react-hot-toast";
+
 
 export const metadata = {
     title: "e-ESJ",
@@ -34,6 +36,7 @@ export default async function RootLayout({
     <html lang={validLocale} dir={validLocale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
+          <Toaster position="bottom-center" />
            {children}
         </NextIntlClientProvider>
       </body>

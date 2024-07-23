@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PasswordForm from '@/components/auth/register/PasswordForm';
 import EmailRecovery from '@/components/auth/recoverPassword/EmailRecovery';
 import VerifyToken from '@/components/auth/recoverPassword/VerifyToken';
+import { toast } from 'react-hot-toast';
 
 const ForgotPassword = () => {
 
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
     })
     .then(data => {
       console.log("!!!!!!!!!!!!!!!!!!!! sucess");
-      nextStep()
+      toast.success('le mots de pass est bien changé');
     })
     .catch(error => console.error('Error:', error));
     //nextStep()

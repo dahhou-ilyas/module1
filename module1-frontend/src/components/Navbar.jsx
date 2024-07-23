@@ -45,7 +45,7 @@ export default function Navbar() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen,handleClickOutside]);
 
   const menuItems = [
     { title: t('profile'), icon: <FaRegUser /> },
