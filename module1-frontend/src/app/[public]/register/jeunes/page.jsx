@@ -23,7 +23,7 @@ const MultiStepForm = () => {
     cin: '',
     scolarise: "",
     niveauEtudes: "",
-    situationActuelle: "",
+    enActivite: "",
     cne: "",
     codeMassar: "",
     password: "",
@@ -92,10 +92,10 @@ const MultiStepForm = () => {
     }
   };
   const prevStep3 = () => {
-    if (formData.niveauEtudes == "Aucun") {
+    if (formData.niveauEtudes == "AUCUN") {
       setStep(5);
     } else {
-      setStep(step - 1);
+      setStep(6);
     }
   };
 

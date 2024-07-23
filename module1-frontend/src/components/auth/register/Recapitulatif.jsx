@@ -7,23 +7,44 @@ import { BiArrowBack } from "react-icons/bi";
 
 const Recapitulatif = ({ formData, handleSubmit, prevStep }) => {
   const t = useTranslations('Recapitulatif');
+  const isRTL = document.documentElement.dir === 'rtl';
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('fr-FR', options);
+    return new Date(dateString).toLocaleDateString(isRTL ? 'ar-EG' : 'fr-FR', options);
+  };
+
+  const translateGenre = (genre) => {
+    if (genre === 'HOMME') return isRTL ? 'ذَكَر' : 'Masculain';
+    if (genre === 'FEMME') return isRTL ? 'أُنْثى' : 'Feminin';
+    return genre;
+  };
+
+  const translateScolarise = (scolarise) => {
+    if (scolarise === 'oui') return isRTL ? 'نعم' : 'Oui';
+    if (scolarise === 'non') return isRTL ? 'لا' : 'Non';
+    return scolarise;
+  };
+
+  const translateNiveauEtudes = (niveauEtudes) => {
+    if (niveauEtudes === 'AUCUN') return isRTL ? 'لا شيء' : 'Aucun';
+    if (niveauEtudes === 'PRIMAIRE') return isRTL ? 'ابتدائي' : 'Primaire';
+    if (niveauEtudes === 'SECONDAIRE') return isRTL ? 'ثانوي' : 'Secondaire';
+    if (niveauEtudes === 'SUPERIEUR') return isRTL ? 'جامعي' : 'Supérieur';
+    return niveauEtudes;
   };
 
   const data = [
     { label: t('nom'), value: formData.nom },
     { label: t('prenom'), value: formData.prenom },
     { label: t('dateNaissance'), value: formData.dateNaissance ? formatDate(formData.dateNaissance) : '' },
-    { label: t('genre'), value: formData.genre },
+    { label: t('genre'), value: translateGenre(formData.genre) },
     { label: t('email'), value: formData.email },
     { label: t('tel'), value: formData.tel },
     { label: formData.cin ? t('cin') : '', value: formData.cin }, // Conditionally render CIN label
-    { label: t('scolarisation'), value: formData.scolarise },
-    { label: t("niveauEtudes"), value: formData.niveauEtudes },
-    { label: formData.situationActuelle ? t('situationActuelle') : '', value: formData.situationActuelle },
+    { label: t('scolarisation'), value: translateScolarise(formData.scolarise) },
+    { label: t("niveauEtudes"), value: translateNiveauEtudes(formData.niveauEtudes) },
+    { label: formData.enActivite? t('situationActuelle') : '', value: translateScolarise(formData.enActivite) },
     { label: formData.cne ? t('cne') : '', value: formData.cne },
     { label: formData.codeMassar ? t('codeMassar') : '', value: formData.codeMassar },
   ];

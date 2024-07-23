@@ -119,7 +119,7 @@
     "cin": "رقم بطاقة التعريف الوطنية",
     "scolarisation": "التعليم",
     "niveauEtudes": "مستوى الدراسة",
-    "situationActuelle": "الوضع الحالي",
+    "situationActuelle": "في نشاط مهني",
     "cne": "CNE",
     "codeMassar": "رمز مسار",
     "back": "عودة",
@@ -371,13 +371,6 @@
         "languageFr": "Français",
         "languageAr": "العربية"
     }
- 
-
- 
-
-
-
-
 
 
 

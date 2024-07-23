@@ -28,7 +28,6 @@ export function LanguageSelector() {
       router.replace(newPathname);
     });
   };
-  console.log(localActive)
   return (
     <Select
       defaultValue={localActive}
