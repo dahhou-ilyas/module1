@@ -51,7 +51,7 @@
     "title": "يرجى إدخال عنوان بريدك الإلكتروني ورقم هاتفك"
   },
   "CinForm": {
-    "cinLabel": "رقم CIN*",
+    "cinLabel": "رقم CIN",
     "cinPlaceholder": "رقم CIN",
     "cinErrorInvalid": "رقم CIN هذا غير صالح",
     "submitButton": "التالي",

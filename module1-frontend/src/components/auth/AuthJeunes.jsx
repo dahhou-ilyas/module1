@@ -222,7 +222,7 @@ const AuthJeunes = () => {
                         <LanguageSelector />
                     </div>
                 </div>
-                <div className="hidden md:block md:w-1/2 md:mt-20 lg:mt-28 ">
+                <div className="hidden md:block md:w-1/2 md:mt-20 xl:mt-12">
                     <div className="md:animate-bounce-slow">
                         <Image 
                             src={Illustration} 

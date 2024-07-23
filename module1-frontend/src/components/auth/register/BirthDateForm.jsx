@@ -88,7 +88,7 @@ const Fields = ({ setFormData, nextStep }) => {
                 name="dateNaissance"
                 render={({ field }) => (
                   <FormItem className="flex flex-col z-50">
-                    <FormLabel>{t("dateNaissanceLabel")}</FormLabel>
+                    <FormLabel>{t("dateNaissanceLabel")}*</FormLabel>
                     <FormControl>
                       <DatePicker
                         showIcon
