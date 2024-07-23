@@ -25,9 +25,13 @@ import CheckVerifiedEmail from './CheckVerifiedEmail';
 import Logo from "../../../public/logoMedecin.png";
 import Illustration from "../../../public/image3.png";
 import { useTranslations } from "next-intl";
+import { jwtDecode } from 'jwt-decode';
+import { useRouter } from 'next/navigation';
 
 const AuthProfessionnels = () => {
     const t = useTranslations("AuthProfessionnels");
+
+    const router=useRouter();
 
     const schema = z.object({
         identifier: z.string().min(1, t("identifierError")),
@@ -76,9 +80,7 @@ const AuthProfessionnels = () => {
           .catch(error => console.error('Error:', error));
     }
     const nextStep = () => {
-        router.push('/')
-        console.log("eeeeeeeeeeeeeeeeeeeee");
-        //router push main page professionnels
+        router.push('/');
     }
     const envoyerEmail = () => {
         fetch('http://localhost:8080/register/resend-token?email='+token.mail, {

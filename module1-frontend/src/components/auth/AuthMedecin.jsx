@@ -26,9 +26,12 @@ import Terms from './Terms';
 import CheckVerifiedEmail from './CheckVerifiedEmail';
 // import { jwtDecode } from 'jwt-decode';
 import { useTranslations } from "next-intl";
+import { jwtDecode } from 'jwt-decode';
+import { useRouter } from 'next/navigation';
 
 const AuthMedecin = () => {
     const t = useTranslations("AuthMedecins");
+    const router=useRouter();
 
     const [token, setToken] = useState({});
     const [accesToken, setAccesToken] = useState('');
@@ -104,9 +107,7 @@ const AuthMedecin = () => {
     }
 
     const nextStep = () => {
-        router.push('/')
-        console.log("eeeeeeeeeeeeeeeeeeeee");
-        //router push main page medecin
+        router.push('/');
     }
     const envoyerEmail = () => {
         fetch('http://localhost:8080/register/resend-token?email='+token.mail, {

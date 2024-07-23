@@ -38,6 +38,7 @@ import Terms from './Terms';
 import CheckVerifiedEmail from './CheckVerifiedEmail';
 
 import { useTranslations } from "next-intl";
+import { jwtDecode } from 'jwt-decode';
 
 const AuthJeunes = () => {
     const t = useTranslations("AuthJeunes");
