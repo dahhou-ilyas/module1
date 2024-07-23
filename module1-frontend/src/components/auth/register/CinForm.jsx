@@ -50,7 +50,7 @@ const Fields = ({ setFormData, nextStep }) => {
               name="cin"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("cinLabel")}</FormLabel>
+                  <FormLabel>{t("cinLabel")}*</FormLabel>
                   <FormControl>
                     <Input
                       className="md:w-96 max-w-sm"
