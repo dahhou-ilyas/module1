@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react'; 
+import React, { useRef, useState } from 'react'; 
 import Image from "next/image";
 import Link from "next/link"
 
@@ -33,6 +33,8 @@ const AuthProfessionnels = () => {
 
     const router=useRouter();
 
+    const [token, setToken] = useState({});
+    const [accesToken, setAccesToken] = useState('');
     const schema = z.object({
         identifier: z.string().min(1, t("identifierError")),
         password: z.string()
@@ -52,7 +54,6 @@ const AuthProfessionnels = () => {
     const alertDialogTriggerRef2 = useRef(null);
 
     const onSubmit = (data) => {
-
         fetch('http://localhost:8080/auth/login/professionelSante', {
             method: 'POST',
             headers: {
