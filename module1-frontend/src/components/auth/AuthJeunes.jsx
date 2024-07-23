@@ -63,18 +63,58 @@ const AuthJeunes = () => {
       const alertDialogTriggerRef = useRef(null);
       const alertDialogTriggerRef2 = useRef(null);
 
-    const onSubmit = (data) => {
-        console.log("zaza z  ", data);
-        router.push('/')
+      const onSubmit = (data) => {
+
+        fetch('http://localhost:8080/auth/login/jeunes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:data.identifier,
+                password:data.password
+            })
+          })
+          .then(response => response.json())
+          .then(res => {
+            console.log(res);
+            const decodeJwt=jwtDecode(res["access-token"]);
+            console.log(decodeJwt);
+            setAccesToken(res["access-token"]);
+            setToken(decodeJwt.claims);
+            if(!decodeJwt.claims.confirmed){
+                alertDialogTriggerRef2.current.click();
+            }else if(decodeJwt.claims.isFirstAuth){
+                alertDialogTriggerRef.current.click();
+            }else{
+                tohomePage();
+            }
+          })
+          .catch(error => console.error('Error:', error));
     }
-    const tohomePage = () => {
+    const tohomePage=()=>{
         router.push('/')
     }
     const nextStep = () => {
-        router.push('/auth/firstlogin?token=' + accesToken)
+        router.push('/auth/firstlogin?token='+accesToken)
     }
     const envoyerEmail = () => {
-        // Email sending logic here
+        fetch('http://localhost:8080/register/resend-token?email='+token.mail, {
+            method: 'POST'
+          }).then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        //envoyerEmailderécuperation
+        //afficher Confirmation component (a faire plus tard)
     }
 
     return (

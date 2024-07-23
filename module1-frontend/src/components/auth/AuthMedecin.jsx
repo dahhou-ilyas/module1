@@ -52,85 +52,77 @@ const AuthMedecin = () => {
     const alertDialogTriggerRef2 = useRef(null);
 
     const onSubmit = (data) => {
-        console.log("Submitted data: ", data);
-        // Uncomment the below code when integrating the backend
-        /*
+
         fetch('http://localhost:8080/auth/login/medecins', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: data.identifier,
-                password: data.password
+                username:data.identifier,
+                password:data.password
             })
-        })
-        .then(response => response.json())
-        .then(res => {
+          })
+          .then(response => response.json())
+          .then(res => {
             console.log(res);
-            const decodeJwt = jwtDecode(res["access-token"]);
+            const decodeJwt=jwtDecode(res["access-token"]);
             setAccesToken(res["access-token"]);
             setToken(decodeJwt.claims);
-            if (!decodeJwt.claims.confirmed) {
+            if(!decodeJwt.claims.confirmed){
                 alertDialogTriggerRef2.current.click();
-            } else if (decodeJwt.claims.isFirstAuth) {
+            }else if(decodeJwt.claims.isFirstAuth){
                 alertDialogTriggerRef.current.click();
-            } else {
+            }else{
                 nextStep();
             }
-        })
-        .catch(error => console.error('Error:', error));
-        */
+          })
+          .catch(error => console.error('Error:', error));
+
     }
 
-    const confirmeRules = () => {
-        console.log("Confirming rules with access token: ", accesToken);
-        // Uncomment the below code when integrating the backend
-        /*
+    const confirmeRules=()=>{
+        console.log("***************");
+        console.log(accesToken);
+        console.log("***************");
         fetch(`http://localhost:8080/medecins/${token.id}`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${accesToken}`
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${accesToken}`
             },
             body: JSON.stringify({
-                isFirstAuth: false,
+                isFirstAuth:false,
             })
-        })
-        .then(response => response.json())
+        }).then(response => response.json())
         .then(data => {
-            nextStep();
+          nextStep();
         })
         .catch(error => {
-            console.error('Erreur lors de la mise à jour du medecin:', error);
+          console.error('Erreur lors de la mise à jour du medecin:', error);
         });
-        */
     }
 
     const nextStep = () => {
-        console.log("Proceeding to the next step");
+        router.push('/')
+        console.log("eeeeeeeeeeeeeeeeeeeee");
         //router push main page medecin
     }
-
     const envoyerEmail = () => {
-        console.log("Sending email to: ", token.mail);
-        // Uncomment the below code when integrating the backend
-        /*
-        fetch('http://localhost:8080/register/resend-token?email=' + token.mail, {
+        fetch('http://localhost:8080/register/resend-token?email='+token.mail, {
             method: 'POST'
-        }).then(response => {
+          }).then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+              throw new Error('Network response was not ok');
             }
             return response.text();
-        })
-        .then(data => {
+          })
+          .then(data => {
             console.log('Success:', data);
-        })
-        .catch(error => {
+          })
+          .catch(error => {
             console.error('Error:', error);
-        });
-        */
+          });
     }
 
     return (

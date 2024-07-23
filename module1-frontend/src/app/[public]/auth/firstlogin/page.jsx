@@ -36,76 +36,74 @@ const MultiStepFirstLogin = () => {
   
   const handleSubmit = (values) => {
     console.log('Form Data:', values);
-    // const idJeune=jwtDecode(searchParams.get("token")).claims.id;
+    const idJeune=jwtDecode(searchParams.get("token")).claims.id;
     
-    // const {formData,antecedentFamiliale}=values;
+    const {formData,antecedentFamiliale}=values;
 
-    // const requeteAntecedentsFamiliaux =fetch(`http://localhost:8080/jeunes/${idJeune}/antecedents/familiaux`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Authorization': `Bearer ${searchParams.get("token")}`
-    //   },
-    //   body: JSON.stringify({
-    //     maladiesFamiliales:antecedentFamiliale
-    //   }),
-    // })
+    const requeteAntecedentsFamiliaux =fetch(`http://localhost:8080/jeunes/${idJeune}/antecedents/familiaux`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${searchParams.get("token")}`
+      },
+      body: JSON.stringify({
+        maladiesFamiliales:antecedentFamiliale
+      }),
+    })
 
-    // const requeteAntecedentsPersonnels =fetch(`http://localhost:8080/jeunes/${idJeune}/antecedents/personnels`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Authorization': `Bearer ${searchParams.get("token")}`
-    //   },
-    //   body: JSON.stringify({
-    //     maladies:formData.maladieJeune,
-    //     utiliseMedicaments:(formData.medicaments=="oui") ? true:false,
-    //     typesMedicaments:formData.typeMedicaments.split(','),
-    //     souffreChirurgicaux:(formData.chirurgicaux=="oui") ? true:false,
-    //     operationsChirurgicales:{
-    //       typeOperation:formData.typeOperation,
-    //       anneeOperation:formData.anneeOperation
-    //     },
-    //     habitudes:formData.habitudes,
-    //     cigarettesParJour:formData.tabac,
-    //     consommationAlcool:formData.alcool,
-    //     tempsEcran:formData.tempsEcran
-    //   }),
-    // })
-    // Promise.all([requeteAntecedentsFamiliaux, requeteAntecedentsPersonnels])
-    // .then(responses => {
-    //   const allResponsesOk = responses.every(response => response.ok);
+    const requeteAntecedentsPersonnels =fetch(`http://localhost:8080/jeunes/${idJeune}/antecedents/personnels`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${searchParams.get("token")}`
+      },
+      body: JSON.stringify({
+        maladies:formData.maladieJeune,
+        utiliseMedicaments:(formData.medicaments=="oui") ? true:false,
+        typesMedicaments:formData.typeMedicaments.split(','),
+        souffreChirurgicaux:(formData.chirurgicaux=="oui") ? true:false,
+        operationsChirurgicales:{
+          typeOperation:formData.typeOperation,
+          anneeOperation:formData.anneeOperation
+        },
+        habitudes:formData.habitudes,
+        cigarettesParJour:formData.tabac,
+        consommationAlcool:formData.alcool,
+        tempsEcran:formData.tempsEcran
+      }),
+    })
+    Promise.all([requeteAntecedentsFamiliaux, requeteAntecedentsPersonnels])
+    .then(responses => {
+      const allResponsesOk = responses.every(response => response.ok);
 
-    //   if (allResponsesOk) {
-    //     return fetch(`http://localhost:8080/jeunes/${idJeune}`, {
-    //       method: 'PATCH',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'Authorization': `Bearer ${searchParams.get("token")}`
-    //       },
-    //       body: JSON.stringify({
-    //         isFirstAuth: false
-    //       }),
-    //     });
-    //   } else {
-    //     throw new Error('Une ou plusieurs requêtes POST ont échoué');
-    //   }
-    // })
-    // .then(patchResponse => {
-    //   if (patchResponse.ok) {
-    //     router.push('/');
-    //   } else {
-    //     throw new Error('La requête PATCH a échoué');
-    //   }
-    // })
-    // .catch(error => {
-    //   console.error('Erreur:', error);
-    // });
-
-    router.push('/');
+      if (allResponsesOk) {
+        return fetch(`http://localhost:8080/jeunes/${idJeune}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${searchParams.get("token")}`
+          },
+          body: JSON.stringify({
+            isFirstAuth: false
+          }),
+        });
+      } else {
+        throw new Error('Une ou plusieurs requêtes POST ont échoué');
+      }
+    })
+    .then(patchResponse => {
+      if (patchResponse.ok) {
+        router.push('/');
+      } else {
+        throw new Error('La requête PATCH a échoué');
+      }
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+    });
   };
 
    

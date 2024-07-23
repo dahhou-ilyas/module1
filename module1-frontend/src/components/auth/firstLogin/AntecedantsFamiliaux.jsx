@@ -54,8 +54,8 @@ const Fields = ({ setFormData, nextStep, formData }) => {
       ...prevFormData,
       antecedantsFamiliaux: [...filteredData, data.autre].filter(Boolean),
     }));
-    const antecedantsFamiliaux=[...filteredData, data.autre].filter(Boolean);
-    nextStep({ formData, antecedantsFamiliaux });
+    const antecedentFamiliale=[...filteredData, data.autre].filter(Boolean);
+    nextStep({ formData, antecedentFamiliale });
   };
 
   return (

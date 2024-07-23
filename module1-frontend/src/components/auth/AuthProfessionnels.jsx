@@ -48,26 +48,75 @@ const AuthProfessionnels = () => {
     const alertDialogTriggerRef2 = useRef(null);
 
     const onSubmit = (data) => {
-        // verifier les identifiants....si tout est ok alors:
-        if (alertDialogTriggerRef.current && false) {
-            // ajouter dans les conditions && jwt variable first login
-            alertDialogTriggerRef.current.click();
-        } else {
-            if (alertDialogTriggerRef2.current) { // ajouter dans les conditions && email non valide
+
+        fetch('http://localhost:8080/auth/login/professionelSante', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:data.identifier,
+                password:data.password
+            })
+          })
+          .then(response => response.json())
+          .then(res => {
+            console.log(res);
+            const decodeJwt=jwtDecode(res["access-token"]);
+            setAccesToken(res["access-token"]);
+            setToken(decodeJwt.claims);
+            if(!decodeJwt.claims.confirmed){
                 alertDialogTriggerRef2.current.click();
-            } else {
+            }else if(decodeJwt.claims.isFirstAuth){
+                alertDialogTriggerRef.current.click();
+            }else{
                 nextStep();
             }
-        }
-    };
-
+          })
+          .catch(error => console.error('Error:', error));
+    }
     const nextStep = () => {
+        router.push('/')
+        console.log("eeeeeeeeeeeeeeeeeeeee");
         //router push main page professionnels
     }
-
     const envoyerEmail = () => {
-        // envoyerEmailderécuperation
-        // afficher Confirmation component (a faire plus tard)
+        fetch('http://localhost:8080/register/resend-token?email='+token.mail, {
+            method: 'POST'
+          }).then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+    }
+
+    const confirmeRules=()=>{
+        console.log("***************");
+        console.log(accesToken);
+        console.log("***************");
+        fetch(`http://localhost:8080/professionnels/${token.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${accesToken}`
+            },
+            body: JSON.stringify({
+                isFirstAuth:false,
+            })
+        }).then(response => response.json())
+        .then(data => {
+          nextStep();
+        })
+        .catch(error => {
+          console.error('Erreur lors de la mise à jour du medecin:', error);
+        });
     }
 
     return (
