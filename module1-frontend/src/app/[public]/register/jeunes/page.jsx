@@ -32,46 +32,44 @@ const MultiStepForm = () => {
   
   
   const handleSubmit = (values) => {
-    console.log("manga motarjama  ",values);
+    let scolaris=""
+    let data={
+      infoUser: {
+        nom: values.nom,
+        prenom: values.prenom,
+        mail: values.email,
+        numTel: values.tel,
+        motDePasse: values.password
+      },
+      sexe: values.genre,
+      dateNaissance: values.dateNaissance,
+      scolarise: (values.scolarise == "oui") ? true : false,
+      cin: values.cin,
+    };
+    if(values.scolarise=="oui"){
+      scolaris="scolarise"
+      data.cne=values.cne
+      data.codeMassare=values.codeMassar
+      data.niveauEtudeActuel= values.niveauEtudes
+    }else if(values.scolarise=="non"){
+      scolaris="nonscolarise"
+      data.derniereNiveauEtudes=values.niveauEtudes
+      data.enActivite=(values.enActivite=="oui") ? true : false
+      data.cne=values.cne
+      data.codeMassare=values.codeMassar
+    }
 
-    // let scolaris=""
-    // let data={
-    //   infoUser: {
-    //     nom: values.nom,
-    //     prenom: values.prenom,
-    //     mail: values.email,
-    //     numTele: values.tel,
-    //     password: values.password
-    //   },
-    //   sexe: values.genre,
-    //   dateNaissance: values.dateNaissance,
-    //   scolarise: (values.scolarise == "oui") ? true : false,
-    //   cin: values.cin,
-    // };
-    // if(values.scolarise=="oui"){
-    //   scolaris="scolarise"
-    //   data.cne=values.cne
-    //   data.codeMASSAR=values.codeMassar
-    //   data.niveauEtudesActuel= values.niveauEtudes
-    // }else if(values.scolarise=="non"){
-    //   scolaris="nonscolarise"
-    //   data.dernierNiveauEtudes=values.niveauEtudes
-    //   data.enActivite=(values.enActivite=="oui") ? true : false
-    //   data.cne=values.cne
-    //   data.codeMASSAR=values.codeMassar
-    // }
-
-    //   fetch('http://localhost:8080/register/jeunes/'+scolaris, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    // })
-    // .then(response => response.json())
-    // .then(data => nextStep())
-    // .catch(error => console.error('Error:', error));
-    nextStep();
+      fetch('http://localhost:8080/register/jeunes/'+scolaris, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => nextStep())
+    .catch(error => console.error('Error:', error));
+    //nextStep();
   };
 
   const calculateAge = (date) => {
