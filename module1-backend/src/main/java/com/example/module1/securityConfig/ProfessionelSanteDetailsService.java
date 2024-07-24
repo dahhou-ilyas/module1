@@ -23,7 +23,7 @@ public class ProfessionelSanteDetailsService implements UserDetailsService {
             ProfessionnelSante professionnelSante=professionnelSanteOpt.get();
             return User
                     .withUsername(username)
-                    .password(professionnelSante.getUser().getPassword())
+                    .password(professionnelSante.getInfoUser().getMotDePasse())
                     .roles(professionnelSante.getROLE()).build();
         }else {
             throw new UsernameNotFoundException("User not found with username: " + username);

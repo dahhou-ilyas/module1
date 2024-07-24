@@ -30,7 +30,6 @@ import java.util.*;
 @AllArgsConstructor
 public class JeuneServiceImp implements JeuneService {
 
-    private static final long EXPIRATION_TIME_MS = 60 * 60 * 1000;
 
     private final JeuneMapper jeuneMapper;
     private final JeuneNonScolariseMapper jeuneNonScolariseMapper;
@@ -50,7 +49,7 @@ public class JeuneServiceImp implements JeuneService {
     public JeuneDto saveJeune(Jeune jeune) throws EmailNonValideException, PhoneNonValideException {
         validateJeuneInfo(jeune);
 
-        jeune.getInfoUser().setPassword(passwordEncoder.encode(jeune.getInfoUser().getPassword()));
+        jeune.getInfoUser().setMotDePasse(passwordEncoder.encode(jeune.getInfoUser().getMotDePasse()));
         jeune.setAge(calculateAge(jeune.getDateNaissance()));
         jeune.setIdentifiantPatient(generateIdentifiantPatient());
 
@@ -72,7 +71,7 @@ public class JeuneServiceImp implements JeuneService {
         if (!validator.isValidEmail(jeune.getInfoUser().getMail())) {
             throw new EmailNonValideException("Invalid email format");
         }
-        if (!validator.isValidPhoneNumber(jeune.getInfoUser().getNumTele())) {
+        if (!validator.isValidPhoneNumber(jeune.getInfoUser().getNumTel())) {
             throw new PhoneNonValideException("Invalid phone number format");
         }
 //        if (jeune.getAge() >= 16 && !isValidCIN(jeune.getCin())) {
@@ -160,10 +159,10 @@ public class JeuneServiceImp implements JeuneService {
                     jeune.getInfoUser().setMail((String) value);
                     break;
                 case "numTele":
-                    jeune.getInfoUser().setNumTele((String) value);
+                    jeune.getInfoUser().setNumTel((String) value);
                     break;
                 case "password":
-                    jeune.getInfoUser().setPassword((String) value);
+                    jeune.getInfoUser().setMotDePasse((String) value);
                     break;
                 case "sexe":
                     jeune.setSexe(Sexe.valueOf((String) value));
@@ -189,7 +188,7 @@ public class JeuneServiceImp implements JeuneService {
                 // Mise à jour des propriétés spécifiques selon le type de jeune
                 case "dernierNiveauEtudes":
                     if (jeune instanceof JeuneNonScolarise) {
-                        ((JeuneNonScolarise) jeune).setDernierNiveauEtudes(NiveauEtudes.valueOf((String) value));
+                        ((JeuneNonScolarise) jeune).setDerniereNiveauEtudes(NiveauEtudes.valueOf((String) value));
                     }
                     break;
                 case "situationActuelle":
@@ -209,7 +208,7 @@ public class JeuneServiceImp implements JeuneService {
                     break;
                 case "codeMASSAR":
                     if (jeune instanceof JeuneScolarise) {
-                        ((JeuneScolarise) jeune).setCodeMASSAR((String) value);
+                        ((JeuneScolarise) jeune).setCodeMassare((String) value);
                     }
                     break;
                 default:

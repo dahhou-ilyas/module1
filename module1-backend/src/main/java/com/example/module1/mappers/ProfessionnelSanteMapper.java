@@ -11,9 +11,9 @@ public class ProfessionnelSanteMapper {
     public ProfessionnelSanteResponseDTO fromProfessionnelSante(ProfessionnelSante professionnelSante){
         ProfessionnelSanteResponseDTO professionnelSanteResponseDTO=new ProfessionnelSanteResponseDTO();
         professionnelSanteResponseDTO.setId(professionnelSante.getId());
-        professionnelSanteResponseDTO.setPrenom(professionnelSante.getUser().getPrenom());
-        professionnelSanteResponseDTO.setNom(professionnelSante.getUser().getNom());
-        professionnelSanteResponseDTO.setMail(professionnelSante.getUser().getMail());
+        professionnelSanteResponseDTO.setPrenom(professionnelSante.getInfoUser().getPrenom());
+        professionnelSanteResponseDTO.setNom(professionnelSante.getInfoUser().getNom());
+        professionnelSanteResponseDTO.setMail(professionnelSante.getInfoUser().getMail());
         professionnelSanteResponseDTO.setCin(professionnelSante.getCin());
         professionnelSanteResponseDTO.setInpe(professionnelSante.getInpe());
         return professionnelSanteResponseDTO;

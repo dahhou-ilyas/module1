@@ -16,7 +16,7 @@ public class JeuneScolariseMapper {
         jeuneScolariseDto.setPrenom(infoUser.getPrenom());
         jeuneScolariseDto.setNom(infoUser.getNom());
         jeuneScolariseDto.setMail(infoUser.getMail());
-        jeuneScolariseDto.setNumTele(infoUser.getNumTele());
+        jeuneScolariseDto.setNumTele(infoUser.getNumTel());
         jeuneScolariseDto.setSexe(jeuneScolarise.getSexe());
         jeuneScolariseDto.setDateNaissance(jeuneScolarise.getDateNaissance());
         jeuneScolariseDto.setAge(jeuneScolarise.getAge());
@@ -27,7 +27,7 @@ public class JeuneScolariseMapper {
         jeuneScolariseDto.setROLE(jeuneScolarise.getROLE());
         jeuneScolariseDto.setNiveauEtudesActuel(jeuneScolarise.getNiveauEtudesActuel());
         jeuneScolariseDto.setCNE(jeuneScolarise.getCNE());
-        jeuneScolariseDto.setCodeMASSAR(jeuneScolarise.getCodeMASSAR());
+        jeuneScolariseDto.setCodeMASSAR(jeuneScolarise.getCodeMassare());
 
         return jeuneScolariseDto;
     }

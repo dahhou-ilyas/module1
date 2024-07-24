@@ -19,7 +19,7 @@ public class JeuneDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Jeune not found with username: " + username));
 
         return User.withUsername(username)
-                .password(jeune.getInfoUser().getPassword())
+                .password(jeune.getInfoUser().getMotDePasse())
                 .roles(jeune.getROLE())
                 .build();
 

@@ -13,10 +13,10 @@ public interface ProfessionnelSanteRepository extends JpaRepository<Professionne
     @Query("SELECT p FROM ProfessionnelSante p WHERE p.cin = :cin")
     Optional<ProfessionnelSante> findByCin(@Param("cin") String cin);
 
-    @Query("SELECT p FROM ProfessionnelSante p WHERE p.user.mail = :mail")
+    @Query("SELECT p FROM ProfessionnelSante p WHERE p.infoUser.mail = :mail")
     Optional<ProfessionnelSante> findByMail(@Param("mail") String mail);
 
-    @Query("SELECT p FROM ProfessionnelSante p WHERE p.cin = :recherche OR p.user.mail = :recherche")
+    @Query("SELECT p FROM ProfessionnelSante p WHERE p.cin = :recherche OR p.infoUser.mail = :recherche")
     Optional<ProfessionnelSante> findByCinOrMail(@Param("recherche") String recherche);
 }
 

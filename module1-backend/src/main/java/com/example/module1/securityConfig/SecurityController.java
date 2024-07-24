@@ -127,11 +127,11 @@ public class SecurityController {
             claims.put("role", scope);
 
             claims.put("id", professionnelSante.getId());
-            claims.put("nom", professionnelSante.getUser().getNom());
-            claims.put("prenom", professionnelSante.getUser().getPrenom());
-            claims.put("mail", professionnelSante.getUser().getMail());
-            claims.put("confirmed", professionnelSante.getUser().isConfirmed());
-            claims.put("isFirstAuth", professionnelSante.getUser().getIsFirstAuth());
+            claims.put("nom", professionnelSante.getInfoUser().getNom());
+            claims.put("prenom", professionnelSante.getInfoUser().getPrenom());
+            claims.put("mail", professionnelSante.getInfoUser().getMail());
+            claims.put("confirmed", professionnelSante.getInfoUser().isConfirmed());
+            claims.put("isFirstAuth", professionnelSante.getInfoUser().getIsFirstAuth());
 
             JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                     .issuedAt(instant)

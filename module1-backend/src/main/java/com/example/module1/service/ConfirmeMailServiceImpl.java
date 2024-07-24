@@ -63,7 +63,7 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
                 return medecin;
             } else if (confirmationToken.getProfessionnelSante() != null) {
                 ProfessionnelSante professionnelSante = confirmationToken.getProfessionnelSante();
-                professionnelSante.getUser().setConfirmed(true);
+                professionnelSante.getInfoUser().setConfirmed(true);
                 professionnelSanteRepository.save(professionnelSante);
                 return professionnelSante;
 
@@ -121,7 +121,7 @@ public class ConfirmeMailServiceImpl implements ConfirmeMailService {
         newToken.setCreatedDate(new Date());
         newToken.setToken(UUID.randomUUID().toString());
         confirmationTokenRepository.save(newToken);
-        sendConfirmationEmail(professionnelSante.getUser().getMail(), newToken.getToken());
+        sendConfirmationEmail(professionnelSante.getInfoUser().getMail(), newToken.getToken());
     }
     private void resendTokenForMedecin(Medecin medecin) {
         ConfirmationToken existingToken = confirmationTokenRepository.findByMedecin(medecin);

@@ -20,19 +20,19 @@ public class ProfessionnelSanteController {
 
     private final ProfessionnelSanteService professionnelSanteService;
 
-    @PostMapping("/register/professionnelsantes")
+    @PostMapping("/register/professionnels")
     public ResponseEntity<ProfessionnelSanteResponseDTO> registerProfessionnelSante(@RequestBody ProfessionnelSante professionnelSante) throws ProfessionnelSanteException, ProfessionnelSanteException {
         ProfessionnelSanteResponseDTO savedProfessionnelSante = professionnelSanteService.saveProfessionnelSante(professionnelSante);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProfessionnelSante);
     }
 
-    @PatchMapping("/professionnelsantes/{id}")
+    @PatchMapping("/professionnels/{id}")
     public ResponseEntity<ProfessionnelSanteResponseDTO> patchProfessionnelSante(@PathVariable Long id, @RequestBody Map<String, Object> updates) throws ProfessionnelSanteNotFoundException, ProfessionnelSanteNotFoundException {
         ProfessionnelSanteResponseDTO updatedProfessionnelSante = professionnelSanteService.updateProfessionnelSantePartial(id, updates);
         return ResponseEntity.ok(updatedProfessionnelSante);
     }
 
-    @GetMapping("/professionnelsantes")
+    @GetMapping("/professionnels")
     public ResponseEntity<List<ProfessionnelSanteResponseDTO>> getAllProfessionnelsSante() {
         try {
             List<ProfessionnelSanteResponseDTO> professionnelsSante = professionnelSanteService.getAllProfessionnelsSante();
@@ -42,7 +42,7 @@ public class ProfessionnelSanteController {
         }
     }
 
-    @DeleteMapping("/professionnelsantes/{id}")
+    @DeleteMapping("/professionnels/{id}")
     public ResponseEntity<String> deleteProfessionnelSante(@PathVariable Long id) {
         try {
             professionnelSanteService.deleteProfessionnelSante(id);
@@ -52,7 +52,7 @@ public class ProfessionnelSanteController {
         }
     }
 
-    @GetMapping("/professionnelsantes/{id}")
+    @GetMapping("/professionnels/{id}")
     public ResponseEntity<ProfessionnelSanteResponseDTO> getProfessionnelSanteById(@PathVariable Long id) {
         try {
             ProfessionnelSanteResponseDTO professionnelSante = professionnelSanteService.getProfessionnelSanteById(id);

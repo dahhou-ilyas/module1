@@ -14,7 +14,7 @@ public class JeuneMapper {
         dto.setNom(jeune.getInfoUser().getNom());
         dto.setPrenom(jeune.getInfoUser().getPrenom());
         dto.setMail(jeune.getInfoUser().getMail());
-        dto.setNumTele(jeune.getInfoUser().getNumTele());
+        dto.setNumTele(jeune.getInfoUser().getNumTel());
         dto.setSexe(jeune.getSexe());
         dto.setDateNaissance(jeune.getDateNaissance());
         dto.setAge(jeune.getAge());

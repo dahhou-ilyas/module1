@@ -16,5 +16,5 @@ public class JeuneScolarise extends Jeune{
     @Column(unique = true)
     private String CNE;
     @Column(unique = true)
-    private String codeMASSAR;
+    private String codeMassare;
 }

@@ -40,7 +40,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
     public ProfessionnelSanteResponseDTO saveProfessionnelSante(ProfessionnelSante professionnelSante) throws ProfessionnelSanteException {
 
         try {
-            professionnelSante.getUser().setPassword(passwordEncoder.encode(professionnelSante.getUser().getPassword()));
+            professionnelSante.getInfoUser().setMotDePasse(passwordEncoder.encode(professionnelSante.getInfoUser().getMotDePasse()));
             ProfessionnelSante savedProfessionnelSante = professionnelSanteRepository.save(professionnelSante);
 
             String token = UUID.randomUUID().toString();
@@ -50,7 +50,7 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
             confirmationToken.setToken(token);
             confirmationTokenRepository.save(confirmationToken);
 
-            new Thread(() -> confirmeMailService.sendConfirmationEmail(savedProfessionnelSante.getUser().getMail(), token)).start();
+            new Thread(() -> confirmeMailService.sendConfirmationEmail(savedProfessionnelSante.getInfoUser().getMail(), token)).start();
 
             ProfessionnelSanteResponseDTO professionnelSanteResponseDTO = professionnelSanteMapper.fromProfessionnelSante(savedProfessionnelSante);
             return professionnelSanteResponseDTO;
@@ -92,26 +92,26 @@ public class ProfessionnelSanteServiceImpl implements ProfessionnelSanteService 
                     existingProfessionnelSante.setInpe((String) value);
                     break;
                 case "confirmed":
-                    existingProfessionnelSante.getUser().setConfirmed((Boolean) value);
+                    existingProfessionnelSante.getInfoUser().setConfirmed((Boolean) value);
                     break;
                 case "isFirstAuth":
-                    existingProfessionnelSante.getUser().setIsFirstAuth((Boolean) value);
+                    existingProfessionnelSante.getInfoUser().setIsFirstAuth((Boolean) value);
                     break;
                 case "nom":
-                    existingProfessionnelSante.getUser().setNom((String) value);
+                    existingProfessionnelSante.getInfoUser().setNom((String) value);
                     break;
                 case "prenom":
-                    existingProfessionnelSante.getUser().setPrenom((String) value);
+                    existingProfessionnelSante.getInfoUser().setPrenom((String) value);
                     break;
                 case "numTele":
-                    existingProfessionnelSante.getUser().setNumTele((String) value);
+                    existingProfessionnelSante.getInfoUser().setNumTel((String) value);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid attribute: " + key);
             }
         });
 
-        userRepository.save(existingProfessionnelSante.getUser());
+        userRepository.save(existingProfessionnelSante.getInfoUser());
         professionnelSanteRepository.save(existingProfessionnelSante);
 
         return professionnelSanteMapper.fromProfessionnelSante(existingProfessionnelSante);

@@ -49,7 +49,7 @@ public class MedecinServiceImpl implements MedecinService {
             throw new MedecinException("L'email spécifié est déjà utilisé par un autre utilisateur");
         }
 
-        medecin.getInfoUser().setPassword(passwordEncoder.encode(medecin.getInfoUser().getPassword()));
+        medecin.getInfoUser().setMotDePasse(passwordEncoder.encode(medecin.getInfoUser().getMotDePasse()));
         Medecin savedMedecin = medecinRepository.save(medecin);
 
         String token = UUID.randomUUID().toString();
@@ -89,10 +89,10 @@ public class MedecinServiceImpl implements MedecinService {
                     existingMedecin.getInfoUser().setMail((String) value);
                     break;
                 case "numTele":
-                    existingMedecin.getInfoUser().setNumTele((String) value);
+                    existingMedecin.getInfoUser().setNumTel((String) value);
                     break;
                 case "password":
-                    existingMedecin.getInfoUser().setPassword((String) value);
+                    existingMedecin.getInfoUser().setMotDePasse((String) value);
                     break;
                 case "cin":
                     existingMedecin.setCin((String) value);

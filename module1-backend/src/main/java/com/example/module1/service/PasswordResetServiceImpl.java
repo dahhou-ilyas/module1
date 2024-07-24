@@ -9,6 +9,7 @@ import com.example.module1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
     private PasswordResetTokenRepository tokenRepository;
 
     private JavaMailSender mailSender;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void initiatePasswordReset(String email) throws UserNotFoundException {
@@ -57,7 +59,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
             throw new InvalidResetPasswordTokenException("Invalid or expired token");
         }
         InfoUser user = resetToken.getUser();
-        user.setPassword(newPassword);
+        user.setMotDePasse(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
 

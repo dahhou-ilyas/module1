@@ -16,8 +16,8 @@ public class InfoUser {
     private String prenom;
     @Column(unique = true)
     private String mail;
-    private String numTele;
-    private String password;
+    private String numTel;
+    private String motDePasse;
 
     private boolean confirmed =false;
     private Boolean isFirstAuth = true;

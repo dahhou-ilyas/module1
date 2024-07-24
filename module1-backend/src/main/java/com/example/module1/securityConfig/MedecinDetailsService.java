@@ -23,7 +23,7 @@ public class MedecinDetailsService implements UserDetailsService {
             Medecin medecin = medecinOpt.get();
             return User
                     .withUsername(username)
-                    .password(medecin.getInfoUser().getPassword())
+                    .password(medecin.getInfoUser().getMotDePasse())
                     .roles(medecin.getROLE()).build();
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
