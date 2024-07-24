@@ -17,6 +17,8 @@ public interface JeuneRepo extends JpaRepository<Jeune, Long> {
     Optional<Jeune> findByMail(@Param("mail") String mail);
 
     boolean existsByCin(String cin);
-    boolean existsByCNE(String cne);
-    boolean existsByCodeMassare(String codeMassare);
+    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM JeuneScolarise s WHERE s.CNE = :cne")
+    boolean existsByCNE(@Param("cne") String cne);
+    @Query("SELECT CASE WHEN COUNT(j) > 0 THEN true ELSE false END FROM JeuneScolarise j WHERE j.codeMassare = :codeMassare")
+    boolean existsByCodeMassare(@Param("codeMassare") String codeMassare);
 }
