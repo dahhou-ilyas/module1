@@ -61,7 +61,7 @@ export default function Navbar({ user }) {
 
   const menuItems = [
     { title: t('profile'), icon: <FaRegUser/> },
-    { title: t('logout'), icon: <PiSignOut onClick={handleLogout}/> },
+    { title: t('logout'), icon: <PiSignOut /> , onClick: handleLogout },
   ];
 
   const navItems = [
@@ -114,9 +114,12 @@ export default function Navbar({ user }) {
                 {menuItems.map((item) => (
                   <li key={item.title} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
                     <span className="rtl:ml-1">{item.icon}</span>
-                    <p className="block text-sm font-medium text-gray-700">
+                    <button 
+                      onClick={item.onClick} // Use the onClick from the menuItems array
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       {item.title}
-                    </p>
+                    </button>
                   </li>
                 ))}
                 <li className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
@@ -174,7 +177,12 @@ export default function Navbar({ user }) {
                   className="flex items-center space-x-2 text-black hover:font-semibold transition-colors duration-300 ease-in-out"
                 >
                   <span className="rtl:ml-1">{item.icon}</span>
-                  <span>{item.title}</span>
+                  <button
+                    onClick={item.onClick} // Use the onClick from the menuItems array
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    {item.title}
+                  </button>
                 </p>
                 <hr className="border-gray-300" />
               </div>
