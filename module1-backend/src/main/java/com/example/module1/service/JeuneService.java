@@ -11,6 +11,7 @@ import com.example.module1.exception.EmailNonValideException;
 import com.example.module1.exception.JeuneException;
 import com.example.module1.exception.JeuneNotFoundException;
 import com.example.module1.exception.PhoneNonValideException;
+import org.apache.coyote.BadRequestException;
 
 import java.util.Map;
 
@@ -23,4 +24,6 @@ public interface JeuneService {
     Object getJeuneById(Long id) throws JeuneNotFoundException;
 
     JeuneDto updateJeunePartial(Long id, Map<String, Object> updates) throws JeuneNotFoundException;
+
+    Map<String, String> confirmAuthentification( Long id,String password) throws BadRequestException;
 }
