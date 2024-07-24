@@ -8,10 +8,16 @@ import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
 import { FiChevronRight } from "react-icons/fi";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
+import { useTransition } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   const t = useTranslations('Navbar');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState(t('home'));
@@ -45,12 +51,10 @@ export default function Navbar() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen,handleClickOutside]);
+  }, [isOpen, handleClickOutside]);
 
   const menuItems = [
     { title: t('profile'), icon: <FaRegUser /> },
-    { title: t('languageFr'), icon: <IoCheckmark /> },
-    { title: t('languageAr'), icon: <RxCross1 /> },
     { title: t('logout'), icon: <PiSignOut /> },
   ];
 
@@ -60,6 +64,21 @@ export default function Navbar() {
     { title: t('healthEducation'), href: '#' },
     { title: t('psychTests'), href: '#' },
   ];
+
+  const onSelectChange = (value) => {
+    const segments = pathname.split('/').filter(Boolean);
+    segments[0] = value;
+    const newPathname = `/${segments.join('/')}`;
+
+    startTransition(() => {
+      router.replace(newPathname);
+    });
+  };
+
+  // Extract prenom and capitalize it
+  const firstName = user?.claims?.prenom
+    ? user.claims.prenom.charAt(0).toUpperCase() + user.claims.prenom.slice(1).toLowerCase()
+    : "";
 
   return (
     <nav className="p-4 shadow-gray-300 shadow-md h-16 flex items-center justify-between bg-white text-black relative">
@@ -80,7 +99,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center space-x-2 relative" ref={dropdownRef}>
           <button onClick={toggleDropdown} className="flex items-center space-x-2 text-blue-950">
             <FaRegUserCircle size={24} className='rtl:ml-2'/>
-            <span>{t('username')}</span>
+            <span>{firstName || t('username')}</span>
             <FaChevronDown size={16} />
           </button>
           {dropdownOpen && (
@@ -94,6 +113,18 @@ export default function Navbar() {
                     </a>
                   </li>
                 ))}
+                <li className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
+                  {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                  <button onClick={() => onSelectChange('fr')} className="block text-sm font-medium text-gray-700">
+                    {t('languageFr')}
+                  </button>
+                </li>
+                <li className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
+                  {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                  <button onClick={() => onSelectChange('ar')} className="block text-sm font-medium text-gray-700 ">
+                    {t('languageAr')}
+                  </button>
+                </li>
               </ul>
             </div>
           )}
@@ -137,12 +168,32 @@ export default function Navbar() {
                   href="#"
                   className="flex items-center space-x-2 text-black hover:font-semibold transition-colors duration-300 ease-in-out"
                 >
-                  {item.icon}
+                  <span className="rtl:ml-1">{item.icon}</span>
                   <span>{item.title}</span>
                 </a>
                 <hr className="border-gray-300" />
               </div>
             ))}
+            <div>
+              <button
+                onClick={() => onSelectChange('fr')}
+                className="flex items-center space-x-2 text-black hover:font-semibold transition-colors duration-300 ease-in-out"
+              >
+                {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                <span className='rtl:mr-1'>{t('languageFr')}</span>
+              </button>
+              <hr className="border-gray-300" />
+            </div>
+            <div>
+              <button
+                onClick={() => onSelectChange('ar')}
+                className="flex items-center space-x-2 text-black hover:font-semibold transition-colors duration-300 ease-in-out"
+              >
+                {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                <span className='rtl:mr-1'>{t('languageAr')}</span>
+              </button>
+              <hr className="border-gray-300" />
+            </div>
           </nav>
         </div>
       </div>
