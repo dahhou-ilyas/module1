@@ -53,9 +53,15 @@ export default function Navbar({ user }) {
     };
   }, [isOpen, handleClickOutside]);
 
+  const handleLogout = () => {
+    console.log("object");
+    localStorage.removeItem('access-token');
+    router.push('/auth/jeunes');
+  };
+
   const menuItems = [
-    { title: t('profile'), icon: <FaRegUser /> },
-    { title: t('logout'), icon: <PiSignOut /> },
+    { title: t('profile'), icon: <FaRegUser/> },
+    { title: t('logout'), icon: <PiSignOut onClick={handleLogout}/> },
   ];
 
   const navItems = [
@@ -108,9 +114,9 @@ export default function Navbar({ user }) {
                 {menuItems.map((item) => (
                   <li key={item.title} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
                     <span className="rtl:ml-1">{item.icon}</span>
-                    <a href="#" className="block text-sm font-medium text-gray-700">
+                    <p className="block text-sm font-medium text-gray-700">
                       {item.title}
-                    </a>
+                    </p>
                   </li>
                 ))}
                 <li className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
@@ -164,13 +170,12 @@ export default function Navbar({ user }) {
           <nav className="space-y-4">
             {menuItems.map((item) => (
               <div key={item.title}>
-                <a
-                  href="#"
+                <p
                   className="flex items-center space-x-2 text-black hover:font-semibold transition-colors duration-300 ease-in-out"
                 >
                   <span className="rtl:ml-1">{item.icon}</span>
                   <span>{item.title}</span>
-                </a>
+                </p>
                 <hr className="border-gray-300" />
               </div>
             ))}
