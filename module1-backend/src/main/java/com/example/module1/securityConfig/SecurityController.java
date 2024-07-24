@@ -9,6 +9,8 @@ import com.example.module1.repository.JeuneRepo;
 import com.example.module1.repository.MedecinRepository;
 import com.example.module1.repository.ProfessionnelSanteRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -57,7 +59,7 @@ public class SecurityController {
     }
 
     @PostMapping("/medecins")
-    public Map<String, String> loginMedcin(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, String>> loginMedcin(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
 
@@ -68,7 +70,7 @@ public class SecurityController {
             Instant instant = Instant.now();
 
             Medecin medecin = medecinRepository.findByCinOrMail(username)
-                    .orElseThrow(() -> new UserNotFoundException("Medecin not found with username: " + username));
+                    .orElseThrow(() -> new UserNotFoundException("Médecin not found with username: " + username));
 
             String scope = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
@@ -98,14 +100,21 @@ public class SecurityController {
             );
 
             String jwt = jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
-            return Map.of("access-token", jwt);
+            Map<String, String> response = new HashMap<>();
+            response.put("access-token", jwt);
+            return ResponseEntity.ok(response);
         } catch (BadCredentialsException ex) {
-            throw new BadRequestException("Invalid username or password");
+            return ResponseEntity.badRequest().body(Map.of("error", "Invalid username or password"));
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        } catch (Exception ex) {
+            // Log the exception and return a generic error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "An unexpected error occurred"));
         }
     }
 
     @PostMapping("/professionelSante")
-    public Map<String, String> loginProfesionnelSante(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, String>> loginProfesionnelSante(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
 
@@ -116,7 +125,7 @@ public class SecurityController {
             Instant instant = Instant.now();
 
             ProfessionnelSante professionnelSante = professionnelSanteRepository.findByCinOrMail(username)
-                    .orElseThrow(() -> new UserNotFoundException("professionell not found with username: " + username));
+                    .orElseThrow(() -> new UserNotFoundException("Professionnel not found with username: " + username));
 
             String scope = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
@@ -146,14 +155,21 @@ public class SecurityController {
             );
 
             String jwt = jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
-            return Map.of("access-token", jwt);
+            Map<String, String> response = new HashMap<>();
+            response.put("access-token", jwt);
+            return ResponseEntity.ok(response);
         } catch (BadCredentialsException ex) {
-            throw new BadRequestException("Invalid username or password");
+            return ResponseEntity.badRequest().body(Map.of("error", "Invalid username or password"));
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        } catch (Exception ex) {
+            // Log the exception and return a generic error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "An unexpected error occurred"));
         }
     }
 
     @PostMapping("/jeunes")
-    public Map<String, String> loginJeune(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, String>> loginJeune(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
 
@@ -164,7 +180,7 @@ public class SecurityController {
             Instant instant = Instant.now();
 
             Jeune jeune = jeuneRepo.findJeuneByMailOrCinOrCNEOrCodeMASSAR(username)
-                    .orElseThrow(() -> new UserNotFoundException("jeune not found with username: " + username));
+                    .orElseThrow(() -> new UserNotFoundException("Jeune not found with username: " + username));
 
             String scope = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
@@ -194,9 +210,16 @@ public class SecurityController {
             );
 
             String jwt = jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
-            return Map.of("access-token", jwt);
+            Map<String, String> response = new HashMap<>();
+            response.put("access-token", jwt);
+            return ResponseEntity.ok(response);
         } catch (BadCredentialsException ex) {
-            throw new BadRequestException("Invalid username or password");
+            return ResponseEntity.badRequest().body(Map.of("error", "Invalid username or password"));
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        } catch (Exception ex) {
+            // Log the exception and return a generic error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "An unexpected error occurred"));
         }
     }
 
