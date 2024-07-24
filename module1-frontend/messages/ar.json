@@ -354,7 +354,7 @@
   },
   "WelcomingText": {
         "headline": "لديك السيطرة على صحتك",
-        "greeting": "مرحبًا أحمد م.",
+        "greeting": "مرحبًا .",
         "description": "يتيح لك e-Espace Santé Jeunes (e-ESJ) الاطلاع على ملفك الطبي والاستفادة من الدعم والاختبارات النفسية والعثور على الكثير من المعلومات المفيدة عن الصحة.",
         "medicalRecordButton": "ملفي الطبي",
         "psychTestsButton": "اختبارات نفسية",
@@ -367,7 +367,7 @@
         "medicalRecord": "الملف الطبي",
         "healthEducation": "التثقيف الصحي",
         "psychTests": "اختبارات نفسية",
-        "username": "أحمد م.",
+        "username": "الملف الشخصي",
         "languageFr": "Français",
         "languageAr": "العربية"
     }

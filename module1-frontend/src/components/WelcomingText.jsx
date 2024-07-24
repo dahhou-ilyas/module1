@@ -2,9 +2,15 @@ import Illustration from "../../public/illustration.png";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 
-const WelcomingText = () => {
-    const t = useTranslations('WelcomingText');
+const WelcomingText = ({ user }) => {
 
+    const t = useTranslations('WelcomingText');
+    
+    const firstName = user?.claims?.prenom
+        ? user.claims.prenom.charAt(0).toUpperCase() + user.claims.prenom.slice(1).toLowerCase()
+        : "";
+
+        
     return (
         <div className="flex flex-col md:flex-row md:justify-center">
             <div className="lg:w-3/5 max-w-[700px] lg:max-w-[620px] xl:max-w-[700px] ml-8 mr-8 lg:mr-0 xl:mr-16 mt-4 lg:mt-16">
@@ -12,7 +18,7 @@ const WelcomingText = () => {
                     {t('headline')}
                 </span>
                 <h1 className="text-3xl font-bold my-2 md:text-4xl">
-                    {t('greeting')}
+                    {t('greeting')} {firstName}!
                 </h1>
                 <p className="text-gray-600 mb-6">
                     {t('description')}
