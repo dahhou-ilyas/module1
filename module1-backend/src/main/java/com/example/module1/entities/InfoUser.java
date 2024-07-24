@@ -20,7 +20,7 @@ public class InfoUser {
     private String motDePasse;
 
     private boolean confirmed =false;
-    private Boolean isFirstAuth = true;
+    private boolean isFirstAuth = true;
 
 
 }

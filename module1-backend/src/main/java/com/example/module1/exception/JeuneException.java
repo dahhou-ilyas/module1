@@ -1,6 +1,6 @@
 package com.example.module1.exception;
 
-public class JeuneException extends Exception {
+public class JeuneException extends RuntimeException {
 
     public JeuneException() {
         super();

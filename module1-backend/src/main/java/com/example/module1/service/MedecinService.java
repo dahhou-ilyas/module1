@@ -5,6 +5,7 @@ import com.example.module1.dto.MedecinResponseDTO;
 import com.example.module1.entities.Medecin;
 import com.example.module1.exception.MedecinException;
 import com.example.module1.exception.MedecinNotFoundException;
+import org.apache.coyote.BadRequestException;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,6 @@ public interface MedecinService {
     void deleteMedecin(Long id) throws MedecinNotFoundException, MedecinException;
 
     List<MedecinResponseDTO> getAllMedecins();
+
+    Map<String, String> confirmAuthentification(Long id,String password) throws BadRequestException;
 }

@@ -4,6 +4,7 @@ import com.example.module1.dto.ProfessionnelSanteResponseDTO;
 import com.example.module1.entities.ProfessionnelSante;
 import com.example.module1.exception.ProfessionnelSanteException;
 import com.example.module1.exception.ProfessionnelSanteNotFoundException;
+import org.apache.coyote.BadRequestException;
 
 import java.util.List;
 import java.util.Map;
@@ -18,5 +19,7 @@ public interface ProfessionnelSanteService{
     List<ProfessionnelSanteResponseDTO> getAllProfessionnelsSante();
 
     void deleteProfessionnelSante(Long id) throws ProfessionnelSanteNotFoundException;
+
+    Map<String, String> confirmAuthentification(Long id,String password) throws BadRequestException;
 
 }
