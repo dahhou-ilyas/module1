@@ -12,7 +12,7 @@
 //     </>
 //   );
 // }
-// pages/index.js
+"use client"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
