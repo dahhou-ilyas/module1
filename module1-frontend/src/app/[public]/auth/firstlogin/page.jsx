@@ -24,6 +24,7 @@ const MultiStepFirstLogin = () => {
     anneeOperation: "",
     habitudes: [], 
     tabac: "",
+    tabacSince: "", //nouveau
     alcool: "",
     tempsEcran: "",
     antecedantsFamiliaux: [],

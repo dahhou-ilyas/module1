@@ -194,10 +194,10 @@
     "passwordPlaceholder": "Mot de Passe",
     "forgotPassword": "Mot de passe oublié?",
     "loginButton": "Se Connecter",
-    "tooltipContent": "Si tu n'arrives pas à créer ton compte e-ESJ, va au centre de santé le plus proche de toi et nous t'aiderons.",
+    "tooltipContent": "Si tu rencontres des difficultés pour créer ton compte e-ESJ, n'hésite pas à te rendre au centre de santé le plus proche. Nous serons ravis de t'aider !",
     "noAccount": "Vous n'avez pas de compte ?",
     "register": "Inscrivez-vous",
-    "mobileTooltipContent": "Si tu n'arrives pas à créer ton compte e-ESJ, va au centre de santé le plus proche de toi et nous t'aiderons."
+    "mobileTooltipContent": "Si tu rencontres des difficultés pour créer ton compte e-ESJ, n'hésite pas à te rendre au centre de santé le plus proche. Nous serons ravis de t'aider !"
 },
 "AuthMedecins":{
   "identifierError": "Veuillez saisir votre identifiant",
@@ -287,6 +287,8 @@
   "smoking": "Tabac",
   "smokingQuestion": "Combien de cigarettes fumez-vous par jour?",
   "smokingPlaceholder": "Nombre de cigarettes",
+  "smokingSinceQuestion": "Depuis combien de temps fumez-vous ?",
+  "smokingSincePlaceholder": "Entrez la durée",
   "alcohol": "Alcool",
   "alcoholQuestion": "Consommation d'alcool",
   "daily": "Quotidien",
@@ -302,17 +304,17 @@
     "title": "Antécédents Personnels Médicaux",
     "subtitle": "Veuillez saisir les informations suivantes",
     "chirurgicaux": {
-      "label": "Souffrez-vous de maladies chirurgicaux?",
+      "label": "Avez-vous déjà été opéré ?",
       "oui": "OUI",
       "non": "NON"
     },
     "typeOperation": {
-      "label": "Type d'opération",
+      "label": "Quel type d'opération ?",
       "placeholder": "Type d'opération",
       "description": "Veuillez indiquer le type d'opération que vous avez reçue"
     },
     "anneeOperation": {
-      "label": "Année de l'opération",
+      "label": "Année de l'opération ?",
       "placeholder": "Année d'opération",
       "description": "Veuillez indiquer l'année d'opération que vous avez reçue"
     },
@@ -328,11 +330,10 @@
       "label": "Souffrez-vous des maladies chroniques suivantes?",
       "description": "Vous pouvez sélectionner aucune ou plusieurs.",
       "asthme": "Asthme",
-      "diabete": "Diabète",
-      "epilepsie": "Épilepsie",
-      "tsa": "Troubles du spectre de l'autisme (TSA)",
-      "troubleSommeil": "Trouble de Sommeil"
+      "diabete": "Diabète"
     },
+    "otherLabel": "Autre:",
+    "otherPlaceholder": "Veuillez préciser",
     "nextButton": "Suivant"
   },
   "Medicaments": {

@@ -4,8 +4,6 @@ import React, { useRef, useState } from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-// import { jwtDecode } from 'jwt-decode';
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -20,19 +18,12 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-  } from "@/components/ui/form"
-  import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-  } from "@/components/ui/tooltip"
+} from "@/components/ui/form"
 
 
 import Logo from "../../../public/logoJeune.png";
 import Illustration from "../../../public/2862289.webp";
 
-import { MdLiveHelp } from "react-icons/md";
 
 import Terms from './Terms';
 import CheckVerifiedEmail from './CheckVerifiedEmail';
@@ -55,79 +46,79 @@ const AuthJeunes = () => {
 
     const form = useForm({
         defaultValues: {
-          identifier: "",
-          password: "",
+            identifier: "",
+            password: "",
         },
         resolver: zodResolver(schema),
-      });
+    });
     
-      const alertDialogTriggerRef = useRef(null);
-      const alertDialogTriggerRef2 = useRef(null);
+    const alertDialogTriggerRef = useRef(null);
+    const alertDialogTriggerRef2 = useRef(null);
 
-      const onSubmit = (data) => {
-
+    const onSubmit = (data) => {
         fetch('http://localhost:8080/auth/login/jeunes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username:data.identifier,
-                password:data.password
+                username: data.identifier,
+                password: data.password
             })
-          })
-          .then(response => response.json())
-          .then(res => {
+        })
+        .then(response => response.json())
+        .then(res => {
             console.log(res);
-            const decodeJwt=jwtDecode(res["access-token"]);
+            const decodeJwt = jwtDecode(res["access-token"]);
             localStorage.setItem('access-token', res["access-token"]);
             console.log(decodeJwt);
             setAccesToken(res["access-token"]);
             setToken(decodeJwt.claims);
-            if(!decodeJwt.claims.confirmed){
+            if (!decodeJwt.claims.confirmed) {
                 alertDialogTriggerRef2.current.click();
-            }else if(decodeJwt.claims.isFirstAuth){
+            } else if (decodeJwt.claims.isFirstAuth) {
                 alertDialogTriggerRef.current.click();
-            }else{
+            } else {
                 tohomePage();
             }
-          })
-          .catch(error => console.error('Error:', error));
+        })
+        .catch(error => console.error('Error:', error));
     }
-    const tohomePage=()=>{
+
+    const tohomePage = () => {
         router.push('/')
     }
+
     const nextStep = () => {
-        router.push('/auth/firstlogin?token='+accesToken)
+        router.push('/auth/firstlogin?token=' + accesToken)
     }
+
     const envoyerEmail = () => {
-        fetch('http://localhost:8080/register/resend-token?email='+token.mail, {
+        fetch('http://localhost:8080/register/resend-token?email=' + token.mail, {
             method: 'POST'
-          }).then(response => {
+        }).then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+                throw new Error('Network response was not ok');
             }
             return response.text();
-          })
-          .then(data => {
+        })
+        .then(data => {
             console.log('Success:', data);
-          })
-          .catch(error => {
+        })
+        .catch(error => {
             console.error('Error:', error);
-          });
-        //envoyerEmailderécuperation
-        //afficher Confirmation component (a faire plus tard)
+        });
     }
 
     return (
         <div className="lg:h-screen lg:flex lg:items-center lg:justify-center lg:bg-gray-400">
-            <div className="mt-1 flex justify-between lg:hidden w-full">
+            <div className="mt-1 flex justify-between md:hidden w-full">
                 <div className="ml-auto mr-2">
                     <LanguageSelector />
                 </div>
             </div>
             
-            <div className="lg:min-h-[550px] lg:max-w-7xl lg:border lg:rounded-3xl xl:min-w-[1000px] lg:min-w-[900px] bg-white sm:flex xl:mx-48">
+            <div className="lg:min-h-[550px] lg:max-w-7xl lg:border lg:rounded-3xl xl:min-w-[1000px] lg:min-w-[900px] bg-white sm:flex xl:mx-48 relative">
                 <div className="w-full md:w-1/2 flex flex-col justify-center mt-8 sm:rtl:mr-8">
                     <div className='px-4 md:px-0 md:ml-8 lg:ml-12'>
                         <div className="flex items-center justify-center -ml-2 mb-4">
@@ -160,14 +151,11 @@ const AuthJeunes = () => {
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel className="sm:inline">{t("passwordLabel")}</FormLabel>
-                                                <FormDescription className="hidden sm:inline border-b-2 border-blue-600 text-blue-600 cursor-pointer ltr:sm:ml-40 rtl:sm:mr-60">
-                                                    <Link href="/forgotPassword">{t("forgotPassword")}</Link>
-                                                </FormDescription>
                                                 <FormControl>
                                                     <Input className="w-80 sm:w-96 max-w-sm" type="password" id="password" placeholder={t("passwordPlaceholder")} {...field} />
                                                 </FormControl>
                                                 <FormMessage className="sm:w-96 max-w-sm" />
-                                                <FormDescription className="sm:hidden border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
+                                                <FormDescription className="border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
                                                     <Link href="/forgotPassword">{t("forgotPassword")}</Link>
                                                 </FormDescription>
                                             </FormItem>
@@ -201,38 +189,27 @@ const AuthJeunes = () => {
                             </Form>
                         </div>
                         <Link href="/register/jeunes">
-                            <h4 className="text-xs text-center text-gray-700 mt-4"> 
-                                <div className="hidden md:inline">
-                                    <TooltipProvider>   
-                                        <Tooltip>
-                                            <TooltipTrigger>
-                                                <MdLiveHelp className='inline ltr:mr-2 rtl:ml-2 sm:scale-150'/>
-                                            </TooltipTrigger>
-                                            <TooltipContent side="bottom" className="mt-1 ml-32">
-                                                <p>{t("tooltipContent")}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider> 
-                                </div>
-                                {t("noAccount")} <span className='font-semibold border-b-2 border-gray-700 cursor-pointer'>{t("register")}</span>
+                            <h4 className="text-xs text-center text-gray-700 mt-3"> 
+                                {t("noAccount")} 
+                                <span className='font-semibold border-b-2 border-gray-700 cursor-pointer rtl:ml-2 ltr:mr-2'>{t("register")}</span>
                             </h4>
                         </Link>
-                        <p className='text-gray-600 mt-4 mb-1 text-xs text-center'>{t("mobileTooltipContent")}</p>
-                    </div>
-                    <div className="hidden lg:block ml-3 mt-auto">
-                        <LanguageSelector />
+                        <p className='text-gray-600 mt-5 mb-2 text-xs text-center'>{t("tooltipContent")}</p>
                     </div>
                 </div>
-                <div className="hidden md:block md:w-1/2 md:mt-20 xl:mt-12">
+                <div className="hidden md:block md:w-1/2 md:mt-20 2xl:mt-12">
                     <div className="md:animate-bounce-slow">
                         <Image 
                             src={Illustration} 
                             alt="Illustration" 
                             layout="responsive"
-                            height={1000} 
+                            height={2000} 
                             width={450} 
                         />
                     </div>
+                </div>
+                <div className="hidden md:block absolute bottom-6 ltr:right-6 rtl:left-6">
+                    <LanguageSelector />
                 </div>
             </div>
         </div>

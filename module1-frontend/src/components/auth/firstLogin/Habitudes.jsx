@@ -24,7 +24,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
 
   const habitudes = [
     { id: "sport", label: t('sport') },
-    { id: "tabac", label: t('smoking'), question: t('smokingQuestion'), type: "input", placeholder: t('smokingPlaceholder') },
+    { id: "tabac", label: t('smoking'), question: t('smokingQuestion'), type: "input", placeholder: t('smokingPlaceholder'), additionalQuestion: t('smokingSinceQuestion'), additionalPlaceholder: t('smokingSincePlaceholder') },
     { id: "alcool", label: t('alcohol'), question: t('alcoholQuestion'), type: "radio", options: [t('daily'), t('occasional')] },
     { id: "tempsEcran", label: t('screenTime'), question: t('screenTimeQuestion'), type: "radio", options: [t('1-2h'), t('3-5h'), t('5h+')] },
   ];
@@ -32,6 +32,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
   const FormSchema = z.object({
     habitudes: z.array(z.string()).optional(),
     tabac: z.string().optional(),
+    tabacSince: z.string().optional(),
     alcool: z.string().optional(),
     tempsEcran: z.string().optional(),
   });
@@ -41,6 +42,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
     defaultValues: {
       habitudes: [],
       tabac: "",
+      tabacSince: "",
       alcool: "",
       tempsEcran: "",
     },
@@ -55,15 +57,15 @@ const Fields = ({ setFormData, nextStep, formData }) => {
       ...prevFormData,
       habitudes: filteredData,
       tabac: data.tabac || "",
+      tabacSince: data.tabacSince || "",
       alcool: data.alcool || "",
       tempsEcran: data.tempsEcran || "",
     }));
-    console.log(formData)
     nextStep();
   };
 
   return (
-    <div className="sm:mt-8">
+    <div className="sm:mt-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="w-full flex flex-col justify-between gap-4">
@@ -118,24 +120,46 @@ const Fields = ({ setFormData, nextStep, formData }) => {
               const habitObj = habitudes.find(h => h.id === habit);
               if (habitObj?.type === "input") {
                 return (
-                  <FormField
-                    key={habit}
-                    control={form.control}
-                    name={habit}
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col space-y-2">
-                        <FormLabel className="text-sm font-normal">{habitObj.question}</FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            className="input"
-                            placeholder={habitObj.placeholder}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+                  <React.Fragment key={habit}>
+                    <FormField
+                      key={habit}
+                      control={form.control}
+                      name={habit}
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col space-y-2">
+                          <FormLabel className="text-sm font-normal">{habitObj.question}</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              className="input"
+                              placeholder={habitObj.placeholder}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {habitObj.additionalQuestion && (
+                      <FormField
+                        key={`${habit}Since`}
+                        control={form.control}
+                        name={`${habit}Since`}
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col space-y-2">
+                            <FormLabel className="text-sm font-normal">{habitObj.additionalQuestion}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                className="input"
+                                placeholder={habitObj.additionalPlaceholder}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     )}
-                  />
+                  </React.Fragment>
                 );
               } else if (habitObj?.type === "radio") {
                 return (
@@ -158,7 +182,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                                 <FormControl>
                                   <RadioGroupItem value={option} className="rtl:ml-2"/>
                                 </FormControl>
-                                <FormLabel className="font-norma">{option}</FormLabel>
+                                <FormLabel className="font-normal">{option}</FormLabel>
                               </FormItem>
                             ))}
                           </RadioGroup>
@@ -171,7 +195,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
               }
               return null;
             })}
-            <button type="submit" className="bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto">
+            <button type="submit" className="bg-blue-900 rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto mb-4">
               {t('nextButton')}
             </button>
           </div>

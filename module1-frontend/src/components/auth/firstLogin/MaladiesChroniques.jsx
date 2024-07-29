@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useTranslations } from "next-intl"
 
-import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Form,
@@ -31,29 +31,19 @@ const Fields = ({ setFormData, nextStep, formData }) => {
     {
       id: "diabete",
       label: t("maladieJeune.diabete"),
-    },
-    {
-      id: "epilepsie",
-      label: t("maladieJeune.epilepsie"),
-    },
-    {
-      id: "tsa",
-      label: t("maladieJeune.tsa"),
-    },
-    {
-      id: "troubleSommeil",
-      label: t("maladieJeune.troubleSommeil"),
-    },
+    }
   ]
 
   const FormSchema = z.object({
     maladieJeune: z.array(z.string()).optional(),
+    autre: z.string().optional()
   })
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       maladieJeune: [],
+      autre: "",
     },
   })
 
@@ -63,8 +53,10 @@ const Fields = ({ setFormData, nextStep, formData }) => {
     )
     setFormData((prevFormData) => ({
       ...prevFormData,
-      maladieJeune: filteredData,
-    }))
+      maladieJeune: [...filteredData, data.autre].filter(Boolean),
+    }));
+    const test=[...filteredData, data.autre].filter(Boolean);
+    console.log(test)
     nextStep()
   }
 
@@ -118,6 +110,22 @@ const Fields = ({ setFormData, nextStep, formData }) => {
                       }}
                     />
                   ))}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="autre"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('otherLabel')}</FormLabel>
+                  <FormControl>
+                    <Input 
+                      placeholder={t('otherPlaceholder')}
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

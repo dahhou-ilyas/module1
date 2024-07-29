@@ -59,7 +59,7 @@ const Fields = ({ setFormData, nextStep, formData }) => {
   };
 
   return (
-    <div className="sm:mt-8">
+    <div className="sm:mt-2">
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           <div className="w-full flex flex-col justify-between gap-4">

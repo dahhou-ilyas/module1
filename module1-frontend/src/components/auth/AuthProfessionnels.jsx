@@ -162,15 +162,12 @@ const AuthProfessionnels = () => {
                                         name="password"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="sm:inline">{t("passwordLabel")}</FormLabel>
-                                                <FormDescription className="hidden sm:inline rtl:sm:mr-60 border-b-2 border-blue-600 text-blue-600 cursor-pointer ltr:sm:ml-40">
-                                                    <Link href="/forgotPassword">{t("forgotPassword")}</Link>
-                                                </FormDescription>
+                                                <FormLabel>{t("passwordLabel")}</FormLabel>
                                                 <FormControl>
                                                     <Input className="w-80 sm:w-96 max-w-sm" type="password" id="password" placeholder={t("passwordPlaceholder")} {...field} />
                                                 </FormControl>
                                                 <FormMessage className="w-80 sm:w-96 max-w-sm" />
-                                                <FormDescription className="sm:hidden border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
+                                                <FormDescription className="border-b-[1px] inline-block border-blue-600 text-blue-600 cursor-pointer">
                                                     <Link href="/forgotPassword">{t("forgotPassword")}</Link>
                                                 </FormDescription>
                                             </FormItem>
@@ -204,7 +201,7 @@ const AuthProfessionnels = () => {
                             </Form>
                         </div>
                         <Link href="/register/professionnels">
-                            <h4 className="text-xs text-center text-gray-700 mt-4">
+                            <h4 className="text-xs text-center text-gray-700 my-4">
                                 {t("noAccount")} <span className='font-semibold border-b-2 border-gray-700 cursor-pointer'>{t("register")}</span>
                             </h4>
                         </Link>

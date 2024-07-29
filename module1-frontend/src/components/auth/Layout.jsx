@@ -21,7 +21,7 @@ const Layout = ({ title, subtitle, fields, prevStep }) => {
   const selectedLogo = logoConfig.default;
 
   return (
-    <div className="lg:h-screen lg:flex lg:items-center lg:justify-center lg:bg-[#6d7886a3]">
+    <div className="min-h-screen lg:flex lg:items-center lg:justify-center lg:bg-[#6d7886a3]">
       <div className="ml-4 mt-1 flex justify-between lg:hidden w-full">
         {prevStep && (
           <div onClick={prevStep}>

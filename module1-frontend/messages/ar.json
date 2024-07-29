@@ -288,6 +288,8 @@
   "smoking": "تدخين",
   "smokingQuestion": "كم عدد السجائر التي تدخنها في اليوم؟",
   "smokingPlaceholder": "عدد السجائر",
+  "smokingSinceQuestion": "منذ متى تدخن؟",
+    "smokingSincePlaceholder": "أدخل المدة الزمنية",
   "alcohol": "كحول",
   "alcoholQuestion": "استهلاك الكحول",
   "daily": "يوميًا",
@@ -303,7 +305,7 @@
   "title": "سوابق طبية شخصية",
   "subtitle": "يرجى إدخال المعلومات التالية",
   "chirurgicaux": {
-    "label": "هل تعاني من أمراض جراحية؟",
+    "label": "هل سبق وأن أجريت لك عملية جراحية؟",
     "oui": "نعم",
     "non": "لا"
   },
@@ -329,11 +331,10 @@
       "label": "هل تعاني من الأمراض المزمنة التالية؟",
       "description": "يمكنك اختيار لا شيء أو عدة خيارات.",
       "asthme": "الربو",
-      "diabete": "السكري",
-      "epilepsie": "الصرع",
-      "tsa": "اضطرابات طيف التوحد (TSA)",
-      "troubleSommeil": "اضطراب النوم"
+      "diabete": "السكري"
     },
+    "otherLabel": "أخرى:",
+    "otherPlaceholder": "يرجى التحديد",
     "nextButton": "التالي"
   },
   "Medicaments": {

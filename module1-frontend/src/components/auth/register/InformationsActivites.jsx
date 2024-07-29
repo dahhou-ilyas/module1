@@ -21,14 +21,13 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
             .min(1, t('errors.cin.required'))
             .regex(/^[A-Za-z]{1,2}\d+$/, t('errors.cin.invalid')),
         inpe: z.string().optional(),
-        ppr: z.string().optional(),
     });
 
     const form = useForm({
         defaultValues: {
             cin: "",
             inpe: "",
-            ppr: "",
+   
         },
         resolver: zodResolver(schema),
     });
@@ -44,20 +43,6 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
             });
             return;
         }
-        if (data.ppr && !/^\d+$/.test(data.ppr)) {
-            form.setError("ppr", {
-                type: "manual",
-                message: t('errors.ppr.invalid'),
-            });
-            return;
-        }
-        if (medecin && !data.ppr) {
-            form.setError("ppr", {
-                type: "manual",
-                message: t('errors.ppr.required'),
-            });
-            return;
-        }
         if (medecin && !data.inpe) {
             form.setError("inpe", {
                 type: "manual",
@@ -69,7 +54,6 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
             ...prevFormData,
             cin: data.cin,
             inpe: data.inpe || "",
-            ...(medecin && { ppr: data.ppr }),
         }));
 
         nextStep();
@@ -114,25 +98,7 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
                             </FormItem>
                         )}
                     />
-                    {medecin && (
-                        <FormField
-                            control={form.control}
-                            name="ppr"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t('labels.ppr')}</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="md:w-96 max-w-sm"
-                                            placeholder={t('placeholders.ppr')}
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage>{errors.ppr?.message}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    )}
+                    
                     <button type="submit" className="rounded-2xl mt-8 py-1 px-6 w-fit text-white font-medium ml-auto bg-blue-900">
                         {t('buttons.next')}
                     </button>
