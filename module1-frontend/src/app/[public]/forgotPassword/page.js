@@ -45,7 +45,9 @@ const ForgotPassword = () => {
     });
     nextStep();
   }
+
   const resetPassword = (values) => {
+    console.log(values)
     fetch('http://localhost:8080/password/reset', {
       method: 'POST',
       headers: {
@@ -53,7 +55,7 @@ const ForgotPassword = () => {
       },
       body: JSON.stringify({
         token:forgetPasswordData.token,
-        newPassword:values
+        newPassword:values.password
       })
     })
     .then(data => {
