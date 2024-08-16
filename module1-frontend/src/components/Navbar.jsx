@@ -143,10 +143,13 @@ export default function Navbar({ user }) {
         </button>
       </div>
 
+
+      {/* mobile sidebar */}
+
       <div
         className={`fixed inset-0 bg-gray-800 bg-opacity-75 ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-0 lg:hidden z-50`}
       >
-        <div ref={sidebarRef} className={`transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} ltr:transition-transform ltr:duration-300 ltr:ease-in-out p-4 bg-white h-full flex flex-col justify-between w-3/5 sm:w-2/5`}>
+        <div ref={sidebarRef} className={`transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} ltr:transition-transform ltr:duration-300 ltr:ease-in-out p-4 bg-white h-full flex flex-col justify-between w-3/5 sm:w-2/5 min-h-[450px] overflow-y-clip`}>
           <div>
             <div className="flex justify-between mb-4">
               <LogoJeune height={60} width={120} />
