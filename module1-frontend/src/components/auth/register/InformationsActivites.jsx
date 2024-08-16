@@ -35,30 +35,75 @@ const Fields = ({ setFormData, nextStep, medecin }) => {
     const { handleSubmit, formState } = form;
     const { errors } = formState;
 
-    const onSubmit = (data) => {
-        if (data.inpe && !/^\d+$/.test(data.inpe)) {
-            form.setError("inpe", {
-                type: "manual",
-                message: t('errors.inpe.invalid'),
-            });
-            return;
-        }
-        if (medecin && !data.inpe) {
-            form.setError("inpe", {
-                type: "manual",
-                message: t('errors.inpe.required'),
-            });
-            return;
-        }
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            cin: data.cin,
-            inpe: data.inpe || "",
-        }));
+    // const onSubmit = (data) => {
+    //     if (data.inpe && !/^\d+$/.test(data.inpe)) {
+    //         form.setError("inpe", {
+    //             type: "manual",
+    //             message: t('errors.inpe.invalid'),
+    //         });
+    //         return;
+    //     }
+    //     if (medecin && !data.inpe) {
+    //         form.setError("inpe", {
+    //             type: "manual",
+    //             message: t('errors.inpe.required'),
+    //         });
+    //         return;
+    //     }
+    //     setFormData((prevFormData) => ({
+    //         ...prevFormData,
+    //         cin: data.cin,
+    //         inpe: data.inpe || "",
+    //     }));
 
-        nextStep();
+    //     nextStep();
+    // };
+    const onSubmit = async (data) => {
+        try {
+            if (data.inpe && !/^\d+$/.test(data.inpe)) {
+                form.setError("inpe", {
+                    type: "manual",
+                    message: t('errors.inpe.invalid'),
+                });
+                return;
+            }
+            if (medecin && !data.inpe) {
+                form.setError("inpe", {
+                    type: "manual",
+                    message: t('errors.inpe.required'),
+                });
+                return;
+            }
+    
+            // Fetch validation from backend
+            if (data.inpe) {
+                const response = await fetch(`http://localhost:8080/validator/inpe?inpe=${data.inpe}`);
+                
+                if (!response.ok) {
+                    form.setError("inpe", {
+                        type: "manual",
+                        message: t("inpeErrorExist"), // Ensure this translation key is added to your translation files
+                    });
+                    return;
+                }
+            }
+    
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                cin: data.cin,
+                inpe: data.inpe || "",
+            }));
+    
+            nextStep();
+        } catch (error) {
+            // Handle unexpected errors
+            form.setError("inpe", {
+                type: "manual",
+                message: "Erreur: " + error.message,
+            });
+        }
     };
-
+    
     return (
         <Form {...form}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
