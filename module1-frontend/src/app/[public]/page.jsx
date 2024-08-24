@@ -59,19 +59,49 @@
 //     </>
 //   );
 // }
-
-
-import Navbar from "@/components/Navbar";
+"use client"
+import "@/assets/css/style.css";
+import "@/assets/css/bootstrap.min.css";
+import Navbar from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import WelcomingText from "@/components/WelcomingText";
 import LiveCaroussel from '@/components/LiveCaroussel';
+import { useEffect, useState } from "react";
+
+import Link from "next/link";
+import Image from "next/image";
 
 
 export default function Home() { 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+useEffect(() => {
+  const handleResize = () => {
+    setIsSmallScreen(window.innerWidth <= 768);
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
   return (
-    <>  
-      <Navbar />
+    
+    <>   
+    <Navbar />
+    <div id="root">
+      
+      <Sidebar />
+      <div className="page-wrapper">
+        <div className="content">
+         
+          
       <WelcomingText />
       <LiveCaroussel />
+      </div>
+          </div>
+      </div>
     </>
   );
 }

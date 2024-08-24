@@ -86,8 +86,8 @@ const LiveCaroussel = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="ml-6"/>
+                <CarouselNext className="mr-6" />
             </Carousel></div>
         </>
     );
