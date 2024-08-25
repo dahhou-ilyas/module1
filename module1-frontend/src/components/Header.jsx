@@ -10,12 +10,12 @@ import {
   noteicon1,
 } from "./imagepath";
 import Image from "next/image";
-import { FaBars, FaRegUserCircle, FaChevronDown } from 'react-icons/fa';
+
 import { PiSignOut } from "react-icons/pi";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
-import { FiChevronRight } from "react-icons/fi";
+
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';

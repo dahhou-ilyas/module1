@@ -387,6 +387,11 @@
         "username": "Mon Profile",
         "languageFr": "Français",
         "languageAr": "العربية"
+    },
+    "CardsCaroussel": {
+      "dossier_medical": "Dossier médical",
+      "education_sante": "Éducation à la santé",
+      "tests_psychologiques": "Tests Psychologiques"
     }
 
 

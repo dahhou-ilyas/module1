@@ -14,6 +14,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 const Sidebar = (props) => {
   const t = useTranslations('Navbar');
   const router = useRouter();
+  
   const expandMenu = () => {
     document.body.classList.remove("expand-menu");
   };
@@ -21,6 +22,7 @@ const Sidebar = (props) => {
   const expandMenuOpen = () => {
     document.body.classList.add("expand-menu");
   };
+  
   const handleLogout = () => {
     console.log("object");
     localStorage.removeItem('access-token');

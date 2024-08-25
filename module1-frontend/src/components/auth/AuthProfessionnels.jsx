@@ -22,7 +22,7 @@ import {
 import Terms from './Terms';
 import CheckVerifiedEmail from './CheckVerifiedEmail';
 
-import Logo from "../../../public/logoMedecin.png";
+import Logo from "../../../public/e-Espace.jpeg";
 import Illustration from "../../../public/image3.png";
 import { useTranslations } from "next-intl";
 import { jwtDecode } from 'jwt-decode';
@@ -155,12 +155,12 @@ const AuthProfessionnels = () => {
             <div className="lg:min-h-[500px] lg:max-w-7xl lg:border lg:rounded-3xl xl:min-w-[1000px] lg:min-w-[900px] bg-white sm:flex xl:mx-48">
                 <div className="w-full md:w-1/2 flex flex-col justify-center mt-8 sm:rtl:mr-8">
                     <div className='px-4 md:px-0 md:ml-8 lg:ml-12'>
-                        <div className="flex items-center justify-center -ml-2">
+                        <div className="flex items-center justify-center -ml-4 mb-8">
                             <Image 
                                 src={Logo} 
                                 alt="Logo" 
-                                height={200} 
-                                width={250} 
+                                height={250} 
+                                width={300} 
                             />
                         </div>
                         <div className="flex flex-col items-center justify-center">
@@ -198,21 +198,27 @@ const AuthProfessionnels = () => {
                                     <button 
                                         type="submit" 
                                         className='
-                                            bg-blue-900 
+                                             bg-sky-700
+                                            hover:bg-sky-800
+                                            transition
+                                            duration-300
+                                            ease-in-out
+                                            transform
+                                            hover:scale-105
+                                            hover:shadow-lg
+                                            focus:outline-none
+                                            focus:ring-2
+                                            focus:ring-offset-2
+                                            focus:ring-sky-600
                                             rounded-2xl 
                                             mt-4 
                                             py-1 
                                             w-full 
                                             max-w-sm 
                                             text-white 
-                                            font-medium 
-                                            transform 
-                                            transition 
-                                            duration-300 
+                                            font-medium       
                                             lg:hover:scale-100
                                             lg:scale-95
-                                            hover:shadow-lg
-                                            hover:bg-blue-800
                                         '
                                     > 
                                         {t("loginButton")}

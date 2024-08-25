@@ -388,7 +388,13 @@
         "username": "الملف الشخصي",
         "languageFr": "Français",
         "languageAr": "العربية"
+    },
+    "CardsCaroussel": {
+      "dossier_medical": "الملف الطبي",
+      "education_sante": "التثقيف الصحي",
+      "tests_psychologiques": "الاختبارات النفسية"
     }
+    
 
 
 

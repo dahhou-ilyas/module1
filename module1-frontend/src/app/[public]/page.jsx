@@ -60,16 +60,15 @@
 //   );
 // }
 "use client"
+import { useEffect, useState } from "react";
 import "@/assets/css/style.css";
 import "@/assets/css/bootstrap.min.css";
 import Navbar from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import WelcomingText from "@/components/WelcomingText";
 import LiveCaroussel from '@/components/LiveCaroussel';
-import { useEffect, useState } from "react";
 
-import Link from "next/link";
-import Image from "next/image";
+import CardsCaroussel from "@/components/CardsCaroussel";
 
 
 export default function Home() { 
@@ -98,9 +97,11 @@ useEffect(() => {
          
           
       <WelcomingText />
-      <LiveCaroussel />
+      {/* <LiveCaroussel /> */}
+      <CardsCaroussel/>
+      <div className="mb-10"></div>
       </div>
-          </div>
+      </div>
       </div>
     </>
   );
