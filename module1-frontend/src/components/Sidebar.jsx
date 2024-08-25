@@ -104,14 +104,15 @@ const Sidebar = (props) => {
                 </Link>
               </li>
               
-              <li>
+              <li onClick={handleLogout}>
                 <Link
                   className={
                     props?.activeClassName === "parametres" ? "active" : ""
                   }
-                  href="/"
+                  
+                  href="#"
                 >
-                  <span className="menu-side" onClick={handleLogout}>
+                  <span className="menu-side" >
                     <Image src={logout} alt="" />
                   </span>{" "}
                   <span>{t("logout")}</span>

@@ -1,7 +1,7 @@
 "use client";
 import "@/assets/css/style.css";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   logo,
   baricon,
@@ -17,13 +17,32 @@ import { FaRegUser } from "react-icons/fa6";
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
-const Header = ({ user }) => {
+import { jwtDecode } from "jwt-decode";
+const Header = () => {
   const t = useTranslations('Navbar');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const [user,setUser]=useState({})
 
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const token = localStorage.getItem('access-token');
+
+    if (!token) {
+      router.push('/auth/jeunes');
+      return;
+    }
+    try {
+      const decodedToken = jwtDecode(token);
+      setUser(decodedToken);
+    } catch (error) {
+      console.error('Invalid token:', error);
+      router.push('/auth/jeunes');
+      return;
+    }
+  }, []);
 
   const onSelectChange = (value) => {
     const segments = pathname.split('/').filter(Boolean);
@@ -36,7 +55,7 @@ const Header = ({ user }) => {
   };
 
   const firstName = user?.claims?.prenom
-    ? user.claims.prenom.charAt(0).toUpperCase() + user.claims.prenom.slice(1).toLowerCase()
+    ? user.claims.nom.toUpperCase() +" "+ user.claims.prenom.slice(1).toLowerCase()
     : "";
 
   const notifications = [
