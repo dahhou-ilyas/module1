@@ -67,12 +67,15 @@ import Navbar from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import WelcomingText from "@/components/WelcomingText";
 import LiveCaroussel from '@/components/LiveCaroussel';
+import { useEffect, useState } from "react";
 
 import CardsCaroussel from "@/components/CardsCaroussel";
-
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Home() { 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const t = useTranslations('Navbar');
+  const locale = useLocale();
 
 useEffect(() => {
   const handleResize = () => {
@@ -88,10 +91,10 @@ useEffect(() => {
   return (
     
     <>   
-    <Navbar />
+    <Navbar t={t} locale={locale}/>
     <div id="root">
       
-      <Sidebar />
+      <Sidebar t={t}/>
       <div className="page-wrapper">
         <div className="content">
          

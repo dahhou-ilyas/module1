@@ -1,7 +1,7 @@
 "use client";
 import "@/assets/css/style.css";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   logo,
   baricon,
@@ -10,22 +10,36 @@ import {
   noteicon1,
 } from "./imagepath";
 import Image from "next/image";
-
 import { PiSignOut } from "react-icons/pi";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
-
-import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
-const Header = ({ user }) => {
-  const t = useTranslations('Navbar');
-  const locale = useLocale();
+import { jwtDecode } from "jwt-decode";
+const Header = ({t,locale}) => {
   const router = useRouter();
   const pathname = usePathname();
+  const [user,setUser]=useState({})
 
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const token = localStorage.getItem('access-token');
+
+    if (!token) {
+      router.push('/auth/jeunes');
+      return;
+    }
+    try {
+      const decodedToken = jwtDecode(token);
+      setUser(decodedToken);
+    } catch (error) {
+      console.error('Invalid token:', error);
+      router.push('/auth/jeunes');
+      return;
+    }
+  }, []);
 
   const onSelectChange = (value) => {
     const segments = pathname.split('/').filter(Boolean);
@@ -37,117 +51,9 @@ const Header = ({ user }) => {
     });
   };
 
-  // Extract prenom and capitalize it
   const firstName = user?.claims?.prenom
-    ? user.claims.prenom.charAt(0).toUpperCase() + user.claims.prenom.slice(1).toLowerCase()
+    ? user.claims.nom.toUpperCase() +" "+ user.claims.prenom.slice(1).toLowerCase()
     : "";
-  // const messages = [
-  //   {
-  //     id: 1,
-  //     avatar: "R",
-  //     author: "Richard Miles",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 2,
-  //     avatar: "J",
-  //     author: "John Doe",
-  //     time: "1 Aug",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //     newMessage: true,
-  //   },
-  //   {
-  //     id: 3,
-  //     avatar: "T",
-  //     author: "Tarah Shropshire",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 4,
-  //     avatar: "M",
-  //     author: "Mike Litorus",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 5,
-  //     avatar: "C",
-  //     author: "Catherine Manseau",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 6,
-  //     avatar: "D",
-  //     author: "Domenic Houston",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 7,
-  //     avatar: "B",
-  //     author: "Buster Wigton",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 8,
-  //     avatar: "R",
-  //     author: "Rolland Webber",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 9,
-  //     avatar: "C",
-  //     author: "Claire Mapes",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 10,
-  //     avatar: "M",
-  //     author: "Melita Faucher",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 11,
-  //     avatar: "J",
-  //     author: "Jeffery Lalor",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 12,
-  //     avatar: "L",
-  //     author: "Loren Gatlin",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  //   {
-  //     id: 13,
-  //     avatar: "T",
-  //     author: "Tarah Shropshire",
-  //     time: "12:28 AM",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-  //     href: "/",
-  //   },
-  // ];
 
   const notifications = [
     {
@@ -267,18 +173,19 @@ const Header = ({ user }) => {
           id="mobile_btn"
           className="mobile_btn float-start"
           onClick={handlesidebarmobilemenu}
+          style={{ marginTop: "23px" }}
         >
           <Image src={baricon1} alt="" />
         </Link>
 
-        <ul className="nav user-menu float-end" dir="ltr">
-          <li className="nav-item dropdown d-none d-sm-block">
+        <ul className="justify-center items-center nav user-menu float-end" dir="ltr">
+          <div className="nav-item dropdown d-none d-sm-block">
             <Link
               href="/"
               className="dropdown-toggle nav-link"
               data-bs-toggle="dropdown"
             >
-              <Image style={{ marginTop: "25px" }} src={noteicon1} alt="" />
+              <Image className="relative bottom-2" style={{ marginTop: "20px" }} src={noteicon1} alt="" />
               <span className="pulse" />
             </Link>
             <div className="dropdown-menu notifications">
@@ -329,7 +236,7 @@ const Header = ({ user }) => {
                 <Link href="/">View all Notifications</Link>
               </div>
             </div>
-          </li>
+          </div>
           {/* <li className="nav-item dropdown d-none d-sm-block">
             <Link
               href="/"
@@ -341,14 +248,14 @@ const Header = ({ user }) => {
               <span className="pulse" />{" "}
             </Link>
           </li> */}
-          <li className="nav-item dropdown has-arrow user-profile-list">
+          <div className="nav-item dropdown has-arrow user-profile-list">
             <Link
               href="/"
               className="dropdown-toggle nav-link user-link"
               data-bs-toggle="dropdown"
             >
               <div className="user-names">
-                <h5 className="hidden md:block">{firstName || t('username')}</h5>
+                <h5 className="hidden md:block">{firstName || (typeof t === 'function' && t('username')) || "Mon Profile"}</h5>
               </div>
               {/* <span className="user-img">
                 <Image src={user06} alt="Admin"/>
@@ -356,40 +263,42 @@ const Header = ({ user }) => {
               <Image src={user06} alt="Admin" className="user-img" />
             </Link>
             <div className="dropdown-menu">
-              
-              
-                  <li key={t('profile')} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
-                    <span className="rtl:ml-1"><FaRegUser /></span>
-                    <button 
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      {t('profile')}
-                    </button>
-                  </li>
-                  
-              <li className="hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
-                  {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
-                  <button onClick={() => onSelectChange('fr')} className="block text-sm text-gray-700 font-medium">
-                    {t('languageFr')}
+                <li key={(typeof t === 'function' && t('profile')) || "profile"} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
+                  <span className="rtl:ml-1"><FaRegUser /></span>
+                  <button 
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    {(typeof t === 'function' && t('profile')) || "Profile"}
                   </button>
                 </li>
-                <li className=" py-2 hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
-                  {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
-                  <button onClick={() => onSelectChange('ar')} className="block text-sm font-medium text-gray-700 ">
-                    {t('languageAr')}
+                {locale &&
+                  <>
+                    <li className="hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
+                      {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                      <button onClick={() => onSelectChange('fr')} className="block text-sm text-gray-700 font-medium">
+                        {t('languageFr')}
+                      </button>
+                    </li>
+                    <li className=" py-2 hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
+                      {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                      <button onClick={() => onSelectChange('ar')} className="block text-sm font-medium text-gray-700 ">
+                        {t('languageAr')}
+                      </button>
+                    </li>
+                  </>
+                } 
+                
+                <li key={(typeof t === 'function' && t('logout')) || "logout"} className="ltr:pl-6 rtl:pr-6 pb-2 hover:bg-zinc-100 flex items-center space-x-2">
+                  <span className="rtl:ml-1"><PiSignOut /></span>
+                  <button 
+                    className="block text-sm font-medium text-gray-700"
+                    onClick={handleLogout}
+                  >
+                    {(typeof t === 'function' && t('logout')) || "Se déconnecter"}
                   </button>
                 </li>
-                <li key={t('logout')} className="ltr:pl-6 rtl:pr-6 pb-2 hover:bg-zinc-100 flex items-center space-x-2">
-                    <span className="rtl:ml-1"><PiSignOut /></span>
-                    <button 
-                      className="block text-sm font-medium text-gray-700"
-                      onClick={handleLogout}
-                    >
-                      {t('logout')}
-                    </button>
-                  </li>
             </div>
-          </li>
+          </div>
           {/* <li className="nav-item ">
             <Link href="/Parametres" className="hasnotifications nav-link">
               <Image src={settingicon01} alt="" />{" "}

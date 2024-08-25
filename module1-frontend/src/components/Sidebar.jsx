@@ -9,12 +9,15 @@ import { useRouter } from 'next/navigation';
 
 import { dashboard, doctor, logout, menuicon10, menuicon08 } from "./imagepath";
 import Scrollbars from "react-custom-scrollbars-2";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { useEffect } from "react";
+//import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Sidebar = (props) => {
-  const t = useTranslations('Navbar');
   const router = useRouter();
-  
+
+  useEffect(()=>{
+    require("bootstrap/dist/js/bootstrap.bundle.min.js")
+  },[])
   const expandMenu = () => {
     document.body.classList.remove("expand-menu");
   };
@@ -22,7 +25,6 @@ const Sidebar = (props) => {
   const expandMenuOpen = () => {
     document.body.classList.add("expand-menu");
   };
-  
   const handleLogout = () => {
     console.log("object");
     localStorage.removeItem('access-token');
@@ -60,7 +62,7 @@ const Sidebar = (props) => {
                   <span className="menu-side">
                     <Image src={dashboard} alt="" />
                   </span>{" "}
-                  <span> {t('home')} </span>
+                  <span> {(typeof props.t === 'function' && props.t('home')) || "Accueil"} </span>
                 </Link>
               </li>
               <li className="submenu">
@@ -73,7 +75,7 @@ const Sidebar = (props) => {
                   <span className="menu-side">
                     <Image src={doctor} alt="" />
                   </span>{" "}
-                  <span> {t('medicalRecord')} </span>
+                  <span> {(typeof props.t === 'function' && props.t('medicalRecord')) || "Dossier Medical"} </span>
                 </Link>
               </li>
               <li>
@@ -86,7 +88,7 @@ const Sidebar = (props) => {
                   <span className="menu-side">
                     <Image src={menuicon08} alt="" />
                   </span>{" "}
-                  <span>{t('healthEducation')}</span>
+                  <span>{(typeof props.t === 'function' && props.t('healthEducation')) || "Education à la Sante"}</span>
                 </Link>
               </li>
               <li>
@@ -97,21 +99,22 @@ const Sidebar = (props) => {
                   <span className="menu-side">
                     <Image src={menuicon10} alt="" />
                   </span>{" "}
-                  <span>{t('psychTests')}</span>
+                  <span>{(typeof props.t === 'function' && props.t('psychTests')) || "Tests Psychologiques"}</span>
                 </Link>
               </li>
               
-              <li>
+              <li onClick={handleLogout}>
                 <Link
                   className={
                     props?.activeClassName === "parametres" ? "active" : ""
                   }
-                  href="/"
+                  
+                  href="#"
                 >
-                  <span className="menu-side" onClick={handleLogout}>
+                  <span className="menu-side" >
                     <Image src={logout} alt="" />
                   </span>{" "}
-                  <span>{t("logout")}</span>
+                  <span>{(typeof props.t === 'function' && props.t('logout')) || "Se déconnecter"}</span>
                 </Link>
               </li>
             </ul>
