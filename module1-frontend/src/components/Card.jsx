@@ -12,8 +12,7 @@ const Card = ({ href, title, src }) => {
                 <Image
                     src={src}
                     alt="thumbnail"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     className="rounded-t-xl transition-transform duration-500 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-100"></div>

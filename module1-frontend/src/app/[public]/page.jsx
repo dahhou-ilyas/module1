@@ -99,8 +99,7 @@ useEffect(() => {
           
       <WelcomingText />
       {/* <LiveCaroussel /> */}
-      <CardsCaroussel/>
-      <div className="mb-10"></div>
+      <CardsCaroussel />
       </div>
       </div>
       </div>

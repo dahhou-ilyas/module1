@@ -230,7 +230,6 @@ const AuthJeunes = () => {
                         <Image 
                             src={Illustration} 
                             alt="Illustration" 
-                            layout="responsive"
                             height={2000} 
                             width={450} 
                         />

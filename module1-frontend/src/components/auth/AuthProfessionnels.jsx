@@ -242,7 +242,6 @@ const AuthProfessionnels = () => {
                     <Image 
                         src={Illustration} 
                         alt="Illustration" 
-                        layout="responsive"
                         height={1000} 
                         width={450} 
                     />
