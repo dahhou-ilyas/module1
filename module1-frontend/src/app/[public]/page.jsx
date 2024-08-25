@@ -66,8 +66,6 @@ import "@/assets/css/bootstrap.min.css";
 import Navbar from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import WelcomingText from "@/components/WelcomingText";
-import LiveCaroussel from '@/components/LiveCaroussel';
-import { useEffect, useState } from "react";
 
 import CardsCaroussel from "@/components/CardsCaroussel";
 import { useTranslations, useLocale } from 'next-intl';

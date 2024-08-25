@@ -20,11 +20,13 @@ const Fields = ({ setFormData, nextStep }) => {
   const schema = z.object({
     nom: z.string()
       .min(1, t("nomErrorRequired"))
-      .regex(/^[a-zA-ZÀ-ÿ]+$/, t("nomErrorInvalid")),
+      .regex(/^[a-zA-ZÀ-ÿ\u0600-\u06FF\s-]+$/, t("nomErrorInvalid")),
     prenom: z.string()
       .min(1, t("prenomErrorRequired"))
-      .regex(/^[a-zA-ZÀ-ÿ]+$/, t("prenomErrorInvalid")),
+      .regex(/^[a-zA-ZÀ-ÿ\u0600-\u06FF\s-]+$/, t("prenomErrorInvalid")),
   });
+  
+  
 
   const form = useForm({
     defaultValues: {
