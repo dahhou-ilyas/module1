@@ -14,13 +14,10 @@ import { PiSignOut } from "react-icons/pi";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
-import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
 import { jwtDecode } from "jwt-decode";
-const Header = () => {
-  const t = useTranslations('Navbar');
-  const locale = useLocale();
+const Header = ({t,locale}) => {
   const router = useRouter();
   const pathname = usePathname();
   const [user,setUser]=useState({})
@@ -258,7 +255,7 @@ const Header = () => {
               data-bs-toggle="dropdown"
             >
               <div className="user-names">
-                <h5 className="hidden md:block">{firstName || t('username')}</h5>
+                <h5 className="hidden md:block">{firstName || (typeof t === 'function' && t('username')) || "Mon Profile"}</h5>
               </div>
               {/* <span className="user-img">
                 <Image src={user06} alt="Admin"/>
@@ -266,33 +263,38 @@ const Header = () => {
               <Image src={user06} alt="Admin" className="user-img" />
             </Link>
             <div className="dropdown-menu">
-                <li key={t('profile')} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
+                <li key={(typeof t === 'function' && t('profile')) || "profile"} className="px-4 py-2 hover:bg-zinc-100 flex items-center space-x-2">
                   <span className="rtl:ml-1"><FaRegUser /></span>
                   <button 
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {t('profile')}
-                  </button>
-                </li> 
-                <li className="hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
-                  {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
-                  <button onClick={() => onSelectChange('fr')} className="block text-sm text-gray-700 font-medium">
-                    {t('languageFr')}
+                    {(typeof t === 'function' && t('profile')) || "Profile"}
                   </button>
                 </li>
-                <li className=" py-2 hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
-                  {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
-                  <button onClick={() => onSelectChange('ar')} className="block text-sm font-medium text-gray-700 ">
-                    {t('languageAr')}
-                  </button>
-                </li>
-                <li key={t('logout')} className="ltr:pl-6 rtl:pr-6 pb-2 hover:bg-zinc-100 flex items-center space-x-2">
+                {locale &&
+                  <>
+                    <li className="hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
+                      {locale === 'fr' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                      <button onClick={() => onSelectChange('fr')} className="block text-sm text-gray-700 font-medium">
+                        {t('languageFr')}
+                      </button>
+                    </li>
+                    <li className=" py-2 hover:bg-zinc-100 flex items-center space-x-2 ltr:ml-6 rtl:pr-6">
+                      {locale === 'ar' ? <span className="rtl:ml-1"><IoCheckmark /></span> : <span className="rtl:ml-1"><RxCross1 /></span>}
+                      <button onClick={() => onSelectChange('ar')} className="block text-sm font-medium text-gray-700 ">
+                        {t('languageAr')}
+                      </button>
+                    </li>
+                  </>
+                } 
+                
+                <li key={(typeof t === 'function' && t('logout')) || "logout"} className="ltr:pl-6 rtl:pr-6 pb-2 hover:bg-zinc-100 flex items-center space-x-2">
                   <span className="rtl:ml-1"><PiSignOut /></span>
                   <button 
                     className="block text-sm font-medium text-gray-700"
                     onClick={handleLogout}
                   >
-                    {t('logout')}
+                    {(typeof t === 'function' && t('logout')) || "Se déconnecter"}
                   </button>
                 </li>
             </div>
