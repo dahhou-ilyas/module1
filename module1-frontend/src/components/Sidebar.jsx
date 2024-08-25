@@ -9,11 +9,16 @@ import { useRouter } from 'next/navigation';
 
 import { dashboard, doctor, logout, menuicon10, menuicon08 } from "./imagepath";
 import Scrollbars from "react-custom-scrollbars-2";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { useEffect } from "react";
+//import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Sidebar = (props) => {
   const t = useTranslations('Navbar');
   const router = useRouter();
+
+  useEffect(()=>{
+    require("bootstrap/dist/js/bootstrap.bundle.min.js")
+  },[])
   const expandMenu = () => {
     document.body.classList.remove("expand-menu");
   };
